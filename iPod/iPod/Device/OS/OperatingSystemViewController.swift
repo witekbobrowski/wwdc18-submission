@@ -1,14 +1,14 @@
 //
-//  ScreenViewController.swift
+//  OperatingSystemViewController.swift
 //  iPod
 //
-//  Created by Witek Bobrowski on 25/03/2018.
+//  Created by Witek Bobrowski on 26/03/2018.
 //  Copyright © 2018 Witek Bobrowski. All rights reserved.
 //
 
 import UIKit
 
-class ScreenViewController: UIViewController {
+class OperatingSystemViewController: UIViewController {
 
     private enum Constants {
         static let statusBarHeight: CGFloat = 18
@@ -19,7 +19,7 @@ class ScreenViewController: UIViewController {
     private var menuNavigationController: UINavigationController!
     private var mainMenuViewController: UIViewController!
 
-    var viewModel: ScreenViewModel!
+    var viewModel: OperatingSystemViewModel!
 
     override func loadView() {
         super.loadView()
@@ -28,7 +28,7 @@ class ScreenViewController: UIViewController {
 
 }
 
-extension ScreenViewController {
+extension OperatingSystemViewController {
 
     private func setupView() {
         view.backgroundColor = Color.light

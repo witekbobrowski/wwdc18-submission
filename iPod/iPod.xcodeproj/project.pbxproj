@@ -10,17 +10,18 @@
 		4105CBFD20681E4400DE99EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CBFC20681E4400DE99EB /* AppDelegate.swift */; };
 		4105CC0420681E4400DE99EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4105CC0320681E4400DE99EB /* Assets.xcassets */; };
 		4105CC0720681E4400DE99EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4105CC0520681E4400DE99EB /* LaunchScreen.storyboard */; };
-		4105CC20206821FA00DE99EB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC1F206821FA00DE99EB /* MenuViewController.swift */; };
-		4105CC222068221500DE99EB /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC212068221500DE99EB /* MenuViewModel.swift */; };
+		4105CC20206821FA00DE99EB /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC1F206821FA00DE99EB /* MenuViewModel.swift */; };
+		4105CC222068221500DE99EB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC212068221500DE99EB /* MenuViewController.swift */; };
 		4105CC242068223A00DE99EB /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC232068223A00DE99EB /* DeviceViewController.swift */; };
-		4105CC282068227F00DE99EB /* ScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC272068227F00DE99EB /* ScreenViewController.swift */; };
-		4105CC2A2068229A00DE99EB /* ScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC292068229A00DE99EB /* ScreenViewModel.swift */; };
 		4105CC2D206822C300DE99EB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC2C206822C300DE99EB /* Color.swift */; };
 		4105CC3120682C2100DE99EB /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC2F20682C2100DE99EB /* MenuTableViewCell.swift */; };
 		4105CC3420682C6700DE99EB /* MenuCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3320682C6700DE99EB /* MenuCellViewModel.swift */; };
 		4105CC3620683EFF00DE99EB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3520683EFF00DE99EB /* Font.swift */; };
 		4105CC382068415B00DE99EB /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC372068415B00DE99EB /* StatusBarView.swift */; };
 		4105CC3B2068418A00DE99EB /* StatusBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3A2068418A00DE99EB /* StatusBarViewModel.swift */; };
+		4105CC3D20684FEE00DE99EB /* DeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3C20684FEE00DE99EB /* DeviceViewModel.swift */; };
+		4105CC3F2068539A00DE99EB /* OperatingSystemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3E2068539A00DE99EB /* OperatingSystemViewModel.swift */; };
+		4105CC412068546A00DE99EB /* OperatingSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC402068546A00DE99EB /* OperatingSystemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,17 +30,18 @@
 		4105CC0320681E4400DE99EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4105CC0620681E4400DE99EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4105CC0820681E4400DE99EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4105CC1F206821FA00DE99EB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = iPod/Common/Menu/MenuViewController.swift; sourceTree = SOURCE_ROOT; };
-		4105CC212068221500DE99EB /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = iPod/Common/Menu/MenuViewModel.swift; sourceTree = SOURCE_ROOT; };
+		4105CC1F206821FA00DE99EB /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		4105CC212068221500DE99EB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		4105CC232068223A00DE99EB /* DeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceViewController.swift; path = iPod/Device/DeviceViewController.swift; sourceTree = SOURCE_ROOT; };
-		4105CC272068227F00DE99EB /* ScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenViewController.swift; sourceTree = "<group>"; };
-		4105CC292068229A00DE99EB /* ScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenViewModel.swift; sourceTree = "<group>"; };
 		4105CC2C206822C300DE99EB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4105CC2F20682C2100DE99EB /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		4105CC3320682C6700DE99EB /* MenuCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCellViewModel.swift; sourceTree = "<group>"; };
 		4105CC3520683EFF00DE99EB /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		4105CC372068415B00DE99EB /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
 		4105CC3A2068418A00DE99EB /* StatusBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarViewModel.swift; sourceTree = "<group>"; };
+		4105CC3C20684FEE00DE99EB /* DeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewModel.swift; sourceTree = "<group>"; };
+		4105CC3E2068539A00DE99EB /* OperatingSystemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatingSystemViewModel.swift; sourceTree = "<group>"; };
+		4105CC402068546A00DE99EB /* OperatingSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatingSystemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +76,6 @@
 			children = (
 				4105CC2B206822B100DE99EB /* Utils */,
 				4105CC252068225B00DE99EB /* Device */,
-				4105CC1020681E7000DE99EB /* Common */,
 				4105CBFC20681E4400DE99EB /* AppDelegate.swift */,
 				4105CC0320681E4400DE99EB /* Assets.xcassets */,
 				4105CC0520681E4400DE99EB /* LaunchScreen.storyboard */,
@@ -83,42 +84,35 @@
 			path = iPod;
 			sourceTree = "<group>";
 		};
-		4105CC1020681E7000DE99EB /* Common */ = {
+		4105CC1020681E7000DE99EB /* OS */ = {
 			isa = PBXGroup;
 			children = (
 				4105CC392068416100DE99EB /* StatusBar */,
 				4105CC1120681E7000DE99EB /* Menu */,
+				4105CC3E2068539A00DE99EB /* OperatingSystemViewModel.swift */,
+				4105CC402068546A00DE99EB /* OperatingSystemViewController.swift */,
 			);
-			path = Common;
+			path = OS;
 			sourceTree = "<group>";
 		};
 		4105CC1120681E7000DE99EB /* Menu */ = {
 			isa = PBXGroup;
 			children = (
 				4105CC2E20682C0300DE99EB /* Cell */,
-				4105CC1F206821FA00DE99EB /* MenuViewController.swift */,
-				4105CC212068221500DE99EB /* MenuViewModel.swift */,
+				4105CC1F206821FA00DE99EB /* MenuViewModel.swift */,
+				4105CC212068221500DE99EB /* MenuViewController.swift */,
 			);
-			name = Menu;
-			path = ../../../iPod/iPod/Common/Menu;
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		4105CC252068225B00DE99EB /* Device */ = {
 			isa = PBXGroup;
 			children = (
-				4105CC262068226D00DE99EB /* Screen */,
+				4105CC1020681E7000DE99EB /* OS */,
 				4105CC232068223A00DE99EB /* DeviceViewController.swift */,
+				4105CC3C20684FEE00DE99EB /* DeviceViewModel.swift */,
 			);
 			path = Device;
-			sourceTree = "<group>";
-		};
-		4105CC262068226D00DE99EB /* Screen */ = {
-			isa = PBXGroup;
-			children = (
-				4105CC272068227F00DE99EB /* ScreenViewController.swift */,
-				4105CC292068229A00DE99EB /* ScreenViewModel.swift */,
-			);
-			path = Screen;
 			sourceTree = "<group>";
 		};
 		4105CC2B206822B100DE99EB /* Utils */ = {
@@ -136,8 +130,7 @@
 				4105CC2F20682C2100DE99EB /* MenuTableViewCell.swift */,
 				4105CC3320682C6700DE99EB /* MenuCellViewModel.swift */,
 			);
-			name = Cell;
-			path = ../../../../iPod/iPod/Common/Menu/Cell;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		4105CC392068416100DE99EB /* StatusBar */ = {
@@ -221,16 +214,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4105CC3420682C6700DE99EB /* MenuCellViewModel.swift in Sources */,
+				4105CC3F2068539A00DE99EB /* OperatingSystemViewModel.swift in Sources */,
+				4105CC3D20684FEE00DE99EB /* DeviceViewModel.swift in Sources */,
 				4105CBFD20681E4400DE99EB /* AppDelegate.swift in Sources */,
 				4105CC3620683EFF00DE99EB /* Font.swift in Sources */,
 				4105CC2D206822C300DE99EB /* Color.swift in Sources */,
 				4105CC3B2068418A00DE99EB /* StatusBarViewModel.swift in Sources */,
 				4105CC3120682C2100DE99EB /* MenuTableViewCell.swift in Sources */,
-				4105CC2A2068229A00DE99EB /* ScreenViewModel.swift in Sources */,
-				4105CC222068221500DE99EB /* MenuViewModel.swift in Sources */,
+				4105CC222068221500DE99EB /* MenuViewController.swift in Sources */,
 				4105CC242068223A00DE99EB /* DeviceViewController.swift in Sources */,
-				4105CC282068227F00DE99EB /* ScreenViewController.swift in Sources */,
-				4105CC20206821FA00DE99EB /* MenuViewController.swift in Sources */,
+				4105CC412068546A00DE99EB /* OperatingSystemViewController.swift in Sources */,
+				4105CC20206821FA00DE99EB /* MenuViewModel.swift in Sources */,
 				4105CC382068415B00DE99EB /* StatusBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

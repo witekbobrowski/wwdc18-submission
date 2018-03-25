@@ -13,9 +13,12 @@ public class DeviceViewController: UIViewController {
     private enum Constants {
         static let screenHeight: CGFloat = 128
         static let screenWidth: CGFloat = 160
+        static let screenCornerRadius: CGFloat = 4
     }
 
-    private var screenViewController: ScreenViewController!
+    private var operatingSystemViewController: OperatingSystemViewController!
+
+    var viewModel: DeviceViewModel!
 
     public override func loadView() {
         super.loadView()
@@ -27,13 +30,14 @@ public class DeviceViewController: UIViewController {
 extension DeviceViewController {
 
     private func setupView() {
-        let screenViewController = ScreenViewController()
-        screenViewController.viewModel = ScreenViewModelImplementation()
-        view.addSubview(screenViewController.view)
-        screenViewController.view.frame = CGRect(x: view.bounds.midX - Constants.screenWidth/2,
+        let operatingSystemViewController = OperatingSystemViewController()
+        operatingSystemViewController.viewModel = viewModel.operatingSystemViewModel
+        view.addSubview(operatingSystemViewController.view)
+        operatingSystemViewController.view.layer.cornerRadius = Constants.screenCornerRadius
+        operatingSystemViewController.view.frame = CGRect(x: view.bounds.midX - Constants.screenWidth/2,
                                                  y: view.bounds.midY - Constants.screenHeight/2,
                                                  width: Constants.screenWidth, height: Constants.screenHeight)
-        self.screenViewController = screenViewController
+        self.operatingSystemViewController = operatingSystemViewController
     }
 
 }

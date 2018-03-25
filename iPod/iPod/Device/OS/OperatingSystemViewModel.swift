@@ -1,8 +1,8 @@
 //
-//  ScreenViewModel.swift
+//  OperatingSystemViewModel.swift
 //  iPod
 //
-//  Created by Witek Bobrowski on 25/03/2018.
+//  Created by Witek Bobrowski on 26/03/2018.
 //  Copyright © 2018 Witek Bobrowski. All rights reserved.
 //
 
@@ -16,12 +16,12 @@ enum MainMenuItem: String {
     case about = "About"
 }
 
-protocol ScreenViewModel {
+protocol OperatingSystemViewModel {
     var statusBarViewModel: StatusBarViewModel { get }
     var mainMenuViewModel: MenuViewModel { get }
 }
 
-class ScreenViewModelImplementation: ScreenViewModel {
+class OperatingSystemViewModelImplementation: OperatingSystemViewModel {
 
     let mainMenuItems: [MainMenuItem] = [.playlists, .browse, .extras, .settings, .about]
 
@@ -37,7 +37,7 @@ class ScreenViewModelImplementation: ScreenViewModel {
 
 }
 
-extension ScreenViewModelImplementation: MenuViewModelDelegate {
+extension OperatingSystemViewModelImplementation: MenuViewModelDelegate {
 
     func menuViewModel(_ menuViewModel: MenuViewModel, didSelectItem item: String) {
         print("User did select item: \(item)")
