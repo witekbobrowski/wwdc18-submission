@@ -22,13 +22,20 @@ protocol ScreenViewModel {
 
 class ScreenViewModelImplementation: ScreenViewModel {
 
+    let mainMenuItems: [MainMenuItem] = [.playlists, .browse, .extras, .settings, .about]
+
     var mainMenuViewModel: MenuViewModel {
-        let mainMenuItems: [MainMenuItem] = [.playlists, .browse, .extras, .settings, .about]
-        let viewModel = MenuViewModelImplementation(options: mainMenuItems.map { $0.rawValue })
+        let viewModel = MenuViewModelImplementation(items: mainMenuItems.map { $0.rawValue })
+        viewModel.delegate = self
         return viewModel
     }
+
 }
 
 extension ScreenViewModelImplementation: MenuViewModelDelegate {
+
+    func menuViewModel(_ menuViewModel: MenuViewModel, didSelectItem item: String) {
+        print("User did select item: \(item)")
+    }
 
 }

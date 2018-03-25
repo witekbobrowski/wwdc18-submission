@@ -14,8 +14,8 @@ class MenuViewController: UIViewController {
 
     public var viewModel: MenuViewModel!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        super.loadView()
         setupTableView()
     }
 
@@ -25,8 +25,12 @@ extension MenuViewController {
 
     private func setupTableView() {
         let tableView = UITableView()
-        
+        view = tableView
         tableView.dataSource = self
+        tableView.backgroundColor = .clear
+        tableView.reloadData()
+        tableView.separatorStyle = .none
+        self.tableView = tableView
     }
 
 }
@@ -38,7 +42,7 @@ extension MenuViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows()
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

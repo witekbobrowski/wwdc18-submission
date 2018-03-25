@@ -10,10 +10,10 @@ import UIKit
 
 public class DeviceViewController: UIViewController {
 
-    private var screenViewController: UIViewController!
+    private var screenViewController: ScreenViewController!
 
-    public override func viewDidLoad() {
-        super.viewDidLoad()
+    public override func loadView() {
+        super.loadView()
         setupView()
     }
 
@@ -22,7 +22,14 @@ public class DeviceViewController: UIViewController {
 extension DeviceViewController {
 
     private func setupView() {
-        self.view = screenViewController.view
+        let screenViewController = ScreenViewController()
+        screenViewController.viewModel = ScreenViewModelImplementation()
+        view.bottomAnchor.constraint(equalTo: screenViewController.view.bottomAnchor)
+        view.topAnchor.constraint(equalTo: screenViewController.view.topAnchor)
+        view.leftAnchor.constraint(equalTo: screenViewController.view.leftAnchor)
+        view.rightAnchor.constraint(equalTo: screenViewController.view.rightAnchor)
+        view.addSubview(screenViewController.view)
+        self.screenViewController = screenViewController
     }
 
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MenuViewModelDelegate: class {
-    func menuViewModel(_ menuViewModel: MenuViewModel, didSelectItem: String)
+    func menuViewModel(_ menuViewModel: MenuViewModel, didSelectItem item: String)
 }
 
 protocol MenuViewModel {
@@ -25,7 +25,7 @@ class MenuViewModelImplementation: MenuViewModel {
     weak var delegate: MenuViewModelDelegate?
 
     init(items: [String]) {
-        self.options = items
+        self.items = items
     }
 
     func numberOfRows() -> Int {

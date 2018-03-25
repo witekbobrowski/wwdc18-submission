@@ -11,18 +11,36 @@ import UIKit
 class ScreenViewController: UIViewController {
 
     private var menuNavigationController: UINavigationController!
+    private var mainMenuViewController: UIViewController!
 
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        setupView()
+    var viewModel: ScreenViewModel!
+
+    override func loadView() {
+        super.loadView()
+        setupMainMenu()
+        setupNavigationController()
     }
 
 }
 
 extension ScreenViewController {
 
-    private func setupView() {
-        self.view = menuNavigationController.view
+    private func setupMainMenu() {
+        view.backgroundColor = .light
+        let mainMenuViewModel = viewModel.mainMenuViewModel
+        let mainMenuViewController = MenuViewController()
+        mainMenuViewController.viewModel = mainMenuViewModel
+        self.mainMenuViewController = mainMenuViewController
+    }
+
+    private func setupNavigationController() {
+        let navigationController = UINavigationController(rootViewController: mainMenuViewController)
+        view.bottomAnchor.constraint(equalTo: navigationController.view.bottomAnchor)
+        view.topAnchor.constraint(equalTo: navigationController.view.topAnchor)
+        view.leftAnchor.constraint(equalTo: navigationController.view.leftAnchor)
+        view.rightAnchor.constraint(equalTo: navigationController.view.rightAnchor)
+        view.addSubview(navigationController.view)
+        menuNavigationController = navigationController
     }
 
 }
