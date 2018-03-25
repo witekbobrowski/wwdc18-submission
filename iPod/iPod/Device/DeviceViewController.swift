@@ -13,6 +13,7 @@ public class DeviceViewController: UIViewController {
     private enum Constants {
         static let screenHeight: CGFloat = 128
         static let screenWidth: CGFloat = 160
+        static let controlPanelSize: CGFloat = 180
         static let screenCornerRadius: CGFloat = 4
     }
 

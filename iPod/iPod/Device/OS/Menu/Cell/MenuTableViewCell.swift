@@ -55,7 +55,7 @@ extension MenuTableViewCell {
         let stackView = UIStackView(arrangedSubviews: [])
         stackView.axis = .horizontal
         stackView.alignment = .fill
-        stackView.distribution = .fill
+        stackView.distribution = .fillProportionally
         addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         bottomAnchor.constraint(equalTo: stackView.bottomAnchor).isActive = true

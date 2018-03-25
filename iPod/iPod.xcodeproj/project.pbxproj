@@ -22,6 +22,8 @@
 		4105CC3D20684FEE00DE99EB /* DeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3C20684FEE00DE99EB /* DeviceViewModel.swift */; };
 		4105CC3F2068539A00DE99EB /* OperatingSystemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3E2068539A00DE99EB /* OperatingSystemViewModel.swift */; };
 		4105CC412068546A00DE99EB /* OperatingSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC402068546A00DE99EB /* OperatingSystemViewController.swift */; };
+		4105CC4620685A6B00DE99EB /* ControlPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC4520685A6B00DE99EB /* ControlPanelViewController.swift */; };
+		4105CC4820685E5A00DE99EB /* ControlPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC4720685E5A00DE99EB /* ControlPanelViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		4105CC3C20684FEE00DE99EB /* DeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewModel.swift; sourceTree = "<group>"; };
 		4105CC3E2068539A00DE99EB /* OperatingSystemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatingSystemViewModel.swift; sourceTree = "<group>"; };
 		4105CC402068546A00DE99EB /* OperatingSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatingSystemViewController.swift; sourceTree = "<group>"; };
+		4105CC4520685A6B00DE99EB /* ControlPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelViewController.swift; sourceTree = "<group>"; };
+		4105CC4720685E5A00DE99EB /* ControlPanelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 		4105CC252068225B00DE99EB /* Device */ = {
 			isa = PBXGroup;
 			children = (
+				4105CC442068564600DE99EB /* Controls */,
 				4105CC1020681E7000DE99EB /* OS */,
 				4105CC232068223A00DE99EB /* DeviceViewController.swift */,
 				4105CC3C20684FEE00DE99EB /* DeviceViewModel.swift */,
@@ -140,6 +145,15 @@
 				4105CC3A2068418A00DE99EB /* StatusBarViewModel.swift */,
 			);
 			path = StatusBar;
+			sourceTree = "<group>";
+		};
+		4105CC442068564600DE99EB /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				4105CC4520685A6B00DE99EB /* ControlPanelViewController.swift */,
+				4105CC4720685E5A00DE99EB /* ControlPanelViewModel.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +229,7 @@
 			files = (
 				4105CC3420682C6700DE99EB /* MenuCellViewModel.swift in Sources */,
 				4105CC3F2068539A00DE99EB /* OperatingSystemViewModel.swift in Sources */,
+				4105CC4620685A6B00DE99EB /* ControlPanelViewController.swift in Sources */,
 				4105CC3D20684FEE00DE99EB /* DeviceViewModel.swift in Sources */,
 				4105CBFD20681E4400DE99EB /* AppDelegate.swift in Sources */,
 				4105CC3620683EFF00DE99EB /* Font.swift in Sources */,
@@ -224,6 +239,7 @@
 				4105CC222068221500DE99EB /* MenuViewController.swift in Sources */,
 				4105CC242068223A00DE99EB /* DeviceViewController.swift in Sources */,
 				4105CC412068546A00DE99EB /* OperatingSystemViewController.swift in Sources */,
+				4105CC4820685E5A00DE99EB /* ControlPanelViewModel.swift in Sources */,
 				4105CC20206821FA00DE99EB /* MenuViewModel.swift in Sources */,
 				4105CC382068415B00DE99EB /* StatusBarView.swift in Sources */,
 			);
