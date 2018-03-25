@@ -38,9 +38,9 @@ class MenuTableViewCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        backgroundColor = selected ? .dark : .light
-        titleLabel.textColor = selected ? .light : .dark
-        disclosureLabel.textColor = selected ? .light : .dark
+        backgroundColor = selected ? Color.dark : Color.light
+        titleLabel.textColor = selected ? Color.light : Color.dark
+        disclosureLabel.textColor = selected ? Color.light : Color.dark
     }
 
 }
@@ -65,7 +65,10 @@ extension MenuTableViewCell {
         let titleLabel = UILabel()
         let disclosureLabel = UILabel()
         stackView.arrangedSubviews.forEach { stackView.removeArrangedSubview($0) }
-        [titleLabel, disclosureLabel].forEach { stackView.addArrangedSubview($0) }
+        [titleLabel, disclosureLabel].forEach { label in
+            label.font = Font.normalFont
+            stackView.addArrangedSubview(label)
+        }
         disclosureLabel.textAlignment = .right
         self.titleLabel = titleLabel
         self.disclosureLabel = disclosureLabel

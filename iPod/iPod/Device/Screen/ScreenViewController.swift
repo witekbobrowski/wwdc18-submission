@@ -26,7 +26,7 @@ class ScreenViewController: UIViewController {
 extension ScreenViewController {
 
     private func setupMainMenu() {
-        view.backgroundColor = .light
+        view.backgroundColor = Color.light
         let mainMenuViewModel = viewModel.mainMenuViewModel
         let mainMenuViewController = MenuViewController()
         mainMenuViewController.viewModel = mainMenuViewModel
@@ -40,6 +40,7 @@ extension ScreenViewController {
         view.leftAnchor.constraint(equalTo: navigationController.view.leftAnchor)
         view.rightAnchor.constraint(equalTo: navigationController.view.rightAnchor)
         view.addSubview(navigationController.view)
+        navigationController.setNavigationBarHidden(true, animated: false)
         menuNavigationController = navigationController
     }
 

@@ -15,9 +15,12 @@
 		4105CC242068223A00DE99EB /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC232068223A00DE99EB /* DeviceViewController.swift */; };
 		4105CC282068227F00DE99EB /* ScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC272068227F00DE99EB /* ScreenViewController.swift */; };
 		4105CC2A2068229A00DE99EB /* ScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC292068229A00DE99EB /* ScreenViewModel.swift */; };
-		4105CC2D206822C300DE99EB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC2C206822C300DE99EB /* Colors.swift */; };
+		4105CC2D206822C300DE99EB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC2C206822C300DE99EB /* Color.swift */; };
 		4105CC3120682C2100DE99EB /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC2F20682C2100DE99EB /* MenuTableViewCell.swift */; };
 		4105CC3420682C6700DE99EB /* MenuCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3320682C6700DE99EB /* MenuCellViewModel.swift */; };
+		4105CC3620683EFF00DE99EB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3520683EFF00DE99EB /* Font.swift */; };
+		4105CC382068415B00DE99EB /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC372068415B00DE99EB /* StatusBarView.swift */; };
+		4105CC3B2068418A00DE99EB /* StatusBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3A2068418A00DE99EB /* StatusBarViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +34,12 @@
 		4105CC232068223A00DE99EB /* DeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceViewController.swift; path = iPod/Device/DeviceViewController.swift; sourceTree = SOURCE_ROOT; };
 		4105CC272068227F00DE99EB /* ScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenViewController.swift; sourceTree = "<group>"; };
 		4105CC292068229A00DE99EB /* ScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenViewModel.swift; sourceTree = "<group>"; };
-		4105CC2C206822C300DE99EB /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		4105CC2C206822C300DE99EB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4105CC2F20682C2100DE99EB /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		4105CC3320682C6700DE99EB /* MenuCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCellViewModel.swift; sourceTree = "<group>"; };
+		4105CC3520683EFF00DE99EB /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		4105CC372068415B00DE99EB /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
+		4105CC3A2068418A00DE99EB /* StatusBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,7 @@
 		4105CC1020681E7000DE99EB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4105CC392068416100DE99EB /* StatusBar */,
 				4105CC1120681E7000DE99EB /* Menu */,
 			);
 			path = Common;
@@ -117,7 +124,8 @@
 		4105CC2B206822B100DE99EB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4105CC2C206822C300DE99EB /* Colors.swift */,
+				4105CC2C206822C300DE99EB /* Color.swift */,
+				4105CC3520683EFF00DE99EB /* Font.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -130,6 +138,15 @@
 			);
 			name = Cell;
 			path = ../../../../iPod/iPod/Common/Menu/Cell;
+			sourceTree = "<group>";
+		};
+		4105CC392068416100DE99EB /* StatusBar */ = {
+			isa = PBXGroup;
+			children = (
+				4105CC372068415B00DE99EB /* StatusBarView.swift */,
+				4105CC3A2068418A00DE99EB /* StatusBarViewModel.swift */,
+			);
+			path = StatusBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,13 +222,16 @@
 			files = (
 				4105CC3420682C6700DE99EB /* MenuCellViewModel.swift in Sources */,
 				4105CBFD20681E4400DE99EB /* AppDelegate.swift in Sources */,
-				4105CC2D206822C300DE99EB /* Colors.swift in Sources */,
+				4105CC3620683EFF00DE99EB /* Font.swift in Sources */,
+				4105CC2D206822C300DE99EB /* Color.swift in Sources */,
+				4105CC3B2068418A00DE99EB /* StatusBarViewModel.swift in Sources */,
 				4105CC3120682C2100DE99EB /* MenuTableViewCell.swift in Sources */,
 				4105CC2A2068229A00DE99EB /* ScreenViewModel.swift in Sources */,
 				4105CC222068221500DE99EB /* MenuViewModel.swift in Sources */,
 				4105CC242068223A00DE99EB /* DeviceViewController.swift in Sources */,
 				4105CC282068227F00DE99EB /* ScreenViewController.swift in Sources */,
 				4105CC20206821FA00DE99EB /* MenuViewController.swift in Sources */,
+				4105CC382068415B00DE99EB /* StatusBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

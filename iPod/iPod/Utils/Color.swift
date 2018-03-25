@@ -8,10 +8,10 @@
 
 import UIKit
 
-extension UIColor {
+enum Color {
 
     static let light: UIColor = #colorLiteral(red: 0.7764705882, green: 0.768627451, blue: 0.7411764706, alpha: 1)
 
-    static let dark: UIColor = #colorLiteral(red: 0.3176470588, green: 0.3176470588, blue: 0.3176470588, alpha: 1)
+    static let dark: UIColor = #colorLiteral(red: 0.3058823529, green: 0.3058823529, blue: 0.3058823529, alpha: 1)
 
 }
