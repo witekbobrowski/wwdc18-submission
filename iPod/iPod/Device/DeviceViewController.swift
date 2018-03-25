@@ -18,6 +18,7 @@ public class DeviceViewController: UIViewController {
     }
 
     private var operatingSystemViewController: OperatingSystemViewController!
+    private var controlPanelViewController: ControlPanelViewController!
 
     var viewModel: DeviceViewModel!
 
@@ -31,14 +32,32 @@ public class DeviceViewController: UIViewController {
 extension DeviceViewController {
 
     private func setupView() {
+        setupOperatingSystem()
+        setupControlPanel()
+    }
+
+    private func setupOperatingSystem() {
         let operatingSystemViewController = OperatingSystemViewController()
         operatingSystemViewController.viewModel = viewModel.operatingSystemViewModel
         view.addSubview(operatingSystemViewController.view)
         operatingSystemViewController.view.layer.cornerRadius = Constants.screenCornerRadius
         operatingSystemViewController.view.frame = CGRect(x: view.bounds.midX - Constants.screenWidth/2,
-                                                 y: view.bounds.midY - Constants.screenHeight/2,
-                                                 width: Constants.screenWidth, height: Constants.screenHeight)
+                                                          y: view.bounds.midY - Constants.screenHeight/2,
+                                                          width: Constants.screenWidth,
+                                                          height: Constants.screenHeight)
         self.operatingSystemViewController = operatingSystemViewController
+    }
+
+    private func setupControlPanel() {
+        let controlPanelViewController = ControlPanelViewController()
+        controlPanelViewController.viewModel = viewModel.controlPanelViewModel
+        view.addSubview(controlPanelViewController.view)
+        controlPanelViewController.view.layer.cornerRadius = Constants.controlPanelSize/2
+        controlPanelViewController.view.frame = CGRect(x: view.bounds.midX - Constants.controlPanelSize/2,
+                                                          y: view.bounds.midY + Constants.screenHeight/2 + 20,
+                                                          width: Constants.controlPanelSize,
+                                                          height: Constants.controlPanelSize)
+        self.controlPanelViewController = controlPanelViewController
     }
 
 }

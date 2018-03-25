@@ -14,4 +14,6 @@ enum Color {
 
     static let dark: UIColor = #colorLiteral(red: 0.3058823529, green: 0.3058823529, blue: 0.3058823529, alpha: 1)
 
+    static let buttonBackground: UIColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
+
 }

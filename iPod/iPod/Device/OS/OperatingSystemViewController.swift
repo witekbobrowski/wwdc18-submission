@@ -31,6 +31,7 @@ class OperatingSystemViewController: UIViewController {
 extension OperatingSystemViewController {
 
     private func setupView() {
+        view.clipsToBounds = true
         view.backgroundColor = Color.light
         setupStatusBar()
         setupMainMenu()

@@ -10,12 +10,17 @@ import Foundation
 
 protocol DeviceViewModel {
     var operatingSystemViewModel: OperatingSystemViewModel { get }
+    var controlPanelViewModel: ControlPanelViewModel { get }
 }
 
 class DeviceViewModelImplementation: DeviceViewModel {
 
     var operatingSystemViewModel: OperatingSystemViewModel {
         return OperatingSystemViewModelImplementation()
+    }
+
+    var controlPanelViewModel: ControlPanelViewModel {
+        return ControlPanelViewModelImplementation()
     }
 
 }

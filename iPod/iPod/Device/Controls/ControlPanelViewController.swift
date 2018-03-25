@@ -17,8 +17,8 @@ class ControlPanelViewController: UIViewController {
 
     var viewModel: ControlPanelViewModel!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        super.loadView()
         setupView()
     }
 
@@ -44,6 +44,7 @@ extension ControlPanelViewController {
 
     private func setupView() {
         view.backgroundColor = .clear
+        view.clipsToBounds = true
         setupButtons()
     }
 
@@ -52,7 +53,11 @@ extension ControlPanelViewController {
         let playPauseButton = UIButton()
         let fastForwardButton = UIButton()
         let rewindButton = UIButton()
-        [menuButton, playPauseButton, fastForwardButton, rewindButton].forEach { view.addSubview($0) }
+        [menuButton, playPauseButton, fastForwardButton, rewindButton].forEach { button in
+            button.backgroundColor = Color.buttonBackground
+            button.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(button)
+        }
         menuButton.addTarget(self, action: #selector(menuButtonDidTap(_:)), for: .touchUpInside)
         playPauseButton.addTarget(self, action: #selector(playPauseButtonDidTap(_:)), for: .touchUpInside)
         fastForwardButton.addTarget(self, action: #selector(fastForwardButtonDidTap(_:)), for: .touchUpInside)
@@ -79,12 +84,8 @@ extension ControlPanelViewController {
         }
         menuButton.bottomAnchor.constraint(equalTo: playPauseButton.topAnchor).isActive = true
         rewindButton.rightAnchor.constraint(equalTo: fastForwardButton.leftAnchor).isActive = true
-        [menuButton, playPauseButton].flatMap { $0 }.forEach { button in
-            menuButton.heightAnchor.constraint(equalTo: playPauseButton.heightAnchor).isActive = true
-        }
-        [rewindButton, fastForwardButton].flatMap { $0 }.forEach { button in
-            menuButton.widthAnchor.constraint(equalTo: playPauseButton.widthAnchor).isActive = true
-        }
+        menuButton.heightAnchor.constraint(equalTo: playPauseButton.heightAnchor).isActive = true
+        rewindButton.widthAnchor.constraint(equalTo: fastForwardButton.widthAnchor).isActive = true
     }
 
 }
