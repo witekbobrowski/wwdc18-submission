@@ -17,12 +17,17 @@ enum MainMenuItem: String {
 }
 
 protocol ScreenViewModel {
+    var statusBarViewModel: StatusBarViewModel { get }
     var mainMenuViewModel: MenuViewModel { get }
 }
 
 class ScreenViewModelImplementation: ScreenViewModel {
 
     let mainMenuItems: [MainMenuItem] = [.playlists, .browse, .extras, .settings, .about]
+
+    var statusBarViewModel: StatusBarViewModel {
+        return StatusBarViewModelImplementation(title: "iPod", isPlaying: false, isCharging: false)
+    }
 
     var mainMenuViewModel: MenuViewModel {
         let viewModel = MenuViewModelImplementation(items: mainMenuItems.map { $0.rawValue })

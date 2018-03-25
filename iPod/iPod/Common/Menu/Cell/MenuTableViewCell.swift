@@ -10,6 +10,10 @@ import UIKit
 
 class MenuTableViewCell: UITableViewCell {
 
+    private enum Constants {
+        static let inset: CGFloat = 4
+    }
+
     private weak var stackView: UIStackView!
     private weak var titleLabel: UILabel!
     private weak var disclosureLabel: UILabel!
@@ -56,8 +60,8 @@ extension MenuTableViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         bottomAnchor.constraint(equalTo: stackView.bottomAnchor).isActive = true
         topAnchor.constraint(equalTo: stackView.topAnchor).isActive = true
-        leftAnchor.constraint(equalTo: stackView.leftAnchor).isActive = true
-        rightAnchor.constraint(equalTo: stackView.rightAnchor).isActive = true
+        leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: -Constants.inset).isActive = true
+        rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: Constants.inset).isActive = true
         self.stackView = stackView
     }
 
@@ -66,7 +70,7 @@ extension MenuTableViewCell {
         let disclosureLabel = UILabel()
         stackView.arrangedSubviews.forEach { stackView.removeArrangedSubview($0) }
         [titleLabel, disclosureLabel].forEach { label in
-            label.font = Font.normalFont
+            label.font = Font.normal
             stackView.addArrangedSubview(label)
         }
         disclosureLabel.textAlignment = .right

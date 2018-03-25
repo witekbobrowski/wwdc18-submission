@@ -10,6 +10,10 @@ import UIKit
 
 class MenuViewController: UIViewController {
 
+    private enum Constants {
+        static let rowHeight: CGFloat = 18
+    }
+
     private weak var tableView: UITableView!
 
     public var viewModel: MenuViewModel!
@@ -30,6 +34,7 @@ extension MenuViewController {
         tableView.backgroundColor = .clear
         tableView.reloadData()
         tableView.separatorStyle = .none
+        tableView.rowHeight = Constants.rowHeight
         tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: String(describing: MenuTableViewCell.self))
         self.tableView = tableView
     }

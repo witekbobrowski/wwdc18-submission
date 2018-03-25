@@ -9,6 +9,6 @@
 import UIKit
 
 enum Font {
-    static let compactFont: UIFont = UIFont(name: "Menlo-Regular", size: 10)!
-    static let normalFont: UIFont = UIFont(name: "Menlo-Regular", size: 12)!
+    static let compact: UIFont = UIFont(name: "Menlo-Bold", size: 10)!
+    static let normal: UIFont = UIFont(name: "Menlo-Bold", size: 12)!
 }
