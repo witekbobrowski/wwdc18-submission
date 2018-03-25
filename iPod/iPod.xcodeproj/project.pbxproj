@@ -1,0 +1,376 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4105CBFD20681E4400DE99EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CBFC20681E4400DE99EB /* AppDelegate.swift */; };
+		4105CC0420681E4400DE99EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4105CC0320681E4400DE99EB /* Assets.xcassets */; };
+		4105CC0720681E4400DE99EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4105CC0520681E4400DE99EB /* LaunchScreen.storyboard */; };
+		4105CC20206821FA00DE99EB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC1F206821FA00DE99EB /* MenuViewController.swift */; };
+		4105CC222068221500DE99EB /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC212068221500DE99EB /* MenuViewModel.swift */; };
+		4105CC242068223A00DE99EB /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC232068223A00DE99EB /* DeviceViewController.swift */; };
+		4105CC282068227F00DE99EB /* ScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC272068227F00DE99EB /* ScreenViewController.swift */; };
+		4105CC2A2068229A00DE99EB /* ScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC292068229A00DE99EB /* ScreenViewModel.swift */; };
+		4105CC2D206822C300DE99EB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC2C206822C300DE99EB /* Colors.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4105CBF920681E4400DE99EB /* iPod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPod.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4105CBFC20681E4400DE99EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4105CC0320681E4400DE99EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4105CC0620681E4400DE99EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4105CC0820681E4400DE99EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4105CC1F206821FA00DE99EB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = iPod/Common/Menu/MenuViewController.swift; sourceTree = SOURCE_ROOT; };
+		4105CC212068221500DE99EB /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = iPod/Common/Menu/MenuViewModel.swift; sourceTree = SOURCE_ROOT; };
+		4105CC232068223A00DE99EB /* DeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceViewController.swift; path = iPod/Device/DeviceViewController.swift; sourceTree = SOURCE_ROOT; };
+		4105CC272068227F00DE99EB /* ScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenViewController.swift; sourceTree = "<group>"; };
+		4105CC292068229A00DE99EB /* ScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenViewModel.swift; sourceTree = "<group>"; };
+		4105CC2C206822C300DE99EB /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4105CBF620681E4400DE99EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4105CBF020681E4400DE99EB = {
+			isa = PBXGroup;
+			children = (
+				4105CBFB20681E4400DE99EB /* iPod */,
+				4105CBFA20681E4400DE99EB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4105CBFA20681E4400DE99EB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4105CBF920681E4400DE99EB /* iPod.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4105CBFB20681E4400DE99EB /* iPod */ = {
+			isa = PBXGroup;
+			children = (
+				4105CC2B206822B100DE99EB /* Utils */,
+				4105CC252068225B00DE99EB /* Device */,
+				4105CC1020681E7000DE99EB /* Common */,
+				4105CBFC20681E4400DE99EB /* AppDelegate.swift */,
+				4105CC0320681E4400DE99EB /* Assets.xcassets */,
+				4105CC0520681E4400DE99EB /* LaunchScreen.storyboard */,
+				4105CC0820681E4400DE99EB /* Info.plist */,
+			);
+			path = iPod;
+			sourceTree = "<group>";
+		};
+		4105CC1020681E7000DE99EB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4105CC1120681E7000DE99EB /* Menu */,
+			);
+			name = Common;
+			path = ../../iPod.playground/Sources/Common;
+			sourceTree = "<group>";
+		};
+		4105CC1120681E7000DE99EB /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				4105CC1F206821FA00DE99EB /* MenuViewController.swift */,
+				4105CC212068221500DE99EB /* MenuViewModel.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		4105CC252068225B00DE99EB /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				4105CC262068226D00DE99EB /* Screen */,
+				4105CC232068223A00DE99EB /* DeviceViewController.swift */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		4105CC262068226D00DE99EB /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				4105CC272068227F00DE99EB /* ScreenViewController.swift */,
+				4105CC292068229A00DE99EB /* ScreenViewModel.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		4105CC2B206822B100DE99EB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4105CC2C206822C300DE99EB /* Colors.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4105CBF820681E4400DE99EB /* iPod */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4105CC0B20681E4400DE99EB /* Build configuration list for PBXNativeTarget "iPod" */;
+			buildPhases = (
+				4105CBF520681E4400DE99EB /* Sources */,
+				4105CBF620681E4400DE99EB /* Frameworks */,
+				4105CBF720681E4400DE99EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iPod;
+			productName = iPod;
+			productReference = 4105CBF920681E4400DE99EB /* iPod.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4105CBF120681E4400DE99EB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Witek Bobrowski";
+				TargetAttributes = {
+					4105CBF820681E4400DE99EB = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4105CBF420681E4400DE99EB /* Build configuration list for PBXProject "iPod" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4105CBF020681E4400DE99EB;
+			productRefGroup = 4105CBFA20681E4400DE99EB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4105CBF820681E4400DE99EB /* iPod */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4105CBF720681E4400DE99EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4105CC0720681E4400DE99EB /* LaunchScreen.storyboard in Resources */,
+				4105CC0420681E4400DE99EB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4105CBF520681E4400DE99EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4105CBFD20681E4400DE99EB /* AppDelegate.swift in Sources */,
+				4105CC2D206822C300DE99EB /* Colors.swift in Sources */,
+				4105CC2A2068229A00DE99EB /* ScreenViewModel.swift in Sources */,
+				4105CC222068221500DE99EB /* MenuViewModel.swift in Sources */,
+				4105CC242068223A00DE99EB /* DeviceViewController.swift in Sources */,
+				4105CC282068227F00DE99EB /* ScreenViewController.swift in Sources */,
+				4105CC20206821FA00DE99EB /* MenuViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4105CC0520681E4400DE99EB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4105CC0620681E4400DE99EB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4105CC0920681E4400DE99EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4105CC0A20681E4400DE99EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4105CC0C20681E4400DE99EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U82NM6NPZS;
+				INFOPLIST_FILE = iPod/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = witek.bobrowski.iPod;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4105CC0D20681E4400DE99EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U82NM6NPZS;
+				INFOPLIST_FILE = iPod/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = witek.bobrowski.iPod;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4105CBF420681E4400DE99EB /* Build configuration list for PBXProject "iPod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4105CC0920681E4400DE99EB /* Debug */,
+				4105CC0A20681E4400DE99EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4105CC0B20681E4400DE99EB /* Build configuration list for PBXNativeTarget "iPod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4105CC0C20681E4400DE99EB /* Debug */,
+				4105CC0D20681E4400DE99EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4105CBF120681E4400DE99EB /* Project object */;
+}
