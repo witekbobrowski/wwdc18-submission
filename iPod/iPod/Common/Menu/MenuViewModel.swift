@@ -14,7 +14,7 @@ protocol MenuViewModelDelegate: class {
 protocol MenuViewModel {
     var delegate: MenuViewModelDelegate? { get set }
     func numberOfRows() -> Int
-    func viewModelForCell(inRow row: Int) -> String
+    func viewModelForCell(inRow row: Int) -> MenuCellViewModel
     func selectCell(inRow row: Int)
 }
 
@@ -32,8 +32,8 @@ class MenuViewModelImplementation: MenuViewModel {
         return items.count
     }
 
-    func viewModelForCell(inRow row: Int) -> String {
-        return items[row]
+    func viewModelForCell(inRow row: Int) -> MenuCellViewModel {
+        return MenuCellViewModelImplementation(title: items[row])
     }
 
     func selectCell(inRow row: Int) {

@@ -30,6 +30,7 @@ extension MenuViewController {
         tableView.backgroundColor = .clear
         tableView.reloadData()
         tableView.separatorStyle = .none
+        tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: String(describing: MenuTableViewCell.self))
         self.tableView = tableView
     }
 
@@ -42,11 +43,13 @@ extension MenuViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return viewModel.numberOfRows()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self))!
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MenuTableViewCell.self)) as! MenuTableViewCell
+        cell.viewModel = viewModel.viewModelForCell(inRow: indexPath.row)
+        return cell
     }
 
 }
