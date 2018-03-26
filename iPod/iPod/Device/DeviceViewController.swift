@@ -52,7 +52,6 @@ extension DeviceViewController {
         let controlPanelViewController = ControlPanelViewController()
         controlPanelViewController.viewModel = viewModel.controlPanelViewModel
         view.addSubview(controlPanelViewController.view)
-        controlPanelViewController.view.layer.cornerRadius = Constants.controlPanelSize/2
         controlPanelViewController.view.frame = CGRect(x: view.bounds.midX - Constants.controlPanelSize/2,
                                                           y: view.bounds.midY + Constants.screenHeight/2 + 20,
                                                           width: Constants.controlPanelSize,

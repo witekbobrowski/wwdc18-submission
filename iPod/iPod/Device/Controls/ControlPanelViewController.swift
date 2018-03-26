@@ -10,10 +10,10 @@ import UIKit
 
 class ControlPanelViewController: UIViewController {
 
-    private weak var menuButton: UIButton!
-    private weak var playPauseButton: UIButton!
-    private weak var fastForwardButton: UIButton!
-    private weak var rewindButton: UIButton!
+    private weak var menuButton: ArchButton!
+    private weak var playPauseButton: ArchButton!
+    private weak var fastForwardButton: ArchButton!
+    private weak var rewindButton: ArchButton!
 
     var viewModel: ControlPanelViewModel!
 
@@ -22,19 +22,19 @@ class ControlPanelViewController: UIViewController {
         setupView()
     }
 
-    @objc private func menuButtonDidTap(_ sender: UIButton) {
+    @objc private func menuButtonDidTap(_ sender: ArchButton) {
         viewModel.menuButtonDidTap()
     }
 
-    @objc private func playPauseButtonDidTap(_ sender: UIButton) {
+    @objc private func playPauseButtonDidTap(_ sender: ArchButton) {
         viewModel.playPauseButtonDidTap()
     }
 
-    @objc private func fastForwardButtonDidTap(_ sender: UIButton) {
+    @objc private func fastForwardButtonDidTap(_ sender: ArchButton) {
         viewModel.fastForwardButtonDidTap()
     }
 
-    @objc private func rewindButtonDidTap(_ sender: UIButton) {
+    @objc private func rewindButtonDidTap(_ sender: ArchButton) {
         viewModel.rewindButtonDidTap()
     }
 
@@ -49,10 +49,14 @@ extension ControlPanelViewController {
     }
 
     private func setupButtons() {
-        let menuButton = UIButton()
-        let playPauseButton = UIButton()
-        let fastForwardButton = UIButton()
-        let rewindButton = UIButton()
+        let menuButton = ArchButton()
+        menuButton.orientation = .regular
+        let playPauseButton = ArchButton()
+        playPauseButton.orientation = .upsiteDown
+        let fastForwardButton = ArchButton()
+        fastForwardButton.orientation = .rightTilt
+        let rewindButton = ArchButton()
+        rewindButton.orientation = .leftTilt
         [menuButton, playPauseButton, fastForwardButton, rewindButton].forEach { button in
             button.backgroundColor = Color.buttonBackground
             button.translatesAutoresizingMaskIntoConstraints = false
