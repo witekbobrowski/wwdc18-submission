@@ -25,6 +25,7 @@
 		4105CC4620685A6B00DE99EB /* ControlPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC4520685A6B00DE99EB /* ControlPanelViewController.swift */; };
 		4105CC4820685E5A00DE99EB /* ControlPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC4720685E5A00DE99EB /* ControlPanelViewModel.swift */; };
 		4105CC4B20697EDC00DE99EB /* ArchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC4A20697EDC00DE99EB /* ArchButton.swift */; };
+		4105CC4E2069924D00DE99EB /* ScrollWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC4D2069924D00DE99EB /* ScrollWheel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		4105CC4520685A6B00DE99EB /* ControlPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelViewController.swift; sourceTree = "<group>"; };
 		4105CC4720685E5A00DE99EB /* ControlPanelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelViewModel.swift; sourceTree = "<group>"; };
 		4105CC4A20697EDC00DE99EB /* ArchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchButton.swift; sourceTree = "<group>"; };
+		4105CC4D2069924D00DE99EB /* ScrollWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollWheel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 		4105CC442068564600DE99EB /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				4105CC4C2069923200DE99EB /* ScrollWheel */,
 				4105CC4920697EB300DE99EB /* ArchButton */,
 				4105CC4520685A6B00DE99EB /* ControlPanelViewController.swift */,
 				4105CC4720685E5A00DE99EB /* ControlPanelViewModel.swift */,
@@ -165,6 +168,14 @@
 				4105CC4A20697EDC00DE99EB /* ArchButton.swift */,
 			);
 			path = ArchButton;
+			sourceTree = "<group>";
+		};
+		4105CC4C2069923200DE99EB /* ScrollWheel */ = {
+			isa = PBXGroup;
+			children = (
+				4105CC4D2069924D00DE99EB /* ScrollWheel.swift */,
+			);
+			path = ScrollWheel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +263,7 @@
 				4105CC242068223A00DE99EB /* DeviceViewController.swift in Sources */,
 				4105CC412068546A00DE99EB /* OperatingSystemViewController.swift in Sources */,
 				4105CC4820685E5A00DE99EB /* ControlPanelViewModel.swift in Sources */,
+				4105CC4E2069924D00DE99EB /* ScrollWheel.swift in Sources */,
 				4105CC20206821FA00DE99EB /* MenuViewModel.swift in Sources */,
 				4105CC382068415B00DE99EB /* StatusBarView.swift in Sources */,
 			);

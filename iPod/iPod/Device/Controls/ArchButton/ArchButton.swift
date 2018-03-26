@@ -46,7 +46,6 @@ class ArchButton: UIButton {
 extension ArchButton {
 
     private func setupView() {
-        backgroundColor = Color.buttonBackground
         clipsToBounds = true
         let shapeLayer = CAShapeLayer()
         shapeLayer.backgroundColor = UIColor.clear.cgColor

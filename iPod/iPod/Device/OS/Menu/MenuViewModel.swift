@@ -14,6 +14,7 @@ protocol MenuViewModelDelegate: class {
 
 protocol MenuViewModel {
     var delegate: MenuViewModelDelegate? { get set }
+    var rowInitallyHighlighed: Int? { get }
     func numberOfRows() -> Int
     func viewModelForCell(inRow row: Int) -> MenuCellViewModel
     func selectCell(inRow row: Int)
@@ -24,6 +25,8 @@ class MenuViewModelImplementation: MenuViewModel {
     let items: [String]
 
     weak var delegate: MenuViewModelDelegate?
+
+    var rowInitallyHighlighed: Int? { return items.isEmpty ? nil : 0 }
 
     init(items: [String]) {
         self.items = items

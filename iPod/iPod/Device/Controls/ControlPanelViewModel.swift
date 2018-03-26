@@ -14,6 +14,7 @@ protocol ControlPanelViewModel {
     func playPauseButtonDidTap()
     func fastForwardButtonDidTap()
     func rewindButtonDidTap()
+    func scrollWheelDidChangeValue(withAction action: ScrollWheelStateChange)
 }
 
 class ControlPanelViewModelImplementation: ControlPanelViewModel {
@@ -34,6 +35,10 @@ class ControlPanelViewModelImplementation: ControlPanelViewModel {
 
     func rewindButtonDidTap() {
         print("REWIND")
+    }
+
+    func scrollWheelDidChangeValue(withAction action: ScrollWheelStateChange) {
+        print("SCROLLED TO " + (action == .next ? "NEXT" : "PREVIOUS"))
     }
 
 }

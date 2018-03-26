@@ -37,6 +37,8 @@ extension MenuViewController {
         tableView.rowHeight = Constants.rowHeight
         tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: String(describing: MenuTableViewCell.self))
         self.tableView = tableView
+        guard let row = viewModel.rowInitallyHighlighed else { return }
+        tableView.selectRow(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: .top)
     }
 
 }
