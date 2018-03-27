@@ -18,11 +18,14 @@ class DeviceViewModelImplementation: DeviceViewModel {
     private(set) var operatingSystemViewModel: OperatingSystemViewModel
     private(set) var controlPanelViewModel: ControlPanelViewModel
 
+    private weak var inputResponder: InputResponder?
+
     init(operatingSystemViewModel: OperatingSystemViewModel,
          controlPanelViewModel: ControlPanelViewModel) {
         self.operatingSystemViewModel = operatingSystemViewModel
         self.controlPanelViewModel = controlPanelViewModel
         self.controlPanelViewModel.delegate = self
+        self.inputResponder = operatingSystemViewModel
     }
 
 }

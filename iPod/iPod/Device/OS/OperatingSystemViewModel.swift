@@ -16,7 +16,7 @@ enum MainMenuItem: String {
     case about = "About"
 }
 
-protocol OperatingSystemViewModel {
+protocol OperatingSystemViewModel: InputResponder {
     var statusBarViewModel: StatusBarViewModel { get }
     var mainMenuViewModel: MenuViewModel { get }
 }
