@@ -41,6 +41,10 @@ extension MenuViewController {
         tableView.selectRow(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: .top)
     }
 
+    private func handleScroll(_ state: ScrollWheelStateChange) {
+
+    }
+
 }
 
 extension MenuViewController: UITableViewDataSource {
@@ -57,6 +61,19 @@ extension MenuViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MenuTableViewCell.self)) as! MenuTableViewCell
         cell.viewModel = viewModel.viewModelForCell(inRow: indexPath.row)
         return cell
+    }
+
+}
+
+extension MenuViewController: InputResponder {
+
+    func respond(toInputType type: InputType) {
+        switch type {
+        case .scroll(let state):
+            handleScroll(state)
+        default:
+            break
+        }
     }
 
 }

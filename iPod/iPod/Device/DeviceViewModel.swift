@@ -30,4 +30,30 @@ class DeviceViewModelImplementation: DeviceViewModel {
 
 }
 
-extension DeviceViewModelImplementation: ControlPanelDelegate {}
+extension DeviceViewModelImplementation: ControlPanelDelegate {
+
+    func controlPanelViewModelDidRecievedMenuClick(_ controlPanelViewModel: ControlPanelViewModel) {
+        inputResponder?.respond(toInputType: .manu)
+    }
+
+    func controlPanelViewModelDidRecievedPlayClick(_ controlPanelViewModel: ControlPanelViewModel) {
+        inputResponder?.respond(toInputType: .play)
+    }
+
+    func controlPanelViewModelDidRecievedNextClick(_ controlPanelViewModel: ControlPanelViewModel) {
+        inputResponder?.respond(toInputType: .next)
+    }
+
+    func controlPanelViewModelDidRecievedPreviousClick(_ controlPanelViewModel: ControlPanelViewModel) {
+        inputResponder?.respond(toInputType: .previous)
+    }
+
+    func controlPanelViewModelDidRecievedEnterClick(_ controlPanelViewModel: ControlPanelViewModel) {
+        inputResponder?.respond(toInputType: .enter)
+    }
+
+    func controlPanelViewModel(_ controlPanelViewModel: ControlPanelViewModel, didRecievedScrollState state: ScrollWheelStateChange) {
+        inputResponder?.respond(toInputType: .scroll(state))
+    }
+
+}

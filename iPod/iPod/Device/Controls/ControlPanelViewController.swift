@@ -18,8 +18,8 @@ class ControlPanelViewController: UIViewController {
     private weak var enterButton: UIButton!
     private weak var menuButton: ArchButton!
     private weak var playPauseButton: ArchButton!
-    private weak var fastForwardButton: ArchButton!
-    private weak var rewindButton: ArchButton!
+    private weak var nextButton: ArchButton!
+    private weak var previousButton: ArchButton!
     private weak var scrollWheel: ScrollWheel!
 
     var viewModel: ControlPanelViewModel!
@@ -30,28 +30,25 @@ class ControlPanelViewController: UIViewController {
     }
 
     @objc private func enterButtonDidTap(_ sender: UIButton) {
-        viewModel.rewindButtonDidTap()
+        viewModel.enterAction()
     }
 
-    @objc private func menuButtonDidTap(_ sender: ArchButton) {
-        viewModel.menuButtonDidTap()
-    }
-
-    @objc private func playPauseButtonDidTap(_ sender: ArchButton) {
-        viewModel.playPauseButtonDidTap()
-    }
-
-    @objc private func fastForwardButtonDidTap(_ sender: ArchButton) {
-        viewModel.fastForwardButtonDidTap()
-    }
-
-    @objc private func rewindButtonDidTap(_ sender: ArchButton) {
-        viewModel.rewindButtonDidTap()
+    @objc private func archButtonDidTap(_ sender: ArchButton) {
+        switch sender.orientation {
+        case .regular:
+            viewModel.menuAction()
+        case .upsiteDown:
+            viewModel.playAction()
+        case .leftTilt:
+            viewModel.previousAction()
+        case .rightTilt:
+            viewModel.nextAction()
+        }
     }
 
     @objc private func scrollWheelDidChangeValue(_ sender: ScrollWheel) {
         guard let stateChange = sender.recentStateChange else { return }
-        viewModel.scrollWheelDidChangeValue(withAction: stateChange)
+        viewModel.scrollAction(withState: stateChange)
     }
 
 }
@@ -71,24 +68,21 @@ extension ControlPanelViewController {
         menuButton.orientation = .regular
         let playPauseButton = ArchButton()
         playPauseButton.orientation = .upsiteDown
-        let fastForwardButton = ArchButton()
-        fastForwardButton.orientation = .rightTilt
-        let rewindButton = ArchButton()
-        rewindButton.orientation = .leftTilt
-        [menuButton, playPauseButton, fastForwardButton, rewindButton].forEach { button in
+        let nextButton = ArchButton()
+        nextButton.orientation = .rightTilt
+        let previousButton = ArchButton()
+        previousButton.orientation = .leftTilt
+        [menuButton, playPauseButton, nextButton, previousButton].forEach { button in
             button.backgroundColor = Color.button
             button.translatesAutoresizingMaskIntoConstraints = false
             button.thickness = Constants.archButtonThickness
+            button.addTarget(self, action: #selector(archButtonDidTap(_:)), for: .touchUpInside)
             view.addSubview(button)
         }
-        menuButton.addTarget(self, action: #selector(menuButtonDidTap(_:)), for: .touchUpInside)
-        playPauseButton.addTarget(self, action: #selector(playPauseButtonDidTap(_:)), for: .touchUpInside)
-        fastForwardButton.addTarget(self, action: #selector(fastForwardButtonDidTap(_:)), for: .touchUpInside)
-        rewindButton.addTarget(self, action: #selector(rewindButtonDidTap(_:)), for: .touchUpInside)
         self.menuButton = menuButton
         self.playPauseButton = playPauseButton
-        self.fastForwardButton = fastForwardButton
-        self.rewindButton = rewindButton
+        self.nextButton = nextButton
+        self.previousButton = previousButton
         constraintButtons()
     }
 
@@ -125,22 +119,22 @@ extension ControlPanelViewController {
     }
 
     private func constraintButtons() {
-        [menuButton, playPauseButton, rewindButton].flatMap { $0 }.forEach { button in
+        [menuButton, playPauseButton, previousButton].flatMap { $0 }.forEach { button in
             view.leftAnchor.constraint(equalTo: button.leftAnchor).isActive = true
         }
-        [menuButton, playPauseButton, fastForwardButton].flatMap { $0 }.forEach { button in
+        [menuButton, playPauseButton, nextButton].flatMap { $0 }.forEach { button in
             view.rightAnchor.constraint(equalTo: button.rightAnchor).isActive = true
         }
-        [menuButton, rewindButton, fastForwardButton].flatMap { $0 }.forEach { button in
+        [menuButton, previousButton, nextButton].flatMap { $0 }.forEach { button in
             view.topAnchor.constraint(equalTo: button.topAnchor).isActive = true
         }
-        [playPauseButton, rewindButton, fastForwardButton].flatMap { $0 }.forEach { button in
+        [playPauseButton, previousButton, nextButton].flatMap { $0 }.forEach { button in
             view.bottomAnchor.constraint(equalTo: button.bottomAnchor).isActive = true
         }
         menuButton.bottomAnchor.constraint(equalTo: playPauseButton.topAnchor).isActive = true
-        rewindButton.rightAnchor.constraint(equalTo: fastForwardButton.leftAnchor).isActive = true
+        previousButton.rightAnchor.constraint(equalTo: nextButton.leftAnchor).isActive = true
         menuButton.heightAnchor.constraint(equalTo: playPauseButton.heightAnchor).isActive = true
-        rewindButton.widthAnchor.constraint(equalTo: fastForwardButton.widthAnchor).isActive = true
+        previousButton.widthAnchor.constraint(equalTo: nextButton.widthAnchor).isActive = true
     }
 
 }

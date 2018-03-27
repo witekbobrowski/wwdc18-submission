@@ -8,6 +8,15 @@
 
 import Foundation
 
-protocol InputResponder: class {
+enum InputType {
+    case manu
+    case enter
+    case next
+    case previous
+    case play
+    case scroll(ScrollWheelStateChange)
+}
 
+protocol InputResponder: class {
+    func respond(toInputType type: InputType)
 }

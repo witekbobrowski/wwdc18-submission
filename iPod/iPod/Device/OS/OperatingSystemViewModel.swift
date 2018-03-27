@@ -29,10 +29,14 @@ class OperatingSystemViewModelImplementation: OperatingSystemViewModel {
         return StatusBarViewModelImplementation(title: "iPod", isPlaying: false, isCharging: false)
     }
 
-    var mainMenuViewModel: MenuViewModel {
+    private(set) lazy var mainMenuViewModel: MenuViewModel = {
         let viewModel = MenuViewModelImplementation(items: mainMenuItems.map { $0.rawValue })
         viewModel.delegate = self
         return viewModel
+    }()
+
+    func respond(toInputType type: InputType) {
+        mainMenuViewModel.responder?.respond(toInputType: type)
     }
 
 }
