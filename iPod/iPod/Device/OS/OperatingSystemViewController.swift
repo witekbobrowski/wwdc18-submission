@@ -16,9 +16,8 @@ class OperatingSystemViewController: UIViewController {
     }
 
     private weak var statusBarView: StatusBarView!
-    private var menuNavigationController: UINavigationController!
-    private var mainMenuViewController: UIViewController!
 
+    var menuNavigationController: UINavigationController!
     var viewModel: OperatingSystemViewModel!
 
     override func loadView() {
@@ -34,7 +33,6 @@ extension OperatingSystemViewController {
         view.clipsToBounds = true
         view.backgroundColor = Color.light
         setupStatusBar()
-        setupMainMenu()
         setupNavigationController()
     }
 
@@ -50,24 +48,15 @@ extension OperatingSystemViewController {
         self.statusBarView = statusBarView
     }
 
-    private func setupMainMenu() {
-        let mainMenuViewModel = viewModel.mainMenuViewModel
-        let mainMenuViewController = MenuViewController()
-        mainMenuViewController.viewModel = mainMenuViewModel
-        self.mainMenuViewController = mainMenuViewController
-    }
-
     private func setupNavigationController() {
-        let navigationController = UINavigationController(rootViewController: mainMenuViewController)
-        view.addSubview(navigationController.view)
-        navigationController.view.translatesAutoresizingMaskIntoConstraints = false
-        view.bottomAnchor.constraint(equalTo: navigationController.view.bottomAnchor).isActive = true
-        view.leftAnchor.constraint(equalTo: navigationController.view.leftAnchor).isActive = true
-        view.rightAnchor.constraint(equalTo: navigationController.view.rightAnchor).isActive = true
-        statusBarView.bottomAnchor.constraint(equalTo: navigationController.view.topAnchor,
+        view.addSubview(menuNavigationController.view)
+        menuNavigationController.view.translatesAutoresizingMaskIntoConstraints = false
+        view.bottomAnchor.constraint(equalTo: menuNavigationController.view.bottomAnchor).isActive = true
+        view.leftAnchor.constraint(equalTo: menuNavigationController.view.leftAnchor).isActive = true
+        view.rightAnchor.constraint(equalTo: menuNavigationController.view.rightAnchor).isActive = true
+        statusBarView.bottomAnchor.constraint(equalTo: menuNavigationController.view.topAnchor,
                                               constant: -Constants.stausBarInset).isActive = true
-        navigationController.setNavigationBarHidden(true, animated: false)
-        menuNavigationController = navigationController
+        menuNavigationController.setNavigationBarHidden(true, animated: false)
     }
 
 }

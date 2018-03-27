@@ -29,7 +29,6 @@ class MenuViewController: UIViewController {
 extension MenuViewController {
 
     private func setupTableView() {
-        viewModel.responder = self
         let tableView = UITableView()
         view = tableView
         tableView.dataSource = self

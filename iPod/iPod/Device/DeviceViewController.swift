@@ -17,7 +17,7 @@ public class DeviceViewController: UIViewController {
         static let screenCornerRadius: CGFloat = 4
     }
 
-    private var operatingSystemViewController: OperatingSystemViewController!
+    private var operatingSystemCoordinator: OperatingSystemCoordinator!
     private var controlPanelViewController: ControlPanelViewController!
 
     var viewModel: DeviceViewModel!
@@ -37,16 +37,14 @@ extension DeviceViewController {
     }
 
     private func setupOperatingSystem() {
-        let operatingSystemViewController = OperatingSystemViewController()
-        operatingSystemViewController.viewModel = viewModel.operatingSystemViewModel
-        operatingSystemViewController.view.isUserInteractionEnabled = false
-        view.addSubview(operatingSystemViewController.view)
-        operatingSystemViewController.view.layer.cornerRadius = Constants.screenCornerRadius
-        operatingSystemViewController.view.frame = CGRect(x: view.bounds.midX - Constants.screenWidth/2,
-                                                          y: view.bounds.midY - Constants.screenHeight/2,
-                                                          width: Constants.screenWidth,
-                                                          height: Constants.screenHeight)
-        self.operatingSystemViewController = operatingSystemViewController
+        let operatingSystemCoordinator = OperatingSystemCoordinator(window: view, coordinatorModel: viewModel.operatingSystemCoordinatorModel)
+        viewModel.inputResponder = operatingSystemCoordinator
+//        operatingSystemViewController.view.layer.cornerRadius = Constants.screenCornerRadius
+//        operatingSystemViewController.view.frame = CGRect(x: view.bounds.midX - Constants.screenWidth/2,
+//                                                          y: view.bounds.midY - Constants.screenHeight/2,
+//                                                          width: Constants.screenWidth,
+//                                                          height: Constants.screenHeight)
+        self.operatingSystemCoordinator = operatingSystemCoordinator
     }
 
     private func setupControlPanel() {

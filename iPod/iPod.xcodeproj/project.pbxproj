@@ -28,6 +28,7 @@
 		4105CC4E2069924D00DE99EB /* ScrollWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC4D2069924D00DE99EB /* ScrollWheel.swift */; };
 		4105CC50206AA25500DE99EB /* OperatingSystemCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC4F206AA25500DE99EB /* OperatingSystemCoordinator.swift */; };
 		4105CC52206AA2CE00DE99EB /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC51206AA2CE00DE99EB /* Coordinator.swift */; };
+		4105CC54206AA70600DE99EB /* OperatingSystemCoordinatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC53206AA70600DE99EB /* OperatingSystemCoordinatorModel.swift */; };
 		F9FE1B81206A6B290037A479 /* InputResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FE1B80206A6B290037A479 /* InputResponder.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		4105CC4D2069924D00DE99EB /* ScrollWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollWheel.swift; sourceTree = "<group>"; };
 		4105CC4F206AA25500DE99EB /* OperatingSystemCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatingSystemCoordinator.swift; sourceTree = "<group>"; };
 		4105CC51206AA2CE00DE99EB /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4105CC53206AA70600DE99EB /* OperatingSystemCoordinatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatingSystemCoordinatorModel.swift; sourceTree = "<group>"; };
 		F9FE1B80206A6B290037A479 /* InputResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputResponder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,11 +104,11 @@
 		4105CC1020681E7000DE99EB /* OS */ = {
 			isa = PBXGroup;
 			children = (
-				4105CC392068416100DE99EB /* StatusBar */,
 				4105CC1120681E7000DE99EB /* Menu */,
-				4105CC3E2068539A00DE99EB /* OperatingSystemViewModel.swift */,
-				4105CC402068546A00DE99EB /* OperatingSystemViewController.swift */,
 				4105CC4F206AA25500DE99EB /* OperatingSystemCoordinator.swift */,
+				4105CC53206AA70600DE99EB /* OperatingSystemCoordinatorModel.swift */,
+				4105CC402068546A00DE99EB /* OperatingSystemViewController.swift */,
+				4105CC3E2068539A00DE99EB /* OperatingSystemViewModel.swift */,
 			);
 			path = OS;
 			sourceTree = "<group>";
@@ -114,9 +116,10 @@
 		4105CC1120681E7000DE99EB /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				4105CC392068416100DE99EB /* StatusBar */,
 				4105CC2E20682C0300DE99EB /* Cell */,
-				4105CC1F206821FA00DE99EB /* MenuViewModel.swift */,
 				4105CC212068221500DE99EB /* MenuViewController.swift */,
+				4105CC1F206821FA00DE99EB /* MenuViewModel.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				4105CC3B2068418A00DE99EB /* StatusBarViewModel.swift in Sources */,
 				4105CC3120682C2100DE99EB /* MenuTableViewCell.swift in Sources */,
 				4105CC52206AA2CE00DE99EB /* Coordinator.swift in Sources */,
+				4105CC54206AA70600DE99EB /* OperatingSystemCoordinatorModel.swift in Sources */,
 				4105CC222068221500DE99EB /* MenuViewController.swift in Sources */,
 				4105CC242068223A00DE99EB /* DeviceViewController.swift in Sources */,
 				4105CC412068546A00DE99EB /* OperatingSystemViewController.swift in Sources */,

@@ -9,23 +9,23 @@
 import Foundation
 
 protocol DeviceViewModel {
-    var operatingSystemViewModel: OperatingSystemViewModel { get }
+    var operatingSystemCoordinatorModel: OperatingSystemCoordinatorModel { get }
     var controlPanelViewModel: ControlPanelViewModel { get }
+    var inputResponder: InputResponder? { get set }
 }
 
 class DeviceViewModelImplementation: DeviceViewModel {
 
-    private(set) var operatingSystemViewModel: OperatingSystemViewModel
+    private(set) var operatingSystemCoordinatorModel: OperatingSystemCoordinatorModel
     private(set) var controlPanelViewModel: ControlPanelViewModel
 
-    private weak var inputResponder: InputResponder?
+    weak var inputResponder: InputResponder?
 
-    init(operatingSystemViewModel: OperatingSystemViewModel,
+    init(operatingSystemCoordinatorModel: OperatingSystemCoordinatorModel,
          controlPanelViewModel: ControlPanelViewModel) {
-        self.operatingSystemViewModel = operatingSystemViewModel
+        self.operatingSystemCoordinatorModel = operatingSystemCoordinatorModel
         self.controlPanelViewModel = controlPanelViewModel
         self.controlPanelViewModel.delegate = self
-        self.inputResponder = operatingSystemViewModel
     }
 
 }
