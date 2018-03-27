@@ -16,6 +16,10 @@ enum MainMenuItem: String {
     case about = "About"
 }
 
+enum PlaylistMenuItem: String {
+    case favourites = "Favourites"
+}
+
 protocol OperatingSystemViewModel: InputResponder {
     var statusBarViewModel: StatusBarViewModel { get }
     var mainMenuViewModel: MenuViewModel { get }
@@ -24,6 +28,7 @@ protocol OperatingSystemViewModel: InputResponder {
 class OperatingSystemViewModelImplementation: OperatingSystemViewModel {
 
     let mainMenuItems: [MainMenuItem] = [.playlists, .browse, .extras, .settings, .about]
+    let playlistMenuItems: [PlaylistMenuItem] = [.favourites]
 
     var statusBarViewModel: StatusBarViewModel {
         return StatusBarViewModelImplementation(title: "iPod", isPlaying: false, isCharging: false)
