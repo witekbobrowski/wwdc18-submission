@@ -20,14 +20,9 @@ class ScrollWheel: UIControl {
 
     private(set) var isTouched: Bool = false
 
-    var recentStateChange: ScrollWheelStateChange? {
-        didSet {
-            if isTouched { sendActions(for: .valueChanged) }
-        }
-    }
+    var recentStateChange: ScrollWheelStateChange? { didSet { sendActions(for: .valueChanged) } }
     var holeRadius: CGFloat = 28 { didSet { recalculateLayer() } }
     var numberOfSteps: Int = 16
-
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,18 +44,28 @@ class ScrollWheel: UIControl {
     }
 
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        guard !isTouched else { return false }
-        currentStep = getCurrentStep(onTouch: touch)
+        guard let current = getCurrentStep(onTouch: touch) else { return false }
+        guard let previous = currentStep else {
+            currentStep = current
+            return true
+        }
+        evaluateMovement(from: previous, to: current)
         isTouched = true
         return true
     }
 
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        let steps = getCurrentStep(onTouch: touch)
+        guard let current = getCurrentStep(onTouch: touch) else { return false }
+        guard let previous = currentStep else {
+            currentStep = current
+            return true
+        }
+        evaluateMovement(from: previous, to: current)
         return true
     }
 
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        currentStep = nil
         isTouched = false
     }
 
@@ -85,10 +90,49 @@ extension ScrollWheel {
         shapeLayer?.path = path.cgPath
     }
 
-    private func getCurrentStep(onTouch touch: UITouch) -> Int {
+    private func getCurrentStep(onTouch touch: UITouch) -> Int? {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let currentPoint = touch.location(in: self)
-        return 0
+        guard let angle = convertToPolarCoordinates(x: currentPoint.x-center.x, y: currentPoint.y-center.y) else {
+            return nil
+        }
+        return Int(floor(angle / (CGFloat.pi * 2 / CGFloat(numberOfSteps))))
+    }
+
+    private func evaluateMovement(from current: Int, to next: Int) {
+        guard current != next else { return }
+        if current < next,
+            (0...numberOfSteps/4).contains(current),
+            (numberOfSteps-(numberOfSteps/4)...numberOfSteps).contains(next) {
+            (next...current+numberOfSteps).forEach { _ in recentStateChange = .previous }
+        } else if current < next {
+            (current...next).forEach { _ in recentStateChange = .next }
+        } else if (0...numberOfSteps/4).contains(next),
+            (numberOfSteps-(numberOfSteps/4)...numberOfSteps).contains(current) {
+            (current...next+numberOfSteps).forEach { _ in recentStateChange = .next }
+        } else {
+            (next...current).forEach { _ in recentStateChange = .previous }
+        }
+        currentStep = next
+    }
+
+    private func convertToPolarCoordinates(x: CGFloat, y: CGFloat) -> CGFloat? {
+        var result: CGFloat
+        if x == 0, y == 0 {
+            return nil
+        } else if x > 0 {
+            result = atan(y/x)
+        } else if x < 0, y >= 0 {
+            result = atan(y/x) + .pi
+        } else if x < 0, y < 0 {
+            result = atan(y/x) - .pi
+        } else if x == 0, y > 0 {
+            result = .pi/2
+        } else { // if x == 0, y < 0
+            result = -.pi/2
+        }
+        // Change scale from (-𝝅;𝝅] to [0;2𝝅)
+        return result < 0 ? result + .pi * 2 : result
     }
 
 }
