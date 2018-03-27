@@ -15,12 +15,16 @@ protocol DeviceViewModel {
 
 class DeviceViewModelImplementation: DeviceViewModel {
 
-    var operatingSystemViewModel: OperatingSystemViewModel {
-        return OperatingSystemViewModelImplementation()
-    }
+    private(set) var operatingSystemViewModel: OperatingSystemViewModel
+    private(set) var controlPanelViewModel: ControlPanelViewModel
 
-    var controlPanelViewModel: ControlPanelViewModel {
-        return ControlPanelViewModelImplementation()
+    init(operatingSystemViewModel: OperatingSystemViewModel,
+         controlPanelViewModel: ControlPanelViewModel) {
+        self.operatingSystemViewModel = operatingSystemViewModel
+        self.controlPanelViewModel = controlPanelViewModel
+        self.controlPanelViewModel.delegate = self
     }
 
 }
+
+extension DeviceViewModelImplementation: ControlPanelDelegate {}

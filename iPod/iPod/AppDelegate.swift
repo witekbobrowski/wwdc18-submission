@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let deviceViewController = DeviceViewController()
-        deviceViewController.viewModel = DeviceViewModelImplementation()
+        deviceViewController.viewModel = DeviceViewModelImplementation(operatingSystemViewModel: OperatingSystemViewModelImplementation(),
+                                                                       controlPanelViewModel: ControlPanelViewModelImplementation())
         deviceViewController.view.frame = UIScreen.main.bounds
         rootViewController = deviceViewController
         window = UIWindow(frame: UIScreen.main.bounds)

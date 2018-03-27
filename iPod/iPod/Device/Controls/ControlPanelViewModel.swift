@@ -8,7 +8,10 @@
 
 import Foundation
 
+protocol ControlPanelDelegate: class {}
+
 protocol ControlPanelViewModel {
+    var delegate: ControlPanelDelegate? { get set }
     var menuButtonTitle: String { get }
     func menuButtonDidTap()
     func playPauseButtonDidTap()
@@ -19,6 +22,7 @@ protocol ControlPanelViewModel {
 
 class ControlPanelViewModelImplementation: ControlPanelViewModel {
 
+    weak var delegate: ControlPanelDelegate?
     var menuButtonTitle: String { return "menu" }
 
     func menuButtonDidTap() {
