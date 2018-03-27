@@ -53,12 +53,14 @@ extension MenuViewController {
     }
 
     private func highlightCellAtRow(_ row: Int, oldRow: Int = 0) {
+        guard row < viewModel.numberOfRows() else { return }
         guard let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) else {
             return
         }
         if let oldCell = tableView.cellForRow(at: IndexPath(row: oldRow, section: 0)) {
             oldCell.setSelected(false, animated: false)
         }
+        tableView.scrollRectToVisible(cell.frame, animated: false)
         cell.setSelected(true, animated: false)
         currentIndex = row
     }
