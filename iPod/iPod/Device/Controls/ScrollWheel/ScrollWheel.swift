@@ -104,14 +104,14 @@ extension ScrollWheel {
         if current < next,
             (0...numberOfSteps/4).contains(current),
             (numberOfSteps-(numberOfSteps/4)...numberOfSteps).contains(next) {
-            (next...current+numberOfSteps).forEach { _ in recentStateChange = .previous }
+            (next..<current+numberOfSteps).forEach { _ in recentStateChange = .previous }
         } else if current < next {
-            (current...next).forEach { _ in recentStateChange = .next }
+            (current..<next).forEach { _ in recentStateChange = .next }
         } else if (0...numberOfSteps/4).contains(next),
             (numberOfSteps-(numberOfSteps/4)...numberOfSteps).contains(current) {
-            (current...next+numberOfSteps).forEach { _ in recentStateChange = .next }
+            (current..<next+numberOfSteps).forEach { _ in recentStateChange = .next }
         } else {
-            (next...current).forEach { _ in recentStateChange = .previous }
+            (next..<current).forEach { _ in recentStateChange = .previous }
         }
         currentStep = next
     }

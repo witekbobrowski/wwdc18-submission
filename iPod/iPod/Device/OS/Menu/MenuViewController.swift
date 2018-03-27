@@ -15,6 +15,7 @@ class MenuViewController: UIViewController {
     }
 
     private weak var tableView: UITableView!
+    private var currentIndex: Int?
 
     public var viewModel: MenuViewModel!
 
@@ -28,6 +29,7 @@ class MenuViewController: UIViewController {
 extension MenuViewController {
 
     private func setupTableView() {
+        viewModel.responder = self
         let tableView = UITableView()
         view = tableView
         tableView.dataSource = self
@@ -38,11 +40,29 @@ extension MenuViewController {
         tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: String(describing: MenuTableViewCell.self))
         self.tableView = tableView
         guard let row = viewModel.rowInitallyHighlighed else { return }
-        tableView.selectRow(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: .top)
+        highlightCellAtRow(row)
     }
 
     private func handleScroll(_ state: ScrollWheelStateChange) {
+        guard let current = currentIndex else { return }
+        print(state, current)
+        switch state {
+        case .next:
+            highlightCellAtRow(current + 1, oldRow: current)
+        case .previous:
+            highlightCellAtRow(current - 1, oldRow: current)
+        }
+    }
 
+    private func highlightCellAtRow(_ row: Int, oldRow: Int = 0) {
+        guard let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) else {
+            return
+        }
+        if let oldCell = tableView.cellForRow(at: IndexPath(row: oldRow, section: 0)) {
+            oldCell.setSelected(false, animated: false)
+        }
+        cell.setSelected(true, animated: false)
+        currentIndex = row
     }
 
 }
