@@ -45,7 +45,6 @@ extension MenuViewController {
 
     private func handleScroll(_ state: ScrollWheelStateChange) {
         guard let current = currentIndex else { return }
-        print(state, current)
         switch state {
         case .next:
             highlightCellAtRow(current + 1, oldRow: current)

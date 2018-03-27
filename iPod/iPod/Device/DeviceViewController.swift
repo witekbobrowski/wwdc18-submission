@@ -39,6 +39,7 @@ extension DeviceViewController {
     private func setupOperatingSystem() {
         let operatingSystemViewController = OperatingSystemViewController()
         operatingSystemViewController.viewModel = viewModel.operatingSystemViewModel
+        operatingSystemViewController.view.isUserInteractionEnabled = false
         view.addSubview(operatingSystemViewController.view)
         operatingSystemViewController.view.layer.cornerRadius = Constants.screenCornerRadius
         operatingSystemViewController.view.frame = CGRect(x: view.bounds.midX - Constants.screenWidth/2,
