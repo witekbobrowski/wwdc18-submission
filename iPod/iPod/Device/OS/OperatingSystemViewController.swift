@@ -16,13 +16,17 @@ class OperatingSystemViewController: UIViewController {
     }
 
     private weak var statusBarView: StatusBarView!
-
-    var menuNavigationController: UINavigationController!
+    private(set) var menuNavigationController: UINavigationController!
     var viewModel: OperatingSystemViewModel!
 
     override func loadView() {
         super.loadView()
         setupView()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupNavigationController()
     }
 
 }
@@ -33,7 +37,6 @@ extension OperatingSystemViewController {
         view.clipsToBounds = true
         view.backgroundColor = Color.light
         setupStatusBar()
-        setupNavigationController()
     }
 
     private func setupStatusBar() {
@@ -49,6 +52,7 @@ extension OperatingSystemViewController {
     }
 
     private func setupNavigationController() {
+        menuNavigationController = UINavigationController()
         view.addSubview(menuNavigationController.view)
         menuNavigationController.view.translatesAutoresizingMaskIntoConstraints = false
         view.bottomAnchor.constraint(equalTo: menuNavigationController.view.bottomAnchor).isActive = true

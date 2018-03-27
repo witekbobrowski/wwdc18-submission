@@ -10,6 +10,7 @@ import Foundation
 
 protocol MenuViewModelDelegate: class {
     func menuViewModel(_ menuViewModel: MenuViewModel, didSelectItem item: String)
+    func menuViewModelDidClickGoBack(_ menuViewModel: MenuViewModel)
 }
 
 protocol MenuViewModel {
@@ -18,6 +19,7 @@ protocol MenuViewModel {
     func numberOfRows() -> Int
     func viewModelForCell(inRow row: Int) -> MenuCellViewModel
     func selectCell(inRow row: Int)
+    func goBack()
 }
 
 class MenuViewModelImplementation: MenuViewModel {
@@ -42,6 +44,10 @@ class MenuViewModelImplementation: MenuViewModel {
 
     func selectCell(inRow row: Int) {
         delegate?.menuViewModel(self, didSelectItem: items[row])
+    }
+
+    func goBack() {
+        delegate?.menuViewModelDidClickGoBack(self)
     }
 
 }

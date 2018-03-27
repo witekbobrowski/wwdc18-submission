@@ -24,8 +24,10 @@ class OperatingSystemCoordinator: Coordinator {
         let operatingSystemVC = coordinatorModel.operatingSystemViewController
         let mainMenuViewController = coordinatorModel.mainMenuViewController
         mainMenuViewController.viewModel.delegate = self
-        operatingSystemVC.menuNavigationController = UINavigationController(rootViewController: mainMenuViewController)
+        operatingSystemVC.menuNavigationController.pushViewController(mainMenuViewController, animated: true)
         rootViewController = operatingSystemVC
+        window.addSubview(operatingSystemVC.view)
+        operatingSystemVC.view.translatesAutoresizingMaskIntoConstraints = false
         window.topAnchor.constraint(equalTo: operatingSystemVC.view.topAnchor).isActive = true
         window.bottomAnchor.constraint(equalTo: operatingSystemVC.view.bottomAnchor).isActive = true
         window.leftAnchor.constraint(equalTo: operatingSystemVC.view.leftAnchor).isActive = true
@@ -37,7 +39,13 @@ class OperatingSystemCoordinator: Coordinator {
 extension OperatingSystemCoordinator: MenuViewModelDelegate {
 
     func menuViewModel(_ menuViewModel: MenuViewModel, didSelectItem item: String) {
-        rootViewController?.menuNavigationController.pushViewController(coordinatorModel.playlistViewController, animated: true)
+        let playlistViewController = coordinatorModel.playlistViewController
+        playlistViewController.viewModel.delegate = self
+        rootViewController?.menuNavigationController.pushViewController(playlistViewController, animated: true)
+    }
+
+    func menuViewModelDidClickGoBack(_ menuViewModel: MenuViewModel) {
+        rootViewController?.menuNavigationController.popViewController(animated: true)
     }
 
 }

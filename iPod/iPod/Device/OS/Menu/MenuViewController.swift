@@ -32,7 +32,7 @@ extension MenuViewController {
         let tableView = UITableView()
         view = tableView
         tableView.dataSource = self
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = Color.light
         tableView.reloadData()
         tableView.separatorStyle = .none
         tableView.rowHeight = Constants.rowHeight
@@ -89,6 +89,11 @@ extension MenuViewController: InputResponder {
         switch type {
         case .scroll(let state):
             handleScroll(state)
+        case .enter:
+            guard let row = currentIndex else { return }
+            viewModel.selectCell(inRow: row)
+        case .manu:
+            viewModel.goBack()
         default:
             break
         }

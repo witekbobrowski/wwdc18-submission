@@ -13,10 +13,11 @@ public class DeviceViewController: UIViewController {
     private enum Constants {
         static let screenHeight: CGFloat = 128
         static let screenWidth: CGFloat = 160
-        static let controlPanelSize: CGFloat = 180
+        static let controlPanelSize: CGFloat = 200
         static let screenCornerRadius: CGFloat = 4
     }
 
+    private weak var screenView: UIView!
     private var operatingSystemCoordinator: OperatingSystemCoordinator!
     private var controlPanelViewController: ControlPanelViewController!
 
@@ -32,30 +33,39 @@ public class DeviceViewController: UIViewController {
 extension DeviceViewController {
 
     private func setupView() {
+        setupScreen()
         setupOperatingSystem()
         setupControlPanel()
     }
 
+    private func setupScreen() {
+        let screenView = UIView()
+        view.addSubview(screenView)
+        screenView.translatesAutoresizingMaskIntoConstraints = false
+        screenView.topAnchor.constraint(equalTo: view.topAnchor, constant: 64).isActive = true
+        screenView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        screenView.widthAnchor.constraint(equalToConstant: Constants.screenWidth).isActive = true
+        screenView.heightAnchor.constraint(equalToConstant: Constants.screenHeight).isActive = true
+        self.screenView = screenView
+    }
+
     private func setupOperatingSystem() {
-        let operatingSystemCoordinator = OperatingSystemCoordinator(window: view, coordinatorModel: viewModel.operatingSystemCoordinatorModel)
+        let operatingSystemCoordinator = OperatingSystemCoordinator(window: screenView, coordinatorModel: viewModel.operatingSystemCoordinatorModel)
         viewModel.inputResponder = operatingSystemCoordinator
-//        operatingSystemViewController.view.layer.cornerRadius = Constants.screenCornerRadius
-//        operatingSystemViewController.view.frame = CGRect(x: view.bounds.midX - Constants.screenWidth/2,
-//                                                          y: view.bounds.midY - Constants.screenHeight/2,
-//                                                          width: Constants.screenWidth,
-//                                                          height: Constants.screenHeight)
+        operatingSystemCoordinator.start()
         self.operatingSystemCoordinator = operatingSystemCoordinator
     }
 
     private func setupControlPanel() {
-        let controlPanelViewController = ControlPanelViewController()
-        controlPanelViewController.viewModel = viewModel.controlPanelViewModel
-        view.addSubview(controlPanelViewController.view)
-        controlPanelViewController.view.frame = CGRect(x: view.bounds.midX - Constants.controlPanelSize/2,
-                                                          y: view.bounds.midY + Constants.screenHeight/2 + 20,
-                                                          width: Constants.controlPanelSize,
-                                                          height: Constants.controlPanelSize)
-        self.controlPanelViewController = controlPanelViewController
+        let controlPanelVC = ControlPanelViewController()
+        controlPanelVC.viewModel = viewModel.controlPanelViewModel
+        view.addSubview(controlPanelVC.view)
+        controlPanelVC.view.translatesAutoresizingMaskIntoConstraints = false
+        controlPanelVC.view.topAnchor.constraint(equalTo: screenView.bottomAnchor, constant: 20).isActive = true
+        controlPanelVC.view.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        controlPanelVC.view.widthAnchor.constraint(equalToConstant: Constants.controlPanelSize).isActive = true
+        controlPanelVC.view.heightAnchor.constraint(equalToConstant: Constants.controlPanelSize).isActive = true
+        self.controlPanelViewController = controlPanelVC
     }
 
 }
