@@ -13,6 +13,8 @@ protocol OperatingSystemCoordinatorModel {
     var mainMenuViewController: MenuViewController { get }
     var playlistsMenuViewController: MenuViewController { get }
     var artistsMenuViewController: MenuViewController { get }
+    var songsMenuViewController: MenuViewController { get }
+    var favouriteSongsMenuViewController: MenuViewController { get }
     func statusBarViewModel(title: String?, isPlaying: Bool, isCharging: Bool) -> StatusBarViewModel
 }
 
@@ -31,6 +33,12 @@ class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorM
     }
     var artistsMenuViewController: MenuViewController {
         return configuredArtistsMenuViewController()
+    }
+    var songsMenuViewController: MenuViewController {
+        return configuredSongsMenuViewController(false)
+    }
+    var favouriteSongsMenuViewController: MenuViewController {
+        return configuredSongsMenuViewController(true)
     }
 
     init(libraryService: LibraryService) {
@@ -71,6 +79,13 @@ extension OperatingSystemCoordinatorModelImplementation {
     private func configuredArtistsMenuViewController() -> MenuViewController {
         let viewController = MenuViewController()
         viewController.viewModel = ArtistsMenuViewModel(artists: libraryService.artists)
+        return viewController
+    }
+
+    private func configuredSongsMenuViewController(_ favouriteSongs: Bool) -> MenuViewController {
+        let viewController = MenuViewController()
+        let songs: [Song] = favouriteSongs ? libraryService.favourites : libraryService.songs
+        viewController.viewModel = SongsMenuViewModel(songs: songs)
         return viewController
     }
 

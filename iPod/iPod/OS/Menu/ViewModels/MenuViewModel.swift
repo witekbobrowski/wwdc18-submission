@@ -10,7 +10,8 @@ import Foundation
 
 protocol MenuViewModel {
     var rowInitallyHighlighed: Int? { get }
-    func numberOfRows() -> Int
+    func numberOfSections() -> Int
+    func numberOfRows(inSection section: Int) -> Int
     func viewModelForCell(inRow row: Int) -> MenuCellViewModel
     func selectCell(inRow row: Int)
     func goBack()

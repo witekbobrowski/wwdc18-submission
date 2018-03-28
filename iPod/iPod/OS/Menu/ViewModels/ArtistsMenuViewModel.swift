@@ -23,8 +23,12 @@ class ArtistsMenuViewModel: MenuViewModel {
         self.artists = artists
     }
 
-    func numberOfRows() -> Int {
-        return artists.count
+    func numberOfSections() -> Int {
+        return artists.isEmpty ? 0 : 1
+    }
+
+    func numberOfRows(inSection section: Int) -> Int {
+        return section == 0 ? artists.count : 0
     }
 
     func viewModelForCell(inRow row: Int) -> MenuCellViewModel {

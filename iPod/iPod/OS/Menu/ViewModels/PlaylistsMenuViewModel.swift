@@ -28,8 +28,12 @@ class PlaylistsMenuViewModel: MenuViewModel {
         self.items = items
     }
 
-    func numberOfRows() -> Int {
-        return items.count
+    func numberOfSections() -> Int {
+        return items.isEmpty ? 0 : 1
+    }
+
+    func numberOfRows(inSection section: Int) -> Int {
+        return section == 0 ? items.count : 0
     }
 
     func viewModelForCell(inRow row: Int) -> MenuCellViewModel {

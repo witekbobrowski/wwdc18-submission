@@ -37,8 +37,20 @@ class OperatingSystemCoordinator: Coordinator {
         window.rightAnchor.constraint(equalTo: operatingSystemVC.view.rightAnchor).isActive = true
     }
 
+}
+
+extension OperatingSystemCoordinator {
+
     private func updateStatusBar(withTitle title: String?, isPlaying: Bool, isCharging: Bool) {
         rootViewController?.statusBarView.viewModel = coordinatorModel.statusBarViewModel(title: title, isPlaying: isPlaying, isCharging: isCharging)
+    }
+
+    private func pushViewController(_ viewController: UIViewController) {
+        rootViewController?.menuNavigationController.pushViewController(viewController, animated: animatedTransitions)
+    }
+
+    private func popViewController() {
+        rootViewController?.menuNavigationController.popViewController(animated: animatedTransitions)
     }
 
 }
@@ -58,12 +70,16 @@ extension OperatingSystemCoordinator: MainMenuViewModelDelegate {
             if let viewModel = viewController.viewModel as? ArtistsMenuViewModel {
                 viewModel.delegate = self
             }
+        case .songs:
+            viewController = coordinatorModel.songsMenuViewController
+            if let viewModel = viewController.viewModel as? SongsMenuViewModel {
+                viewModel.delegate = self
+            }
         case .settings: return
-        case .songs: return
         case .about: return
         case .nowPlaying: return
         }
-        rootViewController?.menuNavigationController.pushViewController(viewController, animated: animatedTransitions)
+        pushViewController(viewController)
         updateStatusBar(withTitle: item.rawValue, isPlaying: false, isCharging: false)
     }
 
@@ -72,11 +88,17 @@ extension OperatingSystemCoordinator: MainMenuViewModelDelegate {
 extension OperatingSystemCoordinator: PlaylistsMenuViewModelDelegate {
 
     func playlistsMenuViewModel(_ playlistsMenuViewModel: PlaylistsMenuViewModel, didSelectItem item: PlaylistsMenuItem) {
-        return // TODO
+        let viewController = coordinatorModel.favouriteSongsMenuViewController
+        if let viewModel = viewController.viewModel as? SongsMenuViewModel {
+            viewModel.delegate = self
+        }
+        pushViewController(viewController)
+        updateStatusBar(withTitle: "Favourites", isPlaying: false, isCharging: false)
+
     }
 
     func playlistsMenuViewModelDidClickGoBack(_ playlistsMenuViewModel: PlaylistsMenuViewModel) {
-        rootViewController?.menuNavigationController.popViewController(animated: animatedTransitions)
+        popViewController()
         updateStatusBar(withTitle: nil, isPlaying: false, isCharging: false)
     }
 
@@ -85,14 +107,26 @@ extension OperatingSystemCoordinator: PlaylistsMenuViewModelDelegate {
 extension OperatingSystemCoordinator: ArtistsMenuViewModelDelegate {
 
     func artistsMenuViewModel(_ artistsMenuViewModel: ArtistsMenuViewModel, didSelectArtist artis: Artist) {
-        return // TODO
+        return // TODO: Show Albums Menu
     }
 
     func artistsMenuViewModelDidClickGoBack(_ artistsMenuViewModel: ArtistsMenuViewModel) {
-        rootViewController?.menuNavigationController.popViewController(animated: animatedTransitions)
+        popViewController()
         updateStatusBar(withTitle: nil, isPlaying: false, isCharging: false)
     }
 
+}
+
+extension OperatingSystemCoordinator: SongsMenuViewModelDelegate {
+
+    func songsMenuViewModel(_ songsMenuViewModel: SongsMenuViewModel, didSelectSong song: Song) {
+        return // TODO: Show Player View Controller
+    }
+
+    func songsMenuViewModelDidClickGoBack(_ songsMenuViewModel: SongsMenuViewModel) {
+        popViewController()
+        updateStatusBar(withTitle: nil, isPlaying: false, isCharging: false)
+    }
 
 }
 

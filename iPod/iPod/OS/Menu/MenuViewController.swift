@@ -53,7 +53,7 @@ extension MenuViewController {
     }
 
     private func highlightCellAtRow(_ row: Int, oldRow: Int = 0) {
-        guard row < viewModel.numberOfRows() else { return }
+        guard row < viewModel.numberOfRows(inSection: 0) else { return }
         guard let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) else {
             return
         }
@@ -70,11 +70,11 @@ extension MenuViewController {
 extension MenuViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return viewModel.numberOfSections()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows()
+        return viewModel.numberOfRows(inSection: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
