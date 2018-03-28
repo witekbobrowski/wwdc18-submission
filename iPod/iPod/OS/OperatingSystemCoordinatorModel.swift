@@ -12,6 +12,7 @@ protocol OperatingSystemCoordinatorModel {
     var operatingSystemViewController: OperatingSystemViewController { get }
     var mainMenuViewController: MenuViewController { get }
     var playlistsMenuViewController: MenuViewController { get }
+    var artistsMenuViewController: MenuViewController { get }
     func statusBarViewModel(title: String?, isPlaying: Bool, isCharging: Bool) -> StatusBarViewModel
 }
 
@@ -28,6 +29,9 @@ class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorM
     var playlistsMenuViewController: MenuViewController {
         return configuredPlaylistsMenuViewController()
     }
+    var artistsMenuViewController: MenuViewController {
+        return configuredArtistsMenuViewController()
+    }
 
     init(libraryService: LibraryService) {
         self.libraryService = libraryService
@@ -42,26 +46,32 @@ class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorM
 extension OperatingSystemCoordinatorModelImplementation {
 
     private func configuredOperatingSystemViewController() -> OperatingSystemViewController {
-        let operatingSystemViewController = OperatingSystemViewController()
+        let viewController = OperatingSystemViewController()
         let stausBarViewModel = statusBarViewModel(title: nil, isPlaying: false, isCharging: false)
         let osViewModel = OperatingSystemViewModelImplementation(statusBarViewModel: stausBarViewModel)
-        operatingSystemViewController.viewModel = osViewModel
-        operatingSystemViewController.view.isUserInteractionEnabled = false
-        return operatingSystemViewController
+        viewController.viewModel = osViewModel
+        viewController.view.isUserInteractionEnabled = false
+        return viewController
     }
 
     private func configuredMainMenuViewController() -> MenuViewController {
-        let mainMenuViewController = MenuViewController()
+        let viewController = MenuViewController()
         let menuItems: [MainMenuItem] = [.playlists, .artists, .songs, .settings, .about]
-        mainMenuViewController.viewModel = MainMenuViewModel(items: menuItems)
-        return mainMenuViewController
+        viewController.viewModel = MainMenuViewModel(items: menuItems)
+        return viewController
     }
 
     private func configuredPlaylistsMenuViewController() -> MenuViewController {
-        let playlistsMenuViewController = MenuViewController()
-        let menuItems: [PlaylistsMenuItem] = [.favourites]
-        playlistsMenuViewController.viewModel = PlaylistsMenuViewModel(items: menuItems)
-        return playlistsMenuViewController
+        let viewController = MenuViewController()
+        let menuItems: [PlaylistsMenuItem] = [.favourites] + libraryService.playlists.map { .custom($0) }
+        viewController.viewModel = PlaylistsMenuViewModel(items: menuItems)
+        return viewController
+    }
+
+    private func configuredArtistsMenuViewController() -> MenuViewController {
+        let viewController = MenuViewController()
+        viewController.viewModel = ArtistsMenuViewModel(artists: libraryService.artists)
+        return viewController
     }
 
 }

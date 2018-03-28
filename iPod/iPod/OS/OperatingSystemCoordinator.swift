@@ -37,6 +37,10 @@ class OperatingSystemCoordinator: Coordinator {
         window.rightAnchor.constraint(equalTo: operatingSystemVC.view.rightAnchor).isActive = true
     }
 
+    private func updateStatusBar(withTitle title: String?, isPlaying: Bool, isCharging: Bool) {
+        rootViewController?.statusBarView.viewModel = coordinatorModel.statusBarViewModel(title: title, isPlaying: isPlaying, isCharging: isCharging)
+    }
+
 }
 
 extension OperatingSystemCoordinator: MainMenuViewModelDelegate {
@@ -49,14 +53,18 @@ extension OperatingSystemCoordinator: MainMenuViewModelDelegate {
             if let viewModel = viewController.viewModel as? PlaylistsMenuViewModel {
                 viewModel.delegate = self
             }
-        case .artists: return
+        case .artists:
+            viewController = coordinatorModel.artistsMenuViewController
+            if let viewModel = viewController.viewModel as? ArtistsMenuViewModel {
+                viewModel.delegate = self
+            }
         case .settings: return
         case .songs: return
         case .about: return
         case .nowPlaying: return
         }
-        rootViewController?.statusBarView.viewModel = coordinatorModel.statusBarViewModel(title: item.rawValue, isPlaying: false, isCharging: false)
         rootViewController?.menuNavigationController.pushViewController(viewController, animated: animatedTransitions)
+        updateStatusBar(withTitle: item.rawValue, isPlaying: false, isCharging: false)
     }
 
 }
@@ -64,13 +72,27 @@ extension OperatingSystemCoordinator: MainMenuViewModelDelegate {
 extension OperatingSystemCoordinator: PlaylistsMenuViewModelDelegate {
 
     func playlistsMenuViewModel(_ playlistsMenuViewModel: PlaylistsMenuViewModel, didSelectItem item: PlaylistsMenuItem) {
-        return
+        return // TODO
     }
 
     func playlistsMenuViewModelDidClickGoBack(_ playlistsMenuViewModel: PlaylistsMenuViewModel) {
         rootViewController?.menuNavigationController.popViewController(animated: animatedTransitions)
-        rootViewController?.statusBarView.viewModel = coordinatorModel.statusBarViewModel(title: nil, isPlaying: false, isCharging: false)
+        updateStatusBar(withTitle: nil, isPlaying: false, isCharging: false)
     }
+
+}
+
+extension OperatingSystemCoordinator: ArtistsMenuViewModelDelegate {
+
+    func artistsMenuViewModel(_ artistsMenuViewModel: ArtistsMenuViewModel, didSelectArtist artis: Artist) {
+        return // TODO
+    }
+
+    func artistsMenuViewModelDidClickGoBack(_ artistsMenuViewModel: ArtistsMenuViewModel) {
+        rootViewController?.menuNavigationController.popViewController(animated: animatedTransitions)
+        updateStatusBar(withTitle: nil, isPlaying: false, isCharging: false)
+    }
+
 
 }
 

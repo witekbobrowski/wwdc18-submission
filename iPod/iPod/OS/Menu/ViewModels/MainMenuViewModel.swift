@@ -10,7 +10,7 @@ import Foundation
 
 enum MainMenuItem: String {
     case playlists = "Playlists"
-    case artists = "Atrists"
+    case artists = "Artists"
     case songs = "Songs"
     case settings = "Settings"
     case about = "About"
@@ -43,8 +43,6 @@ class MainMenuViewModel: MenuViewModel {
         delegate?.mainMenuViewModel(self, didSelectItem: items[row])
     }
 
-    func goBack() {
-        return // Cant go back from MainMenu
-    }
+    func goBack() { return } // Cant go back from MainMenu
 
 }
