@@ -31,6 +31,10 @@
 		4105CC54206AA70600DE99EB /* OperatingSystemCoordinatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC53206AA70600DE99EB /* OperatingSystemCoordinatorModel.swift */; };
 		4142684A206C1DBC00B83735 /* MainMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41426849206C1DBC00B83735 /* MainMenuViewModel.swift */; };
 		4142684C206C31A600B83735 /* PlaylistsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4142684B206C31A600B83735 /* PlaylistsMenuViewModel.swift */; };
+		41B7ECD6206C41E000C41086 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECD5206C41E000C41086 /* Artist.swift */; };
+		41B7ECD8206C420100C41086 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECD7206C420100C41086 /* Song.swift */; };
+		41B7ECDA206C425E00C41086 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECD9206C425E00C41086 /* Album.swift */; };
+		41B7ECDC206C42E700C41086 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECDB206C42E700C41086 /* Playlist.swift */; };
 		F9FE1B81206A6B290037A479 /* InputResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FE1B80206A6B290037A479 /* InputResponder.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +65,10 @@
 		4105CC53206AA70600DE99EB /* OperatingSystemCoordinatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatingSystemCoordinatorModel.swift; sourceTree = "<group>"; };
 		41426849206C1DBC00B83735 /* MainMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewModel.swift; sourceTree = "<group>"; };
 		4142684B206C31A600B83735 /* PlaylistsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsMenuViewModel.swift; sourceTree = "<group>"; };
+		41B7ECD5206C41E000C41086 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		41B7ECD7206C420100C41086 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		41B7ECD9206C425E00C41086 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		41B7ECDB206C42E700C41086 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		F9FE1B80206A6B290037A479 /* InputResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputResponder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +102,7 @@
 		4105CBFB20681E4400DE99EB /* iPod */ = {
 			isa = PBXGroup;
 			children = (
+				41B7ECD4206C41BE00C41086 /* Model */,
 				F9FE1B7F206A6B130037A479 /* Protocols */,
 				4105CC2B206822B100DE99EB /* Utils */,
 				4105CC1020681E7000DE99EB /* OS */,
@@ -203,6 +212,17 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		41B7ECD4206C41BE00C41086 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				41B7ECD5206C41E000C41086 /* Artist.swift */,
+				41B7ECD7206C420100C41086 /* Song.swift */,
+				41B7ECD9206C425E00C41086 /* Album.swift */,
+				41B7ECDB206C42E700C41086 /* Playlist.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		F9FE1B7F206A6B130037A479 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,18 +309,22 @@
 				4105CC4620685A6B00DE99EB /* ControlPanelViewController.swift in Sources */,
 				4105CC3D20684FEE00DE99EB /* DeviceViewModel.swift in Sources */,
 				4105CBFD20681E4400DE99EB /* AppDelegate.swift in Sources */,
+				41B7ECD6206C41E000C41086 /* Artist.swift in Sources */,
 				F9FE1B81206A6B290037A479 /* InputResponder.swift in Sources */,
 				4105CC4B20697EDC00DE99EB /* ArchButton.swift in Sources */,
 				4142684A206C1DBC00B83735 /* MainMenuViewModel.swift in Sources */,
 				4105CC3620683EFF00DE99EB /* Font.swift in Sources */,
+				41B7ECDC206C42E700C41086 /* Playlist.swift in Sources */,
 				4105CC2D206822C300DE99EB /* Color.swift in Sources */,
 				4105CC3B2068418A00DE99EB /* StatusBarViewModel.swift in Sources */,
+				41B7ECDA206C425E00C41086 /* Album.swift in Sources */,
 				4105CC3120682C2100DE99EB /* MenuTableViewCell.swift in Sources */,
 				4105CC52206AA2CE00DE99EB /* Coordinator.swift in Sources */,
 				4142684C206C31A600B83735 /* PlaylistsMenuViewModel.swift in Sources */,
 				4105CC54206AA70600DE99EB /* OperatingSystemCoordinatorModel.swift in Sources */,
 				4105CC222068221500DE99EB /* MenuViewController.swift in Sources */,
 				4105CC242068223A00DE99EB /* DeviceViewController.swift in Sources */,
+				41B7ECD8206C420100C41086 /* Song.swift in Sources */,
 				4105CC412068546A00DE99EB /* OperatingSystemViewController.swift in Sources */,
 				4105CC4820685E5A00DE99EB /* ControlPanelViewModel.swift in Sources */,
 				4105CC4E2069924D00DE99EB /* ScrollWheel.swift in Sources */,

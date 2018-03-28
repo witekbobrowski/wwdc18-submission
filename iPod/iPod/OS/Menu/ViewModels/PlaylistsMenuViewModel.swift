@@ -10,7 +10,7 @@ import Foundation
 
 enum PlaylistsMenuItem {
     case favourites
-    case custom(String)
+    case custom(Playlist)
 }
 
 protocol PlaylistsMenuViewModelDelegate: class {
@@ -36,8 +36,8 @@ class PlaylistsMenuViewModel: MenuViewModel {
         switch items[row] {
         case .favourites:
             return MenuCellViewModelImplementation(title: "Favourites")
-        case .custom(let title):
-            return MenuCellViewModelImplementation(title: title)
+        case .custom(let playlist):
+            return MenuCellViewModelImplementation(title: playlist.title)
         }
     }
 
