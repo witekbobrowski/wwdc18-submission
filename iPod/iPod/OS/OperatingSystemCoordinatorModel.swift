@@ -17,6 +17,8 @@ protocol OperatingSystemCoordinatorModel {
 
 class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorModel {
 
+    let libraryService: LibraryService
+
     var operatingSystemViewController: OperatingSystemViewController {
         return configuredOperatingSystemViewController()
     }
@@ -25,6 +27,10 @@ class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorM
     }
     var playlistsMenuViewController: MenuViewController {
         return configuredPlaylistsMenuViewController()
+    }
+
+    init(libraryService: LibraryService) {
+        self.libraryService = libraryService
     }
 
     func statusBarViewModel(title: String?, isPlaying: Bool, isCharging: Bool) -> StatusBarViewModel {
