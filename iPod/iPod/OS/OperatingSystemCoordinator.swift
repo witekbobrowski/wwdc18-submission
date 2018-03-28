@@ -106,12 +106,18 @@ extension OperatingSystemCoordinator: PlaylistsMenuViewModelDelegate {
 extension OperatingSystemCoordinator: ArtistsMenuViewModelDelegate {
 
     func artistsMenuViewModel(_ artistsMenuViewModel: ArtistsMenuViewModel, didSelectItem item: ArtistsMenuItem) {
+        var viewController: MenuViewController
         switch item {
         case .all:
-            return // TODO: Show All Albums Menu
+            viewController = coordinatorModel.albumsMenuViewController(.all)
         case .artist(let artist):
-            return // TODO: Show Artists Albums Menu
+            viewController = coordinatorModel.albumsMenuViewController(.artist(artist))
+            updateStatusBar(withTitle: artist.name, isPlaying: false, isCharging: false)
         }
+        if let viewModel = viewController.viewModel as? AlbumsMenuViewModel {
+            viewModel.delegate = self
+        }
+        pushViewController(viewController)
     }
 
     func artistsMenuViewModelDidClickGoBack(_ artistsMenuViewModel: ArtistsMenuViewModel) {
@@ -137,7 +143,38 @@ extension OperatingSystemCoordinator: SongsMenuViewModelDelegate {
         case .album(let album):
             updateStatusBar(withTitle: album.title, isPlaying: false, isCharging: false)
         case .favourites:
-            updateStatusBar(withTitle: "Playlists", isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: MainMenuItem.playlists.rawValue, isPlaying: false, isCharging: false)
+        }
+    }
+
+}
+
+extension OperatingSystemCoordinator: AlbumsMenuViewModelDelegate {
+
+    func albumsMenuViewModel(_ albumsMenuViewModel: AlbumsMenuViewModel, didSelectItem item: AlbumsMenuItem) {
+        var viewController: MenuViewController
+        switch item {
+        case .all:
+            guard case .artist(let artist) = albumsMenuViewModel.type else { return }
+            viewController = coordinatorModel.songsMenuViewController(.artist(artist))
+            updateStatusBar(withTitle: artist.name, isPlaying: false, isCharging: false)
+        case .album(let album):
+            viewController = coordinatorModel.songsMenuViewController(.album(album))
+            updateStatusBar(withTitle: album.title, isPlaying: false, isCharging: false)
+        }
+        if let viewModel = viewController.viewModel as? SongsMenuViewModel {
+            viewModel.delegate = self
+        }
+        pushViewController(viewController)
+    }
+
+    func albumsMenuViewModelDidClickGoBack(_ albumsMenuViewModel: AlbumsMenuViewModel) {
+        popViewController()
+        switch albumsMenuViewModel.type {
+        case .all:
+            updateStatusBar(withTitle: MainMenuItem.artists.rawValue, isPlaying: false, isCharging: false)
+        case .artist(let artist):
+            updateStatusBar(withTitle: artist.name, isPlaying: false, isCharging: false)
         }
     }
 

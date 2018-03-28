@@ -38,6 +38,7 @@
 		41B7ECDF206C437D00C41086 /* LibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECDE206C437D00C41086 /* LibraryService.swift */; };
 		41B7ECE1206C46B100C41086 /* ArtistsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECE0206C46B100C41086 /* ArtistsMenuViewModel.swift */; };
 		41B7ECE3206C496B00C41086 /* SongsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECE2206C496B00C41086 /* SongsMenuViewModel.swift */; };
+		41B7ECE5206C575400C41086 /* AlbumsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECE4206C575400C41086 /* AlbumsMenuViewModel.swift */; };
 		F9FE1B81206A6B290037A479 /* InputResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FE1B80206A6B290037A479 /* InputResponder.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		41B7ECDE206C437D00C41086 /* LibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryService.swift; sourceTree = "<group>"; };
 		41B7ECE0206C46B100C41086 /* ArtistsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsMenuViewModel.swift; sourceTree = "<group>"; };
 		41B7ECE2206C496B00C41086 /* SongsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsMenuViewModel.swift; sourceTree = "<group>"; };
+		41B7ECE4206C575400C41086 /* AlbumsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsMenuViewModel.swift; sourceTree = "<group>"; };
 		F9FE1B80206A6B290037A479 /* InputResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputResponder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				41B7ECDD206C436000C41086 /* Services */,
+				4105CC392068416100DE99EB /* StatusBar */,
 				4105CC1120681E7000DE99EB /* Menu */,
 				4105CC4F206AA25500DE99EB /* OperatingSystemCoordinator.swift */,
 				4105CC53206AA70600DE99EB /* OperatingSystemCoordinatorModel.swift */,
@@ -138,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				41426848206C1D5F00B83735 /* ViewModels */,
-				4105CC392068416100DE99EB /* StatusBar */,
 				4105CC2E20682C0300DE99EB /* Cell */,
 				4105CC212068221500DE99EB /* MenuViewController.swift */,
 			);
@@ -216,6 +218,7 @@
 				41426849206C1DBC00B83735 /* MainMenuViewModel.swift */,
 				4142684B206C31A600B83735 /* PlaylistsMenuViewModel.swift */,
 				41B7ECE0206C46B100C41086 /* ArtistsMenuViewModel.swift */,
+				41B7ECE4206C575400C41086 /* AlbumsMenuViewModel.swift */,
 				41B7ECE2206C496B00C41086 /* SongsMenuViewModel.swift */,
 			);
 			path = ViewModels;
@@ -335,6 +338,7 @@
 				4105CC3620683EFF00DE99EB /* Font.swift in Sources */,
 				41B7ECDC206C42E700C41086 /* Playlist.swift in Sources */,
 				4105CC2D206822C300DE99EB /* Color.swift in Sources */,
+				41B7ECE5206C575400C41086 /* AlbumsMenuViewModel.swift in Sources */,
 				4105CC3B2068418A00DE99EB /* StatusBarViewModel.swift in Sources */,
 				41B7ECDA206C425E00C41086 /* Album.swift in Sources */,
 				4105CC3120682C2100DE99EB /* MenuTableViewCell.swift in Sources */,

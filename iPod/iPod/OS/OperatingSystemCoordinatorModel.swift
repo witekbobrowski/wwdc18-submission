@@ -14,6 +14,7 @@ protocol OperatingSystemCoordinatorModel {
     var playlistsMenuViewController: MenuViewController { get }
     var artistsMenuViewController: MenuViewController { get }
     func songsMenuViewController(_ type: SongsMenuType) -> MenuViewController
+    func albumsMenuViewController(_ type: AlbumsMenuType) -> MenuViewController
     func statusBarViewModel(title: String?, isPlaying: Bool, isCharging: Bool) -> StatusBarViewModel
 }
 
@@ -40,6 +41,10 @@ class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorM
 
     func songsMenuViewController(_ type: SongsMenuType) -> MenuViewController {
         return configuredSongsMenuViewController(type)
+    }
+
+    func albumsMenuViewController(_ type: AlbumsMenuType) -> MenuViewController {
+        return configuredAlbumsMenuViewController(type)
     }
 
     func statusBarViewModel(title: String?, isPlaying: Bool, isCharging: Bool) -> StatusBarViewModel {
@@ -94,6 +99,19 @@ extension OperatingSystemCoordinatorModelImplementation {
             menuItems = libraryService.favourites.map { .song($0) }
         }
         viewController.viewModel = SongsMenuViewModel(items: menuItems, type: type)
+        return viewController
+    }
+
+    private func configuredAlbumsMenuViewController(_ type: AlbumsMenuType) -> MenuViewController {
+        let viewController = MenuViewController()
+        var menuItems: [AlbumsMenuItem]
+        switch type {
+        case .all:
+            menuItems = libraryService.albumsOfArtist(nil).map { .album($0) }
+        case .artist(let artist):
+            menuItems = libraryService.albumsOfArtist(artist).map { .album($0) }
+        }
+        viewController.viewModel = AlbumsMenuViewModel(items: menuItems, type: type)
         return viewController
     }
 
