@@ -35,6 +35,7 @@
 		41B7ECD8206C420100C41086 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECD7206C420100C41086 /* Song.swift */; };
 		41B7ECDA206C425E00C41086 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECD9206C425E00C41086 /* Album.swift */; };
 		41B7ECDC206C42E700C41086 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECDB206C42E700C41086 /* Playlist.swift */; };
+		41B7ECDF206C437D00C41086 /* LibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECDE206C437D00C41086 /* LibraryService.swift */; };
 		F9FE1B81206A6B290037A479 /* InputResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FE1B80206A6B290037A479 /* InputResponder.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		41B7ECD7206C420100C41086 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		41B7ECD9206C425E00C41086 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		41B7ECDB206C42E700C41086 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		41B7ECDE206C437D00C41086 /* LibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryService.swift; sourceTree = "<group>"; };
 		F9FE1B80206A6B290037A479 /* InputResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputResponder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,7 @@
 		4105CC1020681E7000DE99EB /* OS */ = {
 			isa = PBXGroup;
 			children = (
+				41B7ECDD206C436000C41086 /* Services */,
 				4105CC1120681E7000DE99EB /* Menu */,
 				4105CC4F206AA25500DE99EB /* OperatingSystemCoordinator.swift */,
 				4105CC53206AA70600DE99EB /* OperatingSystemCoordinatorModel.swift */,
@@ -223,6 +226,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		41B7ECDD206C436000C41086 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				41B7ECDE206C437D00C41086 /* LibraryService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		F9FE1B7F206A6B130037A479 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +319,7 @@
 				4105CC3F2068539A00DE99EB /* OperatingSystemViewModel.swift in Sources */,
 				4105CC4620685A6B00DE99EB /* ControlPanelViewController.swift in Sources */,
 				4105CC3D20684FEE00DE99EB /* DeviceViewModel.swift in Sources */,
+				41B7ECDF206C437D00C41086 /* LibraryService.swift in Sources */,
 				4105CBFD20681E4400DE99EB /* AppDelegate.swift in Sources */,
 				41B7ECD6206C41E000C41086 /* Artist.swift in Sources */,
 				F9FE1B81206A6B290037A479 /* InputResponder.swift in Sources */,
