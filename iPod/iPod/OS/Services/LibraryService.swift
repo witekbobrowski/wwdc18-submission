@@ -13,7 +13,7 @@ protocol LibraryService {
     var artists: [Artist] { get }
     var playlists: [Playlist] { get }
     var favourites: [Song] { get }
-    func albumsOfArtist(_ artist: Artist) -> [Album]
+    func albumsOfArtist(_ artist: Artist?) -> [Album]
 }
 
 class LibraryServiceImplementation: LibraryService {
@@ -23,7 +23,7 @@ class LibraryServiceImplementation: LibraryService {
     var playlists: [Playlist] { return [] }
     var favourites: [Song] { return [] }
 
-    func albumsOfArtist(_ artist: Artist) -> [Album] {
+    func albumsOfArtist(_ artist: Artist?) -> [Album] {
         return []
     }
 

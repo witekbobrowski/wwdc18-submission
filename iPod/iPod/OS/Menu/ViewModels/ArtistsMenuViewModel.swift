@@ -8,35 +8,45 @@
 
 import Foundation
 
+enum ArtistsMenuItem {
+    case all
+    case artist(Artist)
+}
+
 protocol ArtistsMenuViewModelDelegate: class {
-    func artistsMenuViewModel(_ artistsMenuViewModel: ArtistsMenuViewModel, didSelectArtist artis: Artist)
+    func artistsMenuViewModel(_ artistsMenuViewModel: ArtistsMenuViewModel, didSelectItem item: ArtistsMenuItem)
     func artistsMenuViewModelDidClickGoBack(_ artistsMenuViewModel: ArtistsMenuViewModel)
 }
 
 class ArtistsMenuViewModel: MenuViewModel {
 
-    let artists: [Artist]
+    let items: [ArtistsMenuItem]
     weak var delegate: ArtistsMenuViewModelDelegate?
-    var rowInitallyHighlighed: Int? { return artists.isEmpty ? nil : 0 }
+    var rowInitallyHighlighed: Int? { return items.isEmpty ? nil : 0 }
 
-    init(artists: [Artist]) {
-        self.artists = artists
+    init(items: [ArtistsMenuItem]) {
+        self.items = items
     }
 
     func numberOfSections() -> Int {
-        return artists.isEmpty ? 0 : 1
+        return items.isEmpty ? 0 : 1
     }
 
     func numberOfRows(inSection section: Int) -> Int {
-        return section == 0 ? artists.count : 0
+        return section == 0 ? items.count : 0
     }
 
     func viewModelForCell(inRow row: Int) -> MenuCellViewModel {
-        return MenuCellViewModelImplementation(title: artists[row].name)
+        switch items[row] {
+        case .all:
+            return MenuCellViewModelImplementation(title: "All")
+        case .artist(let artist):
+            return MenuCellViewModelImplementation(title: artist.name)
+        }
     }
 
     func selectCell(inRow row: Int) {
-        delegate?.artistsMenuViewModel(self, didSelectArtist: artists[row])
+        delegate?.artistsMenuViewModel(self, didSelectItem: items[row])
     }
 
     func goBack() {
