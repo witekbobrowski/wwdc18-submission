@@ -10,10 +10,11 @@ import Foundation
 
 enum MainMenuItem: String {
     case playlists = "Playlists"
-    case browse = "Browse"
-    case extras = "Extras"
+    case artists = "Atrists"
+    case songs = "Songs"
     case settings = "Settings"
     case about = "About"
+    case nowPlaying = "Now Playing"
 }
 
 protocol MainMenuViewModelDelegate: class {
@@ -22,11 +23,13 @@ protocol MainMenuViewModelDelegate: class {
 
 class MainMenuViewModel: MenuViewModel {
 
-    let items: [MainMenuItem] = [.playlists, .browse, .extras, .settings, .about]
-
+    private(set) var items: [MainMenuItem]
     weak var delegate: MainMenuViewModelDelegate?
-
     var rowInitallyHighlighed: Int? { return items.isEmpty ? nil : 0 }
+
+    init(items: [MainMenuItem]) {
+        self.items = items
+    }
 
     func numberOfRows() -> Int {
         return items.count

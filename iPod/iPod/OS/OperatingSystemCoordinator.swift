@@ -49,11 +49,13 @@ extension OperatingSystemCoordinator: MainMenuViewModelDelegate {
             if let viewModel = viewController.viewModel as? PlaylistsMenuViewModel {
                 viewModel.delegate = self
             }
-        case .browse: return
+        case .artists: return
         case .settings: return
-        case .extras: return
+        case .songs: return
         case .about: return
+        case .nowPlaying: return
         }
+        rootViewController?.statusBarView.viewModel = coordinatorModel.statusBarViewModel(title: item.rawValue, isPlaying: false, isCharging: false)
         rootViewController?.menuNavigationController.pushViewController(viewController, animated: animatedTransitions)
     }
 
@@ -67,6 +69,7 @@ extension OperatingSystemCoordinator: PlaylistsMenuViewModelDelegate {
 
     func playlistsMenuViewModelDidClickGoBack(_ playlistsMenuViewModel: PlaylistsMenuViewModel) {
         rootViewController?.menuNavigationController.popViewController(animated: animatedTransitions)
+        rootViewController?.statusBarView.viewModel = coordinatorModel.statusBarViewModel(title: nil, isPlaying: false, isCharging: false)
     }
 
 }

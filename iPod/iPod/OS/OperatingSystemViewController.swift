@@ -15,7 +15,7 @@ class OperatingSystemViewController: UIViewController {
         static let stausBarInset: CGFloat = 1
     }
 
-    private weak var statusBarView: StatusBarView!
+    private(set) weak var statusBarView: StatusBarView!
     private(set) var menuNavigationController: UINavigationController!
     var viewModel: OperatingSystemViewModel!
 

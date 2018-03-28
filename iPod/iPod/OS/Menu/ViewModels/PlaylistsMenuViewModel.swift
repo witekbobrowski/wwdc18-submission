@@ -21,9 +21,7 @@ protocol PlaylistsMenuViewModelDelegate: class {
 class PlaylistsMenuViewModel: MenuViewModel {
 
     let items: [PlaylistsMenuItem]
-
     weak var delegate: PlaylistsMenuViewModelDelegate?
-
     var rowInitallyHighlighed: Int? { return items.isEmpty ? nil : 0 }
 
     init(items: [PlaylistsMenuItem]) {

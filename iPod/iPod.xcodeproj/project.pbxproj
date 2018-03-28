@@ -96,6 +96,7 @@
 			children = (
 				F9FE1B7F206A6B130037A479 /* Protocols */,
 				4105CC2B206822B100DE99EB /* Utils */,
+				4105CC1020681E7000DE99EB /* OS */,
 				4105CC252068225B00DE99EB /* Device */,
 				4105CBFC20681E4400DE99EB /* AppDelegate.swift */,
 				4105CC0320681E4400DE99EB /* Assets.xcassets */,
@@ -132,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				4105CC442068564600DE99EB /* Controls */,
-				4105CC1020681E7000DE99EB /* OS */,
 				4105CC232068223A00DE99EB /* DeviceViewController.swift */,
 				4105CC3C20684FEE00DE99EB /* DeviceViewModel.swift */,
 			);

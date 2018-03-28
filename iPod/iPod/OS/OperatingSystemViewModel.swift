@@ -14,8 +14,10 @@ protocol OperatingSystemViewModel {
 
 class OperatingSystemViewModelImplementation: OperatingSystemViewModel {
 
-    var statusBarViewModel: StatusBarViewModel {
-        return StatusBarViewModelImplementation(title: "iPod", isPlaying: false, isCharging: false)
+    let statusBarViewModel: StatusBarViewModel
+
+    init(statusBarViewModel: StatusBarViewModel) {
+        self.statusBarViewModel = statusBarViewModel
     }
 
 }
