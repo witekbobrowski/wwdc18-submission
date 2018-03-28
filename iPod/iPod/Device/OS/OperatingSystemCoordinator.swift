@@ -14,6 +14,7 @@ class OperatingSystemCoordinator: Coordinator {
     private let coordinatorModel: OperatingSystemCoordinatorModel
 
     var rootViewController: OperatingSystemViewController?
+    var animatedTransitions: Bool = true
 
     init(window: UIView, coordinatorModel: OperatingSystemCoordinatorModel) {
         self.window = window
@@ -22,9 +23,11 @@ class OperatingSystemCoordinator: Coordinator {
 
     func start() {
         let operatingSystemVC = coordinatorModel.operatingSystemViewController
-        let mainMenuViewController = coordinatorModel.mainMenuViewController
-        mainMenuViewController.viewModel.delegate = self
-        operatingSystemVC.menuNavigationController.pushViewController(mainMenuViewController, animated: true)
+        let viewController = coordinatorModel.mainMenuViewController
+        if let viewModel = viewController.viewModel as? MainMenuViewModel {
+            viewModel.delegate = self
+        }
+        operatingSystemVC.menuNavigationController.pushViewController(viewController, animated: animatedTransitions)
         rootViewController = operatingSystemVC
         window.addSubview(operatingSystemVC.view)
         operatingSystemVC.view.translatesAutoresizingMaskIntoConstraints = false
@@ -36,16 +39,34 @@ class OperatingSystemCoordinator: Coordinator {
 
 }
 
-extension OperatingSystemCoordinator: MenuViewModelDelegate {
+extension OperatingSystemCoordinator: MainMenuViewModelDelegate {
 
-    func menuViewModel(_ menuViewModel: MenuViewModel, didSelectItem item: String) {
-        let playlistViewController = coordinatorModel.playlistViewController
-        playlistViewController.viewModel.delegate = self
-        rootViewController?.menuNavigationController.pushViewController(playlistViewController, animated: true)
+    func mainMenuViewModel(_ mainMenuViewModel: MainMenuViewModel, didSelectItem item: MainMenuItem) {
+        var viewController: MenuViewController
+        switch item {
+        case .playlists:
+            viewController = coordinatorModel.playlistsMenuViewController
+            if let viewModel = viewController.viewModel as? PlaylistsMenuViewModel {
+                viewModel.delegate = self
+            }
+        case .browse: return
+        case .settings: return
+        case .extras: return
+        case .about: return
+        }
+        rootViewController?.menuNavigationController.pushViewController(viewController, animated: animatedTransitions)
     }
 
-    func menuViewModelDidClickGoBack(_ menuViewModel: MenuViewModel) {
-        rootViewController?.menuNavigationController.popViewController(animated: true)
+}
+
+extension OperatingSystemCoordinator: PlaylistsMenuViewModelDelegate {
+
+    func playlistsMenuViewModel(_ playlistsMenuViewModel: PlaylistsMenuViewModel, didSelectItem item: PlaylistsMenuItem) {
+        return
+    }
+
+    func playlistsMenuViewModelDidClickGoBack(_ playlistsMenuViewModel: PlaylistsMenuViewModel) {
+        rootViewController?.menuNavigationController.popViewController(animated: animatedTransitions)
     }
 
 }

@@ -8,22 +8,10 @@
 
 import Foundation
 
-enum MainMenuItem: String {
-    case playlists = "Playlists"
-    case browse = "Browse"
-    case extras = "Extras"
-    case settings = "Settings"
-    case about = "About"
-}
-
-enum PlaylistMenuItem: String {
-    case favourites = "Favourites"
-}
-
 protocol OperatingSystemCoordinatorModel {
     var operatingSystemViewController: OperatingSystemViewController { get }
     var mainMenuViewController: MenuViewController { get }
-    var playlistViewController: MenuViewController { get }
+    var playlistsMenuViewController: MenuViewController { get }
 }
 
 class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorModel {
@@ -36,7 +24,7 @@ class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorM
         return configuredMainMenuViewController()
     }
 
-    var playlistViewController: MenuViewController {
+    var playlistsMenuViewController: MenuViewController {
         return configuredPlaylistsMenuViewController()
     }
 
@@ -52,16 +40,15 @@ extension OperatingSystemCoordinatorModelImplementation {
     }
 
     private func configuredMainMenuViewController() -> MenuViewController {
-        let mainMenuItems: [MainMenuItem] = [.playlists, .browse, .extras, .settings, .about]
         let mainMenuViewController = MenuViewController()
-        mainMenuViewController.viewModel = MenuViewModelImplementation(items: mainMenuItems.map { $0.rawValue })
+        mainMenuViewController.viewModel = MainMenuViewModel()
         return mainMenuViewController
     }
 
     private func configuredPlaylistsMenuViewController() -> MenuViewController {
-        let playlistsMenuItems: [PlaylistMenuItem] = [.favourites]
         let playlistsMenuViewController = MenuViewController()
-        playlistsMenuViewController.viewModel = MenuViewModelImplementation(items: playlistsMenuItems.map { $0.rawValue })
+        let menuItems: [PlaylistsMenuItem] = [.favourites]
+        playlistsMenuViewController.viewModel = PlaylistsMenuViewModel(items: menuItems)
         return playlistsMenuViewController
     }
 
