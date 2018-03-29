@@ -40,6 +40,7 @@
 		41B7ECE3206C496B00C41086 /* SongsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECE2206C496B00C41086 /* SongsMenuViewModel.swift */; };
 		41B7ECE5206C575400C41086 /* AlbumsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECE4206C575400C41086 /* AlbumsMenuViewModel.swift */; };
 		F9F2EFD2206CDA1C009A88FC /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2EFD1206CDA1C009A88FC /* Strings.swift */; };
+		F9F2EFD4206CDE39009A88FC /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2EFD3206CDE39009A88FC /* PlayerService.swift */; };
 		F9FE1B81206A6B290037A479 /* InputResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FE1B80206A6B290037A479 /* InputResponder.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		41B7ECE2206C496B00C41086 /* SongsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsMenuViewModel.swift; sourceTree = "<group>"; };
 		41B7ECE4206C575400C41086 /* AlbumsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsMenuViewModel.swift; sourceTree = "<group>"; };
 		F9F2EFD1206CDA1C009A88FC /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		F9F2EFD3206CDE39009A88FC /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
 		F9FE1B80206A6B290037A479 /* InputResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputResponder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -242,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				41B7ECDE206C437D00C41086 /* LibraryService.swift */,
+				F9F2EFD3206CDE39009A88FC /* PlayerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				41B7ECE5206C575400C41086 /* AlbumsMenuViewModel.swift in Sources */,
 				4105CC3B2068418A00DE99EB /* StatusBarViewModel.swift in Sources */,
 				41B7ECDA206C425E00C41086 /* Album.swift in Sources */,
+				F9F2EFD4206CDE39009A88FC /* PlayerService.swift in Sources */,
 				F9F2EFD2206CDA1C009A88FC /* Strings.swift in Sources */,
 				4105CC3120682C2100DE99EB /* MenuTableViewCell.swift in Sources */,
 				4105CC52206AA2CE00DE99EB /* Coordinator.swift in Sources */,
