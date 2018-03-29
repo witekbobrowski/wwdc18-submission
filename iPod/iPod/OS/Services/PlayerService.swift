@@ -28,7 +28,7 @@ class PlayerServiceImplementation: PlayerService {
         static let fastForwardTimeInterval: TimeInterval = 10
     }
 
-    private let audioPlayer: AVAudioPlayer
+    private var audioPlayer: AVAudioPlayer?
     private var playlist: [Song] = []
     private var currentIndex: Int?
 
@@ -39,16 +39,12 @@ class PlayerServiceImplementation: PlayerService {
         return playlist[index]
     }
     var isPlaying: Bool {
-        return audioPlayer.isPlaying
-    }
-
-    init(audioPlayer: AVAudioPlayer) {
-        self.audioPlayer = audioPlayer
+        return audioPlayer?.isPlaying ?? false
     }
 
     func play(_ song: Song, fromPlaylist playlist: [Song]) {
         self.playlist = playlist.isEmpty ? [song] : playlist
-        currentIndex = playlist.index { $0.title == song.title && $0.album?.title == song.album?.title }
+        currentIndex = playlist.index { $0.url == song.url }
         play(song)
     }
 
@@ -75,23 +71,26 @@ class PlayerServiceImplementation: PlayerService {
     }
 
     func fastForward() {
-        audioPlayer.play(atTime: audioPlayer.currentTime - Constants.fastForwardTimeInterval)
+        guard let player = audioPlayer else { return }
+        player.play(atTime: player.currentTime - Constants.fastForwardTimeInterval)
     }
 
     func rewind() {
-        audioPlayer.play(atTime: audioPlayer.currentTime - Constants.rewindTimeInterval)
+        guard let player = audioPlayer else { return }
+        player.play(atTime: player.currentTime - Constants.rewindTimeInterval)
     }
 
     func pause() {
-        audioPlayer.pause()
+        audioPlayer?.pause()
     }
 
     func stop() {
-        audioPlayer.stop()
+        audioPlayer?.stop()
+        audioPlayer = nil
     }
 
     func changeVolume(_ volume: Float) {
-        audioPlayer.setVolume(volume, fadeDuration: 0)
+        audioPlayer?.setVolume(volume, fadeDuration: 0)
     }
 
 }
@@ -99,7 +98,9 @@ class PlayerServiceImplementation: PlayerService {
 extension PlayerServiceImplementation {
 
     private func play(_ song: Song) {
-        audioPlayer.play()
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        try? AVAudioSession.sharedInstance().setActive(true)
+        audioPlayer = try? AVAudioPlayer(contentsOf: song.url, fileTypeHint: song.url.pathExtension)
     }
 
 }

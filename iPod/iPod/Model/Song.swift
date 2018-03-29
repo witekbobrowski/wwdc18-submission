@@ -12,5 +12,5 @@ struct Song {
     var title: String
     var artists: [Artist]
     var album: Album?
-    var length: Int
+    var url: URL
 }
