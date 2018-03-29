@@ -23,11 +23,6 @@ class PlayerViewModelImplementation: PlayerViewModel {
     private let playerService: PlayerService
     private let songs: [Song]
 
-    init(playerService: PlayerService, songs: [Song]) {
-        self.playerService = playerService
-        self.songs = songs
-    }
-
     var position: String {
         return "1 of 1"
     }
@@ -48,6 +43,11 @@ class PlayerViewModelImplementation: PlayerViewModel {
     }
     var duration: String {
         return playerService.duration.description
+    }
+
+    init(playerService: PlayerService, songs: [Song]) {
+        self.playerService = playerService
+        self.songs = songs
     }
 
 }
