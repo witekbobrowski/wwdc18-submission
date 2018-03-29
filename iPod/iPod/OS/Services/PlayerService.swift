@@ -9,7 +9,17 @@
 import Foundation
 import AVFoundation
 
+protocol PlayerServiceDelegate: class {
+    func playerService(_ playerService: PlayerService, didStartPlaying song: Song)
+    func playerService(_ playerService: PlayerService, didFinishPlaying song: Song)
+    func playerService(_ playerService: PlayerService, didPause song: Song)
+    func playerService(_ playerService: PlayerService, didPassPlaybackTime time: TimeInterval)
+    func playerService(_ playerService: PlayerService, didFastForwardToTime time: TimeInterval)
+    func playerService(_ playerService: PlayerService, didRewindToTime time: TimeInterval)
+}
+
 protocol PlayerService {
+    var delegate: PlayerServiceDelegate? { get set }
     var isPlaying: Bool { get }
     var volume: Float { get }
     var currentSong: Song? { get }
@@ -32,9 +42,11 @@ class PlayerServiceImplementation: PlayerService {
         static let fastForwardTimeInterval: TimeInterval = 10
     }
 
-    private var audioPlayer: AVAudioPlayer?
+    private var player: AVPlayer = AVPlayer()
     private var playlist: [Song] = []
     private var currentIndex: Int?
+
+    weak var delegate: PlayerServiceDelegate?
 
     var currentSong: Song? {
         guard let index = currentIndex, playlist.indices.contains(index) else {
@@ -43,16 +55,21 @@ class PlayerServiceImplementation: PlayerService {
         return playlist[index]
     }
     var isPlaying: Bool {
-        return audioPlayer?.isPlaying ?? false
+        return player.timeControlStatus == .playing
     }
     var volume: Float {
-        return  audioPlayer?.volume ?? 0
+        return  player.volume
     }
     var currentTime: TimeInterval {
-        return audioPlayer?.currentTime ?? 0
+        return CMTimeGetSeconds(player.currentTime())
     }
     var duration: TimeInterval {
-        return audioPlayer?.duration ?? 0
+        guard let time = player.currentItem?.duration else { return 0 }
+        return CMTimeGetSeconds(time)
+    }
+
+    init() {
+        self.setupObservers()
     }
 
     func play(_ song: Song, fromPlaylist playlist: [Song]) {
@@ -84,26 +101,29 @@ class PlayerServiceImplementation: PlayerService {
     }
 
     func fastForward() {
-        guard let player = audioPlayer else { return }
-        player.play(atTime: player.currentTime - Constants.fastForwardTimeInterval)
+        let seconds = currentTime + Constants.fastForwardTimeInterval
+        player.seek(to: CMTime(seconds: duration < seconds ? duration : seconds, preferredTimescale: 1))
+        delegate?.playerService(self, didFastForwardToTime: currentTime)
     }
 
     func rewind() {
-        guard let player = audioPlayer else { return }
-        player.play(atTime: player.currentTime - Constants.rewindTimeInterval)
+        let seconds = currentTime - Constants.fastForwardTimeInterval
+        player.seek(to: CMTime(seconds: seconds < 0 ? 0 : seconds, preferredTimescale: 1))
+        delegate?.playerService(self, didRewindToTime: currentTime)
     }
 
     func pause() {
-        audioPlayer?.pause()
+        player.pause()
+        guard let song = currentSong else { return }
+        delegate?.playerService(self, didPause: song)
     }
 
     func stop() {
-        audioPlayer?.stop()
-        audioPlayer = nil
+        player.replaceCurrentItem(with: nil)
     }
 
     func changeVolume(_ volume: Float) {
-        audioPlayer?.setVolume(volume, fadeDuration: 0)
+        player.volume = volume
     }
 
 }
@@ -111,9 +131,18 @@ class PlayerServiceImplementation: PlayerService {
 extension PlayerServiceImplementation {
 
     private func play(_ song: Song) {
-        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-        try? AVAudioSession.sharedInstance().setActive(true)
-        audioPlayer = try? AVAudioPlayer(contentsOf: song.url, fileTypeHint: song.url.pathExtension)
+        let playerItem = AVPlayerItem(url: song.url)
+        player.replaceCurrentItem(with: playerItem)
+        delegate?.playerService(self, didStartPlaying: song)
+    }
+
+    private func setupObservers() {
+        let interval = CMTime(seconds: 1, preferredTimescale: 1)
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] time in
+            guard let `self` = self else { return }
+            let seconds = CMTimeGetSeconds(time)
+            self.delegate?.playerService(self, didPassPlaybackTime: seconds)
+        }
     }
 
 }
