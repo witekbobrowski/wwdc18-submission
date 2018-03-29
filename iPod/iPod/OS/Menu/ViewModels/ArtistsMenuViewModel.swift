@@ -39,7 +39,7 @@ class ArtistsMenuViewModel: MenuViewModel {
     func viewModelForCell(inRow row: Int) -> MenuCellViewModel {
         switch items[row] {
         case .all:
-            return MenuCellViewModelImplementation(title: "All")
+            return MenuCellViewModelImplementation(title: Strings.all)
         case .artist(let artist):
             return MenuCellViewModelImplementation(title: artist.name)
         }

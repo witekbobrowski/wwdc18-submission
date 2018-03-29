@@ -48,7 +48,7 @@ class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorM
     }
 
     func statusBarViewModel(title: String?, isPlaying: Bool, isCharging: Bool) -> StatusBarViewModel {
-        return StatusBarViewModelImplementation(title: title ?? "iPod", isPlaying: isPlaying, isCharging: isCharging)
+        return StatusBarViewModelImplementation(title: title ?? Strings.iPod, isPlaying: isPlaying, isCharging: isCharging)
     }
 
 }

@@ -48,7 +48,7 @@ class SongsMenuViewModel: MenuViewModel {
     func viewModelForCell(inRow row: Int) -> MenuCellViewModel {
         switch items[row] {
         case .all:
-            return MenuCellViewModelImplementation(title: "All")
+            return MenuCellViewModelImplementation(title: Strings.all)
         case .song(let song):
             return MenuCellViewModelImplementation(title: song.title)
         }

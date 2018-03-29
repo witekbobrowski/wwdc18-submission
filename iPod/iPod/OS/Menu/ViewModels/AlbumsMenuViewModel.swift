@@ -46,7 +46,7 @@ class AlbumsMenuViewModel: MenuViewModel {
     func viewModelForCell(inRow row: Int) -> MenuCellViewModel {
         switch items[row] {
         case .all:
-            return MenuCellViewModelImplementation(title: "All")
+            return MenuCellViewModelImplementation(title: Strings.all)
         case .album(let album):
             return MenuCellViewModelImplementation(title: album.title)
         }

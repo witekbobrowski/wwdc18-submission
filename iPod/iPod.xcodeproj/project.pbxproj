@@ -39,6 +39,7 @@
 		41B7ECE1206C46B100C41086 /* ArtistsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECE0206C46B100C41086 /* ArtistsMenuViewModel.swift */; };
 		41B7ECE3206C496B00C41086 /* SongsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECE2206C496B00C41086 /* SongsMenuViewModel.swift */; };
 		41B7ECE5206C575400C41086 /* AlbumsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECE4206C575400C41086 /* AlbumsMenuViewModel.swift */; };
+		F9F2EFD2206CDA1C009A88FC /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2EFD1206CDA1C009A88FC /* Strings.swift */; };
 		F9FE1B81206A6B290037A479 /* InputResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FE1B80206A6B290037A479 /* InputResponder.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		41B7ECE0206C46B100C41086 /* ArtistsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsMenuViewModel.swift; sourceTree = "<group>"; };
 		41B7ECE2206C496B00C41086 /* SongsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsMenuViewModel.swift; sourceTree = "<group>"; };
 		41B7ECE4206C575400C41086 /* AlbumsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsMenuViewModel.swift; sourceTree = "<group>"; };
+		F9F2EFD1206CDA1C009A88FC /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		F9FE1B80206A6B290037A479 /* InputResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputResponder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,6 +164,7 @@
 			children = (
 				4105CC2C206822C300DE99EB /* Color.swift */,
 				4105CC3520683EFF00DE99EB /* Font.swift */,
+				F9F2EFD1206CDA1C009A88FC /* Strings.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				41B7ECE5206C575400C41086 /* AlbumsMenuViewModel.swift in Sources */,
 				4105CC3B2068418A00DE99EB /* StatusBarViewModel.swift in Sources */,
 				41B7ECDA206C425E00C41086 /* Album.swift in Sources */,
+				F9F2EFD2206CDA1C009A88FC /* Strings.swift in Sources */,
 				4105CC3120682C2100DE99EB /* MenuTableViewCell.swift in Sources */,
 				4105CC52206AA2CE00DE99EB /* Coordinator.swift in Sources */,
 				4142684C206C31A600B83735 /* PlaylistsMenuViewModel.swift in Sources */,

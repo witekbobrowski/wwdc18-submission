@@ -39,7 +39,7 @@ class PlaylistsMenuViewModel: MenuViewModel {
     func viewModelForCell(inRow row: Int) -> MenuCellViewModel {
         switch items[row] {
         case .favourites:
-            return MenuCellViewModelImplementation(title: "Favourites")
+            return MenuCellViewModelImplementation(title: Strings.favourites)
         case .custom(let playlist):
             return MenuCellViewModelImplementation(title: playlist.title)
         }

@@ -93,7 +93,7 @@ extension OperatingSystemCoordinator: PlaylistsMenuViewModelDelegate {
             viewModel.delegate = self
         }
         pushViewController(viewController)
-        updateStatusBar(withTitle: "Favourites", isPlaying: false, isCharging: false)
+        updateStatusBar(withTitle: Strings.favourites, isPlaying: false, isCharging: false)
     }
 
     func playlistsMenuViewModelDidClickGoBack(_ playlistsMenuViewModel: PlaylistsMenuViewModel) {
