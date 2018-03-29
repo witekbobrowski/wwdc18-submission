@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let deviceViewController = DeviceViewController()
-        let libraryService = LibraryServiceImplementation()
+        let storageService = StorageServiceImplementation()
+        let libraryService = LibraryServiceImplementation(storageService: storageService)
         let playerService = PlayerServiceImplementation()
         let coordinatorModel = OperatingSystemCoordinatorModelImplementation(libraryService: libraryService, playerService: playerService)
         deviceViewController.viewModel = DeviceViewModelImplementation(operatingSystemCoordinatorModel: coordinatorModel, controlPanelViewModel: ControlPanelViewModelImplementation())

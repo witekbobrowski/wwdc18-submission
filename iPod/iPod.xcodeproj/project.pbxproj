@@ -43,6 +43,7 @@
 		F9F2EFD4206CDE39009A88FC /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2EFD3206CDE39009A88FC /* PlayerService.swift */; };
 		F9F2EFD7206CF0FD009A88FC /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2EFD6206CF0FD009A88FC /* PlayerViewModel.swift */; };
 		F9F2EFD9206CF4BC009A88FC /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2EFD8206CF4BC009A88FC /* PlayerViewController.swift */; };
+		F9F2EFDB206D40AC009A88FC /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2EFDA206D40AC009A88FC /* StorageService.swift */; };
 		F9FE1B81206A6B290037A479 /* InputResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FE1B80206A6B290037A479 /* InputResponder.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,7 @@
 		F9F2EFD3206CDE39009A88FC /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
 		F9F2EFD6206CF0FD009A88FC /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		F9F2EFD8206CF4BC009A88FC /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		F9F2EFDA206D40AC009A88FC /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		F9FE1B80206A6B290037A479 /* InputResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputResponder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,6 +252,7 @@
 			children = (
 				41B7ECDE206C437D00C41086 /* LibraryService.swift */,
 				F9F2EFD3206CDE39009A88FC /* PlayerService.swift */,
+				F9F2EFDA206D40AC009A88FC /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				4142684C206C31A600B83735 /* PlaylistsMenuViewModel.swift in Sources */,
 				4105CC54206AA70600DE99EB /* OperatingSystemCoordinatorModel.swift in Sources */,
 				F9F2EFD9206CF4BC009A88FC /* PlayerViewController.swift in Sources */,
+				F9F2EFDB206D40AC009A88FC /* StorageService.swift in Sources */,
 				4105CC222068221500DE99EB /* MenuViewController.swift in Sources */,
 				41B7ECE1206C46B100C41086 /* ArtistsMenuViewModel.swift in Sources */,
 				4105CC242068223A00DE99EB /* DeviceViewController.swift in Sources */,
