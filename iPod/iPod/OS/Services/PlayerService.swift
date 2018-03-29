@@ -11,6 +11,10 @@ import AVFoundation
 
 protocol PlayerService {
     var isPlaying: Bool { get }
+    var volume: Float { get }
+    var currentSong: Song? { get }
+    var currentTime: TimeInterval { get }
+    var duration: TimeInterval { get }
     func play(_ song: Song, fromPlaylist playlist: [Song])
     func next()
     func previous()
@@ -40,6 +44,15 @@ class PlayerServiceImplementation: PlayerService {
     }
     var isPlaying: Bool {
         return audioPlayer?.isPlaying ?? false
+    }
+    var volume: Float {
+        return  audioPlayer?.volume ?? 0
+    }
+    var currentTime: TimeInterval {
+        return audioPlayer?.currentTime ?? 0
+    }
+    var duration: TimeInterval {
+        return audioPlayer?.duration ?? 0
     }
 
     func play(_ song: Song, fromPlaylist playlist: [Song]) {
