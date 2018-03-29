@@ -15,12 +15,14 @@ protocol OperatingSystemCoordinatorModel {
     var artistsMenuViewController: MenuViewController { get }
     func songsMenuViewController(_ type: SongsMenuType) -> MenuViewController
     func albumsMenuViewController(_ type: AlbumsMenuType) -> MenuViewController
+    func playerViewController(_ songs: [Song]) -> PlayerViewController
     func statusBarViewModel(title: String?, isPlaying: Bool, isCharging: Bool) -> StatusBarViewModel
 }
 
 class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorModel {
 
     let libraryService: LibraryService
+    let playerService: PlayerService
 
     var operatingSystemViewController: OperatingSystemViewController {
         return configuredOperatingSystemViewController()
@@ -35,8 +37,9 @@ class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorM
         return configuredArtistsMenuViewController()
     }
 
-    init(libraryService: LibraryService) {
+    init(libraryService: LibraryService, playerService: PlayerService) {
         self.libraryService = libraryService
+        self.playerService = playerService
     }
 
     func songsMenuViewController(_ type: SongsMenuType) -> MenuViewController {
@@ -45,6 +48,10 @@ class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorM
 
     func albumsMenuViewController(_ type: AlbumsMenuType) -> MenuViewController {
         return configuredAlbumsMenuViewController(type)
+    }
+
+    func playerViewController(_ songs: [Song]) -> PlayerViewController {
+        return configuredPlayerViewController(songs: songs)
     }
 
     func statusBarViewModel(title: String?, isPlaying: Bool, isCharging: Bool) -> StatusBarViewModel {
@@ -112,6 +119,12 @@ extension OperatingSystemCoordinatorModelImplementation {
             menuItems = libraryService.albumsOfArtist(artist).map { .album($0) }
         }
         viewController.viewModel = AlbumsMenuViewModel(items: menuItems, type: type)
+        return viewController
+    }
+
+    private func configuredPlayerViewController(songs: [Song]) -> PlayerViewController {
+        let viewController = PlayerViewController()
+        viewController.viewModel = PlayerViewModelImplementation(playerService: playerService, songs: songs)
         return viewController
     }
 

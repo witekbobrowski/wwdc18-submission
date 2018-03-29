@@ -130,7 +130,14 @@ extension OperatingSystemCoordinator: ArtistsMenuViewModelDelegate {
 extension OperatingSystemCoordinator: SongsMenuViewModelDelegate {
 
     func songsMenuViewModel(_ songsMenuViewModel: SongsMenuViewModel, didSelectItem item: SongsMenuItem) {
-        return // TODO: Show Player View Controller
+        var viewController: PlayerViewController
+        switch item {
+        case .all:
+            viewController = coordinatorModel.playerViewController([])
+        case .song(let song):
+            viewController = coordinatorModel.playerViewController([song])
+        }
+        pushViewController(viewController)
     }
 
     func songsMenuViewModelDidClickGoBack(_ songsMenuViewModel: SongsMenuViewModel) {
