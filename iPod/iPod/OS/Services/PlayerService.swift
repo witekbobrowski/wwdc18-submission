@@ -26,6 +26,7 @@ protocol PlayerService {
     var currentTime: TimeInterval { get }
     var duration: TimeInterval { get }
     func play(_ song: Song, fromPlaylist playlist: [Song])
+    func resume()
     func next()
     func previous()
     func fastForward()
@@ -76,6 +77,10 @@ class PlayerServiceImplementation: PlayerService {
         self.playlist = playlist.isEmpty ? [song] : playlist
         currentIndex = playlist.index { $0.url == song.url }
         play(song)
+    }
+
+    func resume() {
+        player.play()
     }
 
     func next() {

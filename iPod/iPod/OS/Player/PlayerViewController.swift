@@ -105,6 +105,8 @@ extension PlayerViewController: InputResponder {
         switch type {
         case .manu:
             viewModel.goBackAction()
+        case .enter:
+            viewModel.enterAction()
         default:
             return
         }

@@ -31,6 +31,7 @@ protocol PlayerViewModel {
     var currentTime: String { get }
     var duration: String { get }
     func goBackAction()
+    func enterAction()
 }
 
 class PlayerViewModelImplementation: PlayerViewModel {
@@ -73,6 +74,14 @@ class PlayerViewModelImplementation: PlayerViewModel {
 
     func goBackAction() {
         delegate?.playerViewModelDidClickGoBack(self)
+    }
+
+    func enterAction() {
+        if playerService.isPlaying {
+            playerService.pause()
+        } else {
+            playerService.resume()
+        }
     }
 
 }
