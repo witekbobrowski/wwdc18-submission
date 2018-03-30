@@ -25,7 +25,7 @@ protocol AlbumsMenuViewModelDelegate: class {
 
 class AlbumsMenuViewModel: MenuViewModel {
 
-    let items: [AlbumsMenuItem]
+    private let items: [AlbumsMenuItem]
     let type: AlbumsMenuType
     weak var delegate: AlbumsMenuViewModelDelegate?
     var rowInitallyHighlighed: Int? { return items.isEmpty ? nil : 0 }

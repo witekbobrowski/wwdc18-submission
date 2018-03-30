@@ -10,6 +10,6 @@ import Foundation
 
 struct Album {
     var title: String
-    var artists: [Artist]
+    var artist: Artist?
     var songs: [Song]
 }

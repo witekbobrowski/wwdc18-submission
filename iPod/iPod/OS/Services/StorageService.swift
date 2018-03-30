@@ -21,7 +21,8 @@ class StorageServiceImplementation: StorageService {
 extension StorageServiceImplementation {
 
     private func retrieveItems() -> [URL]? {
-        return Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: "Resources")
+        let urls = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil)
+        return urls
     }
 
 }

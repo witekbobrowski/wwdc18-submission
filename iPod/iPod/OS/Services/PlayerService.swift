@@ -133,6 +133,7 @@ extension PlayerServiceImplementation {
     private func play(_ song: Song) {
         let playerItem = AVPlayerItem(url: song.url)
         player.replaceCurrentItem(with: playerItem)
+        player.play()
         delegate?.playerService(self, didStartPlaying: song)
     }
 

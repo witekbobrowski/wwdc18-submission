@@ -8,7 +8,21 @@
 
 import Foundation
 
+enum PlayerViewModelType {
+    case songs
+    case playlist(Playlist)
+    case album(Album)
+    case artist(Artist)
+    case nowPlaying
+}
+
+protocol PlayerViewModelDelegate: class {
+    func playerViewModelDidClickGoBack(_ playerViewModel: PlayerViewModel)
+}
+
 protocol PlayerViewModel {
+    var delegate: PlayerViewModelDelegate? { get set }
+    var type: PlayerViewModelType { get }
     var position: String { get }
     var song: String { get }
     var author: String { get }
@@ -16,21 +30,25 @@ protocol PlayerViewModel {
     var volume: Float { get }
     var currentTime: String { get }
     var duration: String { get }
+    func goBackAction()
 }
 
 class PlayerViewModelImplementation: PlayerViewModel {
 
     private let playerService: PlayerService
-    private let songs: [Song]
+    private let playlist: [Song]
 
+    weak var delegate: PlayerViewModelDelegate?
+    let type: PlayerViewModelType
     var position: String {
-        return "1 of 1"
+        guard let song = playerService.currentSong, let index = playlist.index(where: { $0.url == song.url }) else { return "" }
+        return "\(index + 1) of \(playlist.count)"
     }
     var song: String {
         return playerService.currentSong?.title ?? ""
     }
     var author: String {
-        return playerService.currentSong?.artists.reduce("") { $0 + $1.name + " " } ?? ""
+        return playerService.currentSong?.artist.name ?? ""
     }
     var album: String {
         return playerService.currentSong?.album?.title ?? ""
@@ -45,9 +63,16 @@ class PlayerViewModelImplementation: PlayerViewModel {
         return playerService.duration.description
     }
 
-    init(playerService: PlayerService, songs: [Song]) {
+    init(playerService: PlayerService, song: Song?, playlist: [Song], type: PlayerViewModelType) {
         self.playerService = playerService
-        self.songs = songs
+        self.playlist = playlist
+        self.type = type
+        guard let song = song else { return }
+        playerService.play(song, fromPlaylist: playlist)
+    }
+
+    func goBackAction() {
+        delegate?.playerViewModelDidClickGoBack(self)
     }
 
 }

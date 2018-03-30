@@ -10,7 +10,20 @@ import Foundation
 
 struct Song {
     var title: String
-    var artists: [Artist]
+    var artist: Artist
     var album: Album?
+    var genre: String?
     var url: URL
+
+    init(title: String,
+         artist: Artist,
+         album: Album?,
+         genre: String?,
+         url: URL) {
+        self.title = title
+        self.artist = artist
+        self.album = album
+        self.genre = genre
+        self.url = url
+    }
 }

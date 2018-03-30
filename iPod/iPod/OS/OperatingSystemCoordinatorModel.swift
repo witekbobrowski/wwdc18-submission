@@ -15,7 +15,7 @@ protocol OperatingSystemCoordinatorModel {
     var artistsMenuViewController: MenuViewController { get }
     func songsMenuViewController(_ type: SongsMenuType) -> MenuViewController
     func albumsMenuViewController(_ type: AlbumsMenuType) -> MenuViewController
-    func playerViewController(_ songs: [Song]) -> PlayerViewController
+    func playerViewController(song: Song?, songs: [Song], type: PlayerViewModelType) -> PlayerViewController
     func statusBarViewModel(title: String?, isPlaying: Bool, isCharging: Bool) -> StatusBarViewModel
 }
 
@@ -50,8 +50,8 @@ class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorM
         return configuredAlbumsMenuViewController(type)
     }
 
-    func playerViewController(_ songs: [Song]) -> PlayerViewController {
-        return configuredPlayerViewController(songs: songs)
+    func playerViewController(song: Song?, songs: [Song], type: PlayerViewModelType) -> PlayerViewController {
+        return configuredPlayerViewController(song: song, songs: songs, type: type)
     }
 
     func statusBarViewModel(title: String?, isPlaying: Bool, isCharging: Bool) -> StatusBarViewModel {
@@ -73,14 +73,14 @@ extension OperatingSystemCoordinatorModelImplementation {
 
     private func configuredMainMenuViewController() -> MenuViewController {
         let viewController = MenuViewController()
-        let menuItems: [MainMenuItem] = [.playlists, .artists, .songs, .settings, .about]
+        let menuItems: [MainMenuItem] = [.playlists, .artists, .songs(libraryService.songs), .settings, .about]
         viewController.viewModel = MainMenuViewModel(items: menuItems)
         return viewController
     }
 
     private func configuredPlaylistsMenuViewController() -> MenuViewController {
         let viewController = MenuViewController()
-        let menuItems: [PlaylistsMenuItem] = [.favourites] + libraryService.playlists.map { .custom($0) }
+        let menuItems: [PlaylistsMenuItem] = [.favourites(libraryService.favourites)] + libraryService.playlists.map { .custom($0) }
         viewController.viewModel = PlaylistsMenuViewModel(items: menuItems)
         return viewController
     }
@@ -94,18 +94,18 @@ extension OperatingSystemCoordinatorModelImplementation {
 
     private func configuredSongsMenuViewController(_ type: SongsMenuType) -> MenuViewController {
         let viewController = MenuViewController()
-        var menuItems: [SongsMenuItem]
+        var menuItems: [Song]
         switch type {
-        case .all:
-            menuItems = libraryService.songs.map { .song($0) }
+        case .all(let songs):
+            menuItems = songs
         case .artist(let artist):
-            menuItems = libraryService.albumsOfArtist(artist).reduce([]) {$0 + $1.songs}.map { .song($0) }
+            menuItems = libraryService.albumsOfArtist(artist).reduce([]) {$0 + $1.songs}
         case .album(let album):
-            menuItems = album.songs.map { .song($0) }
-        case .favourites:
-            menuItems = libraryService.favourites.map { .song($0) }
+            menuItems = album.songs
+        case .playlist(let playlist):
+            menuItems = playlist.songs
         }
-        viewController.viewModel = SongsMenuViewModel(items: menuItems, type: type)
+        viewController.viewModel = SongsMenuViewModel(songs: menuItems, type: type)
         return viewController
     }
 
@@ -122,9 +122,16 @@ extension OperatingSystemCoordinatorModelImplementation {
         return viewController
     }
 
-    private func configuredPlayerViewController(songs: [Song]) -> PlayerViewController {
+    private func configuredPlayerViewController(song: Song?, songs: [Song], type: PlayerViewModelType) -> PlayerViewController {
         let viewController = PlayerViewController()
-        viewController.viewModel = PlayerViewModelImplementation(playerService: playerService, songs: songs)
+        var songs: [Song] = songs
+        switch type {
+        case .songs:
+            songs = libraryService.songs
+        default:
+            break
+        }
+        viewController.viewModel = PlayerViewModelImplementation(playerService: playerService, song: song, playlist: songs, type: type)
         return viewController
     }
 

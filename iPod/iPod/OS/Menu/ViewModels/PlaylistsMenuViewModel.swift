@@ -9,7 +9,7 @@
 import Foundation
 
 enum PlaylistsMenuItem {
-    case favourites
+    case favourites([Song])
     case custom(Playlist)
 }
 
@@ -20,7 +20,7 @@ protocol PlaylistsMenuViewModelDelegate: class {
 
 class PlaylistsMenuViewModel: MenuViewModel {
 
-    let items: [PlaylistsMenuItem]
+    private let items: [PlaylistsMenuItem]
     weak var delegate: PlaylistsMenuViewModelDelegate?
     var rowInitallyHighlighed: Int? { return items.isEmpty ? nil : 0 }
 

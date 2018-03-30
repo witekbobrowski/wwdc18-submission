@@ -12,6 +12,7 @@ class PlayerViewController: UIViewController {
 
     private enum Constants {
         static let edgeInset: CGFloat = 8
+        static let labelInset: CGFloat = 4
         static let labelHeight: CGFloat = 18
     }
 
@@ -60,9 +61,9 @@ extension PlayerViewController {
         label.textAlignment = .center
         view.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.topAnchor.constraint(equalTo: positionLabel.bottomAnchor).isActive = true
+        label.topAnchor.constraint(equalTo: positionLabel.bottomAnchor, constant: Constants.labelInset).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.edgeInset).isActive = true
-        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Constants.edgeInset).isActive = true
+        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Constants.edgeInset).isActive = true
         label.heightAnchor.constraint(equalToConstant: Constants.labelHeight)
         songLabel = label
     }
@@ -75,9 +76,9 @@ extension PlayerViewController {
         label.textAlignment = .center
         view.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.topAnchor.constraint(equalTo: songLabel.bottomAnchor).isActive = true
+        label.topAnchor.constraint(equalTo: songLabel.bottomAnchor, constant: Constants.labelInset).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.edgeInset).isActive = true
-        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Constants.edgeInset).isActive = true
+        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Constants.edgeInset).isActive = true
         label.heightAnchor.constraint(equalToConstant: Constants.labelHeight)
         authorLabel = label
     }
@@ -90,9 +91,9 @@ extension PlayerViewController {
         label.textAlignment = .center
         view.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.topAnchor.constraint(equalTo: authorLabel.bottomAnchor).isActive = true
+        label.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: Constants.labelInset).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.edgeInset).isActive = true
-        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Constants.edgeInset).isActive = true
+        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Constants.edgeInset).isActive = true
         label.heightAnchor.constraint(equalToConstant: Constants.labelHeight)
         albumLabel = label
     }
@@ -101,7 +102,12 @@ extension PlayerViewController {
 extension PlayerViewController: InputResponder {
 
     func respond(toInputType type: InputType) {
-        // TODO: Handle input
+        switch type {
+        case .manu:
+            viewModel.goBackAction()
+        default:
+            return
+        }
     }
 
 }

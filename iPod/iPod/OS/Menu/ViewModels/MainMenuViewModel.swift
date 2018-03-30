@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum MainMenuItem: String {
-    case playlists = "Playlists"
-    case artists = "Artists"
-    case songs = "Songs"
-    case settings = "Settings"
-    case about = "About"
-    case nowPlaying = "Now Playing"
+enum MainMenuItem {
+    case playlists
+    case artists
+    case songs([Song])
+    case settings
+    case about
+    case nowPlaying
 }
 
 protocol MainMenuViewModelDelegate: class {
@@ -40,7 +40,20 @@ class MainMenuViewModel: MenuViewModel {
     }
 
     func viewModelForCell(inRow row: Int) -> MenuCellViewModel {
-        return MenuCellViewModelImplementation(title: items[row].rawValue)
+        switch items[row] {
+        case .playlists:
+            return MenuCellViewModelImplementation(title: Strings.playlists)
+        case .artists:
+            return MenuCellViewModelImplementation(title: Strings.artists)
+        case .songs:
+            return MenuCellViewModelImplementation(title: Strings.songs)
+        case .settings:
+            return MenuCellViewModelImplementation(title: Strings.settings)
+        case .about:
+            return MenuCellViewModelImplementation(title: Strings.about)
+        case .nowPlaying:
+            return MenuCellViewModelImplementation(title: Strings.nowPlaying)
+        }
     }
 
     func selectCell(inRow row: Int) {

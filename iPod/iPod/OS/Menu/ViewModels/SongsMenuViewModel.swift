@@ -9,53 +9,43 @@
 import Foundation
 
 enum SongsMenuType {
-    case favourites
-    case all
+    case all([Song])
+    case playlist(Playlist)
     case artist(Artist)
     case album(Album)
 }
 
-enum SongsMenuItem {
-    case all
-    case song(Song)
-}
-
 protocol SongsMenuViewModelDelegate: class {
-    func songsMenuViewModel(_ songsMenuViewModel: SongsMenuViewModel, didSelectItem item: SongsMenuItem)
+    func songsMenuViewModel(_ songsMenuViewModel: SongsMenuViewModel, didSelectSong song: Song)
     func songsMenuViewModelDidClickGoBack(_ songsMenuViewModel: SongsMenuViewModel)
 }
 
 class SongsMenuViewModel: MenuViewModel {
 
-    let items: [SongsMenuItem]
+    private let songs: [Song]
     let type: SongsMenuType
     weak var delegate: SongsMenuViewModelDelegate?
-    var rowInitallyHighlighed: Int? { return items.isEmpty ? nil : 0 }
+    var rowInitallyHighlighed: Int? { return songs.isEmpty ? nil : 0 }
 
-    init(items: [SongsMenuItem], type: SongsMenuType) {
-        self.items = items
+    init(songs: [Song], type: SongsMenuType) {
+        self.songs = songs
         self.type = type
     }
 
     func numberOfSections() -> Int {
-        return items.isEmpty ? 0 : 1
+        return songs.isEmpty ? 0 : 1
     }
 
     func numberOfRows(inSection section: Int) -> Int {
-        return section == 0 ? items.count : 0
+        return section == 0 ? songs.count : 0
     }
 
     func viewModelForCell(inRow row: Int) -> MenuCellViewModel {
-        switch items[row] {
-        case .all:
-            return MenuCellViewModelImplementation(title: Strings.all)
-        case .song(let song):
-            return MenuCellViewModelImplementation(title: song.title)
-        }
+        return MenuCellViewModelImplementation(title: songs[row].title)
     }
 
     func selectCell(inRow row: Int) {
-        delegate?.songsMenuViewModel(self, didSelectItem: items[row])
+        delegate?.songsMenuViewModel(self, didSelectSong: songs[row])
     }
 
     func goBack() {

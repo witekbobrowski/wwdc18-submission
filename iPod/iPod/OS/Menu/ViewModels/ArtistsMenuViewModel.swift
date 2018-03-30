@@ -20,7 +20,7 @@ protocol ArtistsMenuViewModelDelegate: class {
 
 class ArtistsMenuViewModel: MenuViewModel {
 
-    let items: [ArtistsMenuItem]
+    private let items: [ArtistsMenuItem]
     weak var delegate: ArtistsMenuViewModelDelegate?
     var rowInitallyHighlighed: Int? { return items.isEmpty ? nil : 0 }
 
