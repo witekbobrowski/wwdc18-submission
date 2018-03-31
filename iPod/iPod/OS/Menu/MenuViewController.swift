@@ -94,7 +94,7 @@ extension MenuViewController: InputResponder {
         case .enter:
             guard let row = currentIndex else { return }
             viewModel.selectCell(inRow: row)
-        case .manu:
+        case .menu:
             viewModel.goBack()
         default:
             break

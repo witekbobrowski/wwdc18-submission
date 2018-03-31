@@ -14,7 +14,7 @@ enum MainMenuItem {
     case songs([Song])
     case settings
     case about
-    case nowPlaying
+    case nowPlaying([Song])
 }
 
 protocol MainMenuViewModelDelegate: class {

@@ -21,7 +21,7 @@ class PlayerViewController: UIViewController {
     private weak var songLabel: UILabel!
     private weak var authorLabel: UILabel!
     private weak var albumLabel: UILabel!
-    private weak var progressView: ProgressView!
+    private weak var volumeProgressView: ProgressView!
 
     public var viewModel: PlayerViewModel!
 
@@ -40,12 +40,12 @@ extension PlayerViewController {
         setupSongLabel()
         setupAuthorLabel()
         setupAlbumLabel()
-        setupProgressView()
+        setupVolumeProgressView()
+        setupWithViewModel()
     }
 
     private func setupPositionLabel() {
         let label = UILabel()
-        label.text = viewModel.position
         label.textColor = Color.dark
         label.font = Font.compact
         view.addSubview(label)
@@ -58,7 +58,6 @@ extension PlayerViewController {
 
     private func setupSongLabel() {
         let label = UILabel()
-        label.text = viewModel.song
         label.textColor = Color.dark
         label.font = Font.normal
         label.textAlignment = .center
@@ -73,7 +72,6 @@ extension PlayerViewController {
 
     private func setupAuthorLabel() {
         let label = UILabel()
-        label.text = viewModel.author
         label.textColor = Color.dark
         label.font = Font.normal
         label.textAlignment = .center
@@ -88,7 +86,6 @@ extension PlayerViewController {
 
     private func setupAlbumLabel() {
         let label = UILabel()
-        label.text = viewModel.album
         label.textColor = Color.dark
         label.font = Font.normal
         label.textAlignment = .center
@@ -101,7 +98,7 @@ extension PlayerViewController {
         albumLabel = label
     }
 
-    private func setupProgressView() {
+    private func setupVolumeProgressView() {
         let progressView = ProgressView()
         view.addSubview(progressView)
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -109,22 +106,42 @@ extension PlayerViewController {
         progressView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.edgeInset).isActive = true
         progressView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Constants.edgeInset).isActive = true
         progressView.heightAnchor.constraint(equalToConstant: Constants.progressBarHeight).isActive = true
-        progressView.progress = 0.5
-        self.progressView = progressView
+        self.volumeProgressView = progressView
     }
+
+    private func setupWithViewModel() {
+        positionLabel.text = viewModel.position
+        songLabel.text = viewModel.song
+        authorLabel.text = viewModel.author
+        albumLabel.text = viewModel.album
+        volumeProgressView.progress = viewModel.volume
+    }
+
 }
 
 extension PlayerViewController: InputResponder {
 
     func respond(toInputType type: InputType) {
         switch type {
-        case .manu:
+        case .menu:
             viewModel.goBackAction()
         case .enter:
             viewModel.enterAction()
+        case .next:
+            viewModel.nextAction()
+        case .previous:
+            viewModel.previousAction()
+        case .scroll(let status):
+            switch status {
+            case .next:
+                viewModel.volumeUpAction()
+            case .previous:
+                viewModel.volumeDownAction()
+            }
         default:
-            return
+            break
         }
+        setupWithViewModel()
     }
 
 }

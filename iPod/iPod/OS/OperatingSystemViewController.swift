@@ -41,7 +41,7 @@ extension OperatingSystemViewController {
 
     private func setupStatusBar() {
         let statusBarView = StatusBarView()
-        statusBarView.viewModel = viewModel.statusBarViewModel
+        statusBarView.title = viewModel.statusBarTitle
         view.addSubview(statusBarView)
         statusBarView.translatesAutoresizingMaskIntoConstraints = false
         view.topAnchor.constraint(equalTo: statusBarView.topAnchor).isActive = true

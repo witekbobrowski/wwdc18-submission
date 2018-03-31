@@ -9,15 +9,11 @@
 import Foundation
 
 protocol OperatingSystemViewModel {
-    var statusBarViewModel: StatusBarViewModel { get }
+    var statusBarTitle: String { get }
 }
 
 class OperatingSystemViewModelImplementation: OperatingSystemViewModel {
 
-    let statusBarViewModel: StatusBarViewModel
-
-    init(statusBarViewModel: StatusBarViewModel) {
-        self.statusBarViewModel = statusBarViewModel
-    }
+    var statusBarTitle: String { return Strings.iPod }
 
 }

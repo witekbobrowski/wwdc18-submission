@@ -12,6 +12,7 @@ class ProgressView: UIView {
 
     private enum Constants {
         static let inset: CGFloat = 1
+        static let cornerRadius: CGFloat = 2
     }
 
     private weak var shapeLayer: CAShapeLayer?
@@ -54,11 +55,12 @@ extension ProgressView {
 
     private func recalculateLayer() {
         shapeLayer?.frame = bounds
-        let width = (bounds.width - Constants.inset * 2) * CGFloat(progress)
+        let width = (bounds.width - Constants.inset * 2) * (1 - min(1, max(CGFloat(progress), 0)))
         let rect = CGRect(x: bounds.maxX - Constants.inset - width, y: bounds.minY + Constants.inset,
                           width: width, height: bounds.height - Constants.inset * 2)
-        let path = UIBezierPath(rect: bounds)
-        path.append(UIBezierPath(rect: rect))
+        let cornerRadii = CGSize(width: Constants.cornerRadius, height: Constants.cornerRadius)
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.allCorners], cornerRadii: cornerRadii)
+        path.append(UIBezierPath(roundedRect: rect, byRoundingCorners: [.topRight, .bottomRight], cornerRadii: cornerRadii))
         path.usesEvenOddFillRule = true
         shapeLayer?.path = path.cgPath
     }

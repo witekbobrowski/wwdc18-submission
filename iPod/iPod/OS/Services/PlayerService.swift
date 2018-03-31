@@ -128,7 +128,7 @@ class PlayerServiceImplementation: PlayerService {
     }
 
     func changeVolume(_ volume: Float) {
-        player.volume = volume
+        player.volume = max(min(volume, 1), 0)
     }
 
 }

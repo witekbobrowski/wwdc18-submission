@@ -9,7 +9,7 @@
 import Foundation
 
 enum InputType {
-    case manu
+    case menu
     case enter
     case next
     case previous

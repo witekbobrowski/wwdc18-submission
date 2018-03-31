@@ -41,8 +41,16 @@ class OperatingSystemCoordinator: Coordinator {
 
 extension OperatingSystemCoordinator {
 
-    private func updateStatusBar(withTitle title: String?, isPlaying: Bool, isCharging: Bool) {
-        rootViewController?.statusBarView.viewModel = coordinatorModel.statusBarViewModel(title: title, isPlaying: isPlaying, isCharging: isCharging)
+    private func updateStatusBar(withTitle title: String?) {
+        rootViewController?.statusBarView.title = title
+    }
+
+    private func updateStatusBar(withPlayerImage image: UIImage?) {
+        rootViewController?.statusBarView.playerImage = image
+    }
+
+    private func updateStatusBar(withBatteryImage image: UIImage?) {
+        rootViewController?.statusBarView.batteryImage = image
     }
 
     private func pushViewController(_ viewController: UIViewController) {
@@ -58,39 +66,43 @@ extension OperatingSystemCoordinator {
 extension OperatingSystemCoordinator: MainMenuViewModelDelegate {
 
     func mainMenuViewModel(_ mainMenuViewModel: MainMenuViewModel, didSelectItem item: MainMenuItem) {
-        var viewController: MenuViewController
+        var viewController: UIViewController
         var title: String
         switch item {
         case .playlists:
-            viewController = coordinatorModel.playlistsMenuViewController
-            if let viewModel = viewController.viewModel as? PlaylistsMenuViewModel {
+            let menuViewController = coordinatorModel.playlistsMenuViewController
+            if let viewModel = menuViewController.viewModel as? PlaylistsMenuViewModel {
                 viewModel.delegate = self
             }
             title = Strings.playlists
+            viewController = menuViewController
         case .artists:
-            viewController = coordinatorModel.artistsMenuViewController
-            if let viewModel = viewController.viewModel as? ArtistsMenuViewModel {
+            let artistsMenuViewController = coordinatorModel.artistsMenuViewController
+            if let viewModel = artistsMenuViewController.viewModel as? ArtistsMenuViewModel {
                 viewModel.delegate = self
             }
             title = Strings.artists
+            viewController = artistsMenuViewController
         case .songs(let songs):
-            viewController = coordinatorModel.songsMenuViewController(.all(songs))
-            if let viewModel = viewController.viewModel as? SongsMenuViewModel {
+            let songsMenuViewController = coordinatorModel.songsMenuViewController(.all(songs))
+            if let viewModel = songsMenuViewController.viewModel as? SongsMenuViewModel {
                 viewModel.delegate = self
             }
             title = Strings.songs
+            viewController = songsMenuViewController
         case .settings:
             title = Strings.settings
             return
         case .about:
             title = Strings.about
             return
-        case .nowPlaying:
+        case .nowPlaying(let songs):
             title = Strings.nowPlaying
+            viewController = coordinatorModel.playerViewController(song: nil, songs: songs, type: .nowPlaying)
             return
         }
         pushViewController(viewController)
-        updateStatusBar(withTitle: title, isPlaying: false, isCharging: false)
+        updateStatusBar(withTitle: title)
     }
 
 }
@@ -102,10 +114,10 @@ extension OperatingSystemCoordinator: PlaylistsMenuViewModelDelegate {
         switch item {
         case .custom(let playlist):
             viewController = coordinatorModel.songsMenuViewController(.playlist(playlist))
-            updateStatusBar(withTitle: playlist.title, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: playlist.title)
         case .favourites(let favourites):
             viewController = coordinatorModel.songsMenuViewController(.playlist(Playlist(title: Strings.favourites, songs: favourites)))
-            updateStatusBar(withTitle: Strings.favourites, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: Strings.favourites)
         }
         if let viewModel = viewController.viewModel as? SongsMenuViewModel {
             viewModel.delegate = self
@@ -115,7 +127,7 @@ extension OperatingSystemCoordinator: PlaylistsMenuViewModelDelegate {
 
     func playlistsMenuViewModelDidClickGoBack(_ playlistsMenuViewModel: PlaylistsMenuViewModel) {
         popViewController()
-        updateStatusBar(withTitle: nil, isPlaying: false, isCharging: false)
+        updateStatusBar(withTitle: Strings.iPod)
     }
 
 }
@@ -129,7 +141,7 @@ extension OperatingSystemCoordinator: ArtistsMenuViewModelDelegate {
             viewController = coordinatorModel.albumsMenuViewController(.all)
         case .artist(let artist):
             viewController = coordinatorModel.albumsMenuViewController(.artist(artist))
-            updateStatusBar(withTitle: artist.name, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: artist.name)
         }
         if let viewModel = viewController.viewModel as? AlbumsMenuViewModel {
             viewModel.delegate = self
@@ -139,7 +151,7 @@ extension OperatingSystemCoordinator: ArtistsMenuViewModelDelegate {
 
     func artistsMenuViewModelDidClickGoBack(_ artistsMenuViewModel: ArtistsMenuViewModel) {
         popViewController()
-        updateStatusBar(withTitle: nil, isPlaying: false, isCharging: false)
+        updateStatusBar(withTitle: Strings.iPod)
     }
 
 }
@@ -160,7 +172,7 @@ extension OperatingSystemCoordinator: SongsMenuViewModelDelegate {
             viewController = coordinatorModel.playerViewController(song: song, songs: playlist.songs, type: .playlist(playlist))
         }
         viewController.viewModel.delegate = self
-        updateStatusBar(withTitle: Strings.nowPlaying, isPlaying: false, isCharging: false)
+        updateStatusBar(withTitle: Strings.nowPlaying)
         pushViewController(viewController)
     }
 
@@ -168,13 +180,13 @@ extension OperatingSystemCoordinator: SongsMenuViewModelDelegate {
         popViewController()
         switch songsMenuViewModel.type {
         case .all:
-            updateStatusBar(withTitle: nil, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: Strings.iPod)
         case .artist:
-            updateStatusBar(withTitle: Strings.artists, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: Strings.artists)
         case .album(let album):
-            updateStatusBar(withTitle: album.artist?.name ?? Strings.albums, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: album.artist?.name ?? Strings.albums)
         case .playlist:
-            updateStatusBar(withTitle: Strings.playlists, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: Strings.playlists)
         }
     }
 
@@ -188,10 +200,10 @@ extension OperatingSystemCoordinator: AlbumsMenuViewModelDelegate {
         case .all:
             guard case .artist(let artist) = albumsMenuViewModel.type else { return }
             viewController = coordinatorModel.songsMenuViewController(.artist(artist))
-            updateStatusBar(withTitle: artist.name, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: artist.name)
         case .album(let album):
             viewController = coordinatorModel.songsMenuViewController(.album(album))
-            updateStatusBar(withTitle: album.title, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: album.title)
         }
         if let viewModel = viewController.viewModel as? SongsMenuViewModel {
             viewModel.delegate = self
@@ -203,9 +215,9 @@ extension OperatingSystemCoordinator: AlbumsMenuViewModelDelegate {
         popViewController()
         switch albumsMenuViewModel.type {
         case .all:
-            updateStatusBar(withTitle: Strings.artists, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: Strings.artists)
         case .artist(let artist):
-            updateStatusBar(withTitle: artist.name, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: artist.name)
         }
     }
 
@@ -216,19 +228,56 @@ extension OperatingSystemCoordinator: PlayerViewModelDelegate {
     func playerViewModelDidClickGoBack(_ playerViewModel: PlayerViewModel) {
         switch playerViewModel.type {
         case .album(let album):
-            updateStatusBar(withTitle: album.title, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: album.title)
         case .artist(let artist):
-            updateStatusBar(withTitle: artist.name, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: artist.name)
         case .playlist(let playlist):
-            updateStatusBar(withTitle: playlist.title, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: playlist.title)
         case .songs:
-            updateStatusBar(withTitle: Strings.songs, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: Strings.songs)
         case .nowPlaying:
-            updateStatusBar(withTitle: nil, isPlaying: false, isCharging: false)
+            updateStatusBar(withTitle: Strings.iPod)
         }
         popViewController()
+        var player = coordinatorModel.playerService
+        player.delegate = self
     }
 
+    func playerViewModel(_ playerViewModel: PlayerViewModel, didStartPlayingSong song: Song, fromPlaylist playlst: [Song]) {
+        updateStatusBar(withTitle: Strings.nowPlaying)
+        updateStatusBar(withPlayerImage: nil) // TODO: PLAY IMAGE
+    }
+
+    func playerViewModelDidPausePlaying(_ playerViewModel: PlayerViewModel) {
+        updateStatusBar(withTitle: Strings.nowPlaying)
+    }
+
+    func playerViewModelDidStopPlaying(_ playerViewModel: PlayerViewModel) {
+        updateStatusBar(withTitle: Strings.nowPlaying)
+    }
+
+}
+
+extension OperatingSystemCoordinator: PlayerServiceDelegate {
+
+    func playerService(_ playerService: PlayerService, didStartPlaying song: Song) {
+        updateStatusBar(withPlayerImage: nil) // TODO: PLAY IMAGE
+    }
+
+    func playerService(_ playerService: PlayerService, didFinishPlaying song: Song) {
+        updateStatusBar(withPlayerImage: nil)
+    }
+
+    func playerService(_ playerService: PlayerService, didPause song: Song) {
+        updateStatusBar(withPlayerImage: nil) // TODO: PAUSE IMAGE
+    }
+
+    func playerService(_ playerService: PlayerService, didPassPlaybackTime time: TimeInterval) {}
+
+    func playerService(_ playerService: PlayerService, didFastForwardToTime time: TimeInterval) {}
+
+    func playerService(_ playerService: PlayerService, didRewindToTime time: TimeInterval) {}
+    
 }
 
 extension OperatingSystemCoordinator: InputResponder {
@@ -237,8 +286,25 @@ extension OperatingSystemCoordinator: InputResponder {
         guard
             let topViewController = rootViewController?.menuNavigationController.topViewController,
             let responder = topViewController as? InputResponder
-        else { return }
-        responder.respond(toInputType: type)
+            else { return }
+        if topViewController is PlayerViewController {
+            responder.respond(toInputType: type)
+            return
+        }
+        switch type {
+        case .menu, .scroll, .enter:
+            responder.respond(toInputType: type)
+        case .next:
+            coordinatorModel.playerService.next()
+        case .previous:
+            coordinatorModel.playerService.previous()
+        case .play:
+            if coordinatorModel.playerService.isPlaying {
+                coordinatorModel.playerService.pause()
+            } else {
+                coordinatorModel.playerService.resume()
+            }
+        }
     }
 
 }

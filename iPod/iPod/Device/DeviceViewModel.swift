@@ -33,7 +33,7 @@ class DeviceViewModelImplementation: DeviceViewModel {
 extension DeviceViewModelImplementation: ControlPanelDelegate {
 
     func controlPanelViewModelDidRecievedMenuClick(_ controlPanelViewModel: ControlPanelViewModel) {
-        inputResponder?.respond(toInputType: .manu)
+        inputResponder?.respond(toInputType: .menu)
     }
 
     func controlPanelViewModelDidRecievedPlayClick(_ controlPanelViewModel: ControlPanelViewModel) {

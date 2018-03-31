@@ -9,6 +9,7 @@
 import Foundation
 
 protocol OperatingSystemCoordinatorModel {
+    var playerService: PlayerService { get }
     var operatingSystemViewController: OperatingSystemViewController { get }
     var mainMenuViewController: MenuViewController { get }
     var playlistsMenuViewController: MenuViewController { get }
@@ -16,14 +17,13 @@ protocol OperatingSystemCoordinatorModel {
     func songsMenuViewController(_ type: SongsMenuType) -> MenuViewController
     func albumsMenuViewController(_ type: AlbumsMenuType) -> MenuViewController
     func playerViewController(song: Song?, songs: [Song], type: PlayerViewModelType) -> PlayerViewController
-    func statusBarViewModel(title: String?, isPlaying: Bool, isCharging: Bool) -> StatusBarViewModel
 }
 
 class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorModel {
 
     let libraryService: LibraryService
-    let playerService: PlayerService
 
+    private(set) var playerService: PlayerService
     var operatingSystemViewController: OperatingSystemViewController {
         return configuredOperatingSystemViewController()
     }
@@ -54,18 +54,13 @@ class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorM
         return configuredPlayerViewController(song: song, songs: songs, type: type)
     }
 
-    func statusBarViewModel(title: String?, isPlaying: Bool, isCharging: Bool) -> StatusBarViewModel {
-        return StatusBarViewModelImplementation(title: title ?? Strings.iPod, isPlaying: isPlaying, isCharging: isCharging)
-    }
-
 }
 
 extension OperatingSystemCoordinatorModelImplementation {
 
     private func configuredOperatingSystemViewController() -> OperatingSystemViewController {
         let viewController = OperatingSystemViewController()
-        let stausBarViewModel = statusBarViewModel(title: nil, isPlaying: false, isCharging: false)
-        let osViewModel = OperatingSystemViewModelImplementation(statusBarViewModel: stausBarViewModel)
+        let osViewModel = OperatingSystemViewModelImplementation()
         viewController.viewModel = osViewModel
         viewController.view.isUserInteractionEnabled = false
         return viewController

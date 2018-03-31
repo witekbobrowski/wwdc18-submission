@@ -15,11 +15,9 @@ class StatusBarView: UIView {
     private weak var batteryImageView: UIImageView!
     private weak var bottomSeparatorView: UIView!
 
-    var viewModel: StatusBarViewModel? {
-        didSet {
-            update(with: viewModel)
-        }
-    }
+    var title: String? { didSet { titleLabel.text = title } }
+    var playerImage: UIImage? { didSet { playerImageView.image = playerImage } }
+    var batteryImage: UIImage? { didSet { batteryImageView.image = batteryImage } }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -77,14 +75,6 @@ extension StatusBarView {
         rightAnchor.constraint(equalTo: separatorView.rightAnchor).isActive = true
         separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         bottomSeparatorView = separatorView
-    }
-
-    private func update(with viewModel: StatusBarViewModel?) {
-        guard let viewModel = viewModel else {
-            return
-        }
-        titleLabel.text = viewModel.title
-        playerImageView.isHidden = !viewModel.isPlaying
     }
 
 }

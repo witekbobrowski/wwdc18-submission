@@ -18,7 +18,6 @@
 		4105CC3420682C6700DE99EB /* MenuCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3320682C6700DE99EB /* MenuCellViewModel.swift */; };
 		4105CC3620683EFF00DE99EB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3520683EFF00DE99EB /* Font.swift */; };
 		4105CC382068415B00DE99EB /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC372068415B00DE99EB /* StatusBarView.swift */; };
-		4105CC3B2068418A00DE99EB /* StatusBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3A2068418A00DE99EB /* StatusBarViewModel.swift */; };
 		4105CC3D20684FEE00DE99EB /* DeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3C20684FEE00DE99EB /* DeviceViewModel.swift */; };
 		4105CC3F2068539A00DE99EB /* OperatingSystemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC3E2068539A00DE99EB /* OperatingSystemViewModel.swift */; };
 		4105CC412068546A00DE99EB /* OperatingSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4105CC402068546A00DE99EB /* OperatingSystemViewController.swift */; };
@@ -62,7 +61,6 @@
 		4105CC3320682C6700DE99EB /* MenuCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCellViewModel.swift; sourceTree = "<group>"; };
 		4105CC3520683EFF00DE99EB /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		4105CC372068415B00DE99EB /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
-		4105CC3A2068418A00DE99EB /* StatusBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarViewModel.swift; sourceTree = "<group>"; };
 		4105CC3C20684FEE00DE99EB /* DeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewModel.swift; sourceTree = "<group>"; };
 		4105CC3E2068539A00DE99EB /* OperatingSystemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatingSystemViewModel.swift; sourceTree = "<group>"; };
 		4105CC402068546A00DE99EB /* OperatingSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatingSystemViewController.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				4105CC372068415B00DE99EB /* StatusBarView.swift */,
-				4105CC3A2068418A00DE99EB /* StatusBarViewModel.swift */,
 			);
 			path = StatusBar;
 			sourceTree = "<group>";
@@ -373,7 +370,6 @@
 				41B7ECDC206C42E700C41086 /* Playlist.swift in Sources */,
 				4105CC2D206822C300DE99EB /* Color.swift in Sources */,
 				41B7ECE5206C575400C41086 /* AlbumsMenuViewModel.swift in Sources */,
-				4105CC3B2068418A00DE99EB /* StatusBarViewModel.swift in Sources */,
 				F97D9A6A206F5EA4001FED7B /* ProgressView.swift in Sources */,
 				41B7ECDA206C425E00C41086 /* Album.swift in Sources */,
 				F9F2EFD4206CDE39009A88FC /* PlayerService.swift in Sources */,
