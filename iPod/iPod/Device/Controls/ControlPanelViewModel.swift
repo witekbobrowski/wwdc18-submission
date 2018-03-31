@@ -31,7 +31,7 @@ protocol ControlPanelViewModel {
 class ControlPanelViewModelImplementation: ControlPanelViewModel {
 
     weak var delegate: ControlPanelDelegate?
-    var menuButtonTitle: String { return "menu" }
+    var menuButtonTitle: String { return Strings.menu }
 
     func menuAction() {
         delegate?.controlPanelViewModelDidRecievedMenuClick(self)

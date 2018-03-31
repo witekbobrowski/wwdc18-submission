@@ -84,6 +84,7 @@ extension ControlPanelViewController {
         self.nextButton = nextButton
         self.previousButton = previousButton
         constraintButtons()
+        setupButtonTitles()
     }
 
     private func setupScrollWheel() {
@@ -135,6 +136,19 @@ extension ControlPanelViewController {
         previousButton.rightAnchor.constraint(equalTo: nextButton.leftAnchor).isActive = true
         menuButton.heightAnchor.constraint(equalTo: playPauseButton.heightAnchor).isActive = true
         previousButton.widthAnchor.constraint(equalTo: nextButton.widthAnchor).isActive = true
+    }
+
+    private func setupButtonTitles() {
+        menuButton.setTitle(viewModel.menuButtonTitle, for: .normal)
+        menuButton.setTitleColor(Color.dark, for: .normal)
+        menuButton.titleLabel?.font = Font.compact
+        menuButton.contentVerticalAlignment = .top
+        menuButton.titleEdgeInsets = UIEdgeInsetsMake(-2, 0, 0, 0)
+        playPauseButton.setTitle("▶︎", for: .normal)
+        playPauseButton.setTitleColor(Color.dark, for: .normal)
+        playPauseButton.titleLabel?.font = Font.compact
+        playPauseButton.contentVerticalAlignment = .bottom
+        playPauseButton.titleEdgeInsets = UIEdgeInsetsMake(0, 2, 0, 0)
     }
 
 }
