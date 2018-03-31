@@ -140,15 +140,20 @@ extension ControlPanelViewController {
 
     private func setupButtonTitles() {
         menuButton.setTitle(viewModel.menuButtonTitle, for: .normal)
-        menuButton.setTitleColor(Color.dark, for: .normal)
-        menuButton.titleLabel?.font = Font.compact
         menuButton.contentVerticalAlignment = .top
         menuButton.titleEdgeInsets = UIEdgeInsetsMake(-2, 0, 0, 0)
-        playPauseButton.setTitle("▶︎", for: .normal)
-        playPauseButton.setTitleColor(Color.dark, for: .normal)
-        playPauseButton.titleLabel?.font = Font.compact
+        playPauseButton.setTitle(viewModel.playButtonTitle, for: .normal)
         playPauseButton.contentVerticalAlignment = .bottom
-        playPauseButton.titleEdgeInsets = UIEdgeInsetsMake(0, 2, 0, 0)
+        previousButton.setTitle(viewModel.previousButtonTitle, for: .normal)
+        previousButton.contentHorizontalAlignment = .left
+        previousButton.titleEdgeInsets = UIEdgeInsetsMake(0, 2, 0, 0)
+        nextButton.setTitle(viewModel.nextButtonTitle, for: .normal)
+        nextButton.contentHorizontalAlignment = .right
+        nextButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 2)
+        [menuButton, playPauseButton, previousButton, nextButton].forEach { button in
+            button?.titleLabel?.font = Font.compact
+            button?.setTitleColor(Color.dark, for: .normal)
+        }
     }
 
 }

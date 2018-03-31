@@ -20,6 +20,9 @@ protocol ControlPanelDelegate: class {
 protocol ControlPanelViewModel {
     var delegate: ControlPanelDelegate? { get set }
     var menuButtonTitle: String { get }
+    var playButtonTitle: String { get }
+    var previousButtonTitle: String { get }
+    var nextButtonTitle: String { get }
     func menuAction()
     func playAction()
     func nextAction()
@@ -32,6 +35,9 @@ class ControlPanelViewModelImplementation: ControlPanelViewModel {
 
     weak var delegate: ControlPanelDelegate?
     var menuButtonTitle: String { return Strings.menu }
+    var playButtonTitle: String { return "▶︎" }
+    var previousButtonTitle: String { return "◀︎◀︎" }
+    var nextButtonTitle: String { return "▶︎▶︎" }
 
     func menuAction() {
         delegate?.controlPanelViewModelDidRecievedMenuClick(self)
