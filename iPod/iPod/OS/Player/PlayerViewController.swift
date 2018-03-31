@@ -125,7 +125,7 @@ extension PlayerViewController: InputResponder {
         switch type {
         case .menu:
             viewModel.goBackAction()
-        case .enter:
+        case .enter, .play:
             viewModel.enterAction()
         case .next:
             viewModel.nextAction()
@@ -138,8 +138,6 @@ extension PlayerViewController: InputResponder {
             case .previous:
                 viewModel.volumeDownAction()
             }
-        default:
-            break
         }
         setupWithViewModel()
     }

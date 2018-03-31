@@ -12,13 +12,14 @@ import AVFoundation
 protocol PlayerServiceDelegate: class {
     func playerService(_ playerService: PlayerService, didStartPlaying song: Song)
     func playerService(_ playerService: PlayerService, didFinishPlaying song: Song)
+    func playerService(_ playerService: PlayerService, didResumePlaying song: Song)
     func playerService(_ playerService: PlayerService, didPause song: Song)
     func playerService(_ playerService: PlayerService, didPassPlaybackTime time: TimeInterval)
     func playerService(_ playerService: PlayerService, didFastForwardToTime time: TimeInterval)
     func playerService(_ playerService: PlayerService, didRewindToTime time: TimeInterval)
 }
 
-protocol PlayerService {
+protocol PlayerService: class {
     var delegate: PlayerServiceDelegate? { get set }
     var isPlaying: Bool { get }
     var volume: Float { get }
@@ -81,6 +82,8 @@ class PlayerServiceImplementation: PlayerService {
 
     func resume() {
         player.play()
+        guard let song = currentSong else { return }
+        delegate?.playerService(self, didResumePlaying: song)
     }
 
     func next() {

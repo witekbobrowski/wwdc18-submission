@@ -75,6 +75,7 @@ class PlayerViewModelImplementation: PlayerViewModel {
         self.playerService = playerService
         self.playlist = playlist
         self.type = type
+        self.playerService.delegate = self
         guard let song = song else { return }
         playerService.play(song, fromPlaylist: playlist)
     }
@@ -100,11 +101,11 @@ class PlayerViewModelImplementation: PlayerViewModel {
     }
 
     func volumeUpAction() {
-        playerService.changeVolume(playerService.volume + 0.1)
+        playerService.changeVolume(playerService.volume + 0.05)
     }
 
     func volumeDownAction() {
-        playerService.changeVolume(playerService.volume - 0.1)
+        playerService.changeVolume(playerService.volume - 0.05)
     }
 
 }
@@ -117,6 +118,10 @@ extension PlayerViewModelImplementation: PlayerServiceDelegate {
 
     func playerService(_ playerService: PlayerService, didFinishPlaying song: Song) {
         delegate?.playerViewModelDidStopPlaying(self)
+    }
+
+    func playerService(_ playerService: PlayerService, didResumePlaying song: Song) {
+        delegate?.playerViewModel(self, didStartPlayingSong: song, fromPlaylist: playlist)
     }
 
     func playerService(_ playerService: PlayerService, didPause song: Song) {

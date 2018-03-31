@@ -8,15 +8,26 @@
 
 import UIKit
 
+enum PlayerStatus {
+    case stopped
+    case playing
+    case paused
+}
+
 class StatusBarView: UIView {
 
+    private enum Constants {
+        static let inset: CGFloat = 3
+    }
+
     private weak var titleLabel: UILabel!
-    private weak var playerImageView: UIImageView!
+    private weak var playerStatusView: UIView!
     private weak var batteryImageView: UIImageView!
     private weak var bottomSeparatorView: UIView!
+    private weak var playerStatusShapeLayer: CAShapeLayer?
 
     var title: String? { didSet { titleLabel.text = title } }
-    var playerImage: UIImage? { didSet { playerImageView.image = playerImage } }
+    var playerStatus: PlayerStatus = .stopped { didSet { setupPlayerLayer() } }
     var batteryImage: UIImage? { didSet { batteryImageView.image = batteryImage } }
 
     override init(frame: CGRect) {
@@ -34,9 +45,26 @@ class StatusBarView: UIView {
 extension StatusBarView {
 
     private func setupView() {
+        setupPlayerStatusView()
         setupLabel()
-        setupImageViews()
         setupSeparator()
+    }
+
+    private func setupPlayerStatusView() {
+        let view = UIView()
+        view.backgroundColor = Color.dark
+        addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.inset).isActive = true
+        leftAnchor.constraint(equalTo: view.leftAnchor, constant: -Constants.inset).isActive = true
+        topAnchor.constraint(equalTo: view.topAnchor, constant: -Constants.inset).isActive = true
+        view.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+        playerStatusView = view
+        let layer = CAShapeLayer()
+        layer.backgroundColor = UIColor.clear.cgColor
+        layer.fillRule = kCAFillRuleEvenOdd
+        view.layer.mask = layer
+        playerStatusShapeLayer = layer
     }
 
     private func setupLabel() {
@@ -47,22 +75,10 @@ extension StatusBarView {
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
-        leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
+        playerStatusView.rightAnchor.constraint(equalTo: titleLabel.leftAnchor, constant: -Constants.inset).isActive = true
         rightAnchor.constraint(equalTo: titleLabel.rightAnchor).isActive = true
         topAnchor.constraint(equalTo: titleLabel.topAnchor).isActive = true
         self.titleLabel = titleLabel
-    }
-
-    private func setupImageViews() {
-        let playerImageView = UIImageView(image: UIImage())
-        let batteryImageView = UIImageView(image: UIImage())
-        [playerImageView, batteryImageView].forEach { imageView in
-            imageView.contentMode = .scaleAspectFit
-            imageView.tintColor = Color.dark
-            addSubview(imageView)
-        }
-        self.playerImageView = playerImageView
-        self.batteryImageView = batteryImageView
     }
 
     private func setupSeparator() {
@@ -75,6 +91,35 @@ extension StatusBarView {
         rightAnchor.constraint(equalTo: separatorView.rightAnchor).isActive = true
         separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         bottomSeparatorView = separatorView
+    }
+
+    private func setupPlayerLayer() {
+        let rect = playerStatusView.bounds
+        playerStatusShapeLayer?.frame = rect
+        var path = UIBezierPath()
+        switch playerStatus {
+        case .paused:
+            playerStatusView.isHidden = false
+            path = UIBezierPath(rect: rect)
+            let width = rect.width / 5
+            path.append(UIBezierPath(rect: CGRect(x: rect.origin.x, y: rect.origin.y,
+                                                  width: width/2, height: rect.height)))
+            path.append(UIBezierPath(rect: CGRect(x: rect.midX - (width/2), y: rect.origin.y,
+                                                  width: width, height: rect.height)))
+            path.append(UIBezierPath(rect: CGRect(x: rect.maxX - (width/2), y: rect.origin.y,
+                                                  width: width/2, height: rect.height)))
+            path.usesEvenOddFillRule = true
+        case .playing:
+            playerStatusView.isHidden = false
+            path.move(to: rect.origin)
+            path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))
+            path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+            path.addLine(to: rect.origin)
+
+        case .stopped:
+            playerStatusView.isHidden = true
+        }
+        playerStatusShapeLayer?.path = path.cgPath
     }
 
 }

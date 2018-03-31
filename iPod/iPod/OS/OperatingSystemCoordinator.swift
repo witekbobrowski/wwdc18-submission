@@ -45,8 +45,8 @@ extension OperatingSystemCoordinator {
         rootViewController?.statusBarView.title = title
     }
 
-    private func updateStatusBar(withPlayerImage image: UIImage?) {
-        rootViewController?.statusBarView.playerImage = image
+    private func updateStatusBar(withPlayerStatus status: PlayerStatus) {
+        rootViewController?.statusBarView.playerStatus = status
     }
 
     private func updateStatusBar(withBatteryImage image: UIImage?) {
@@ -173,6 +173,7 @@ extension OperatingSystemCoordinator: SongsMenuViewModelDelegate {
         }
         viewController.viewModel.delegate = self
         updateStatusBar(withTitle: Strings.nowPlaying)
+        updateStatusBar(withPlayerStatus: .playing)
         pushViewController(viewController)
     }
 
@@ -239,21 +240,22 @@ extension OperatingSystemCoordinator: PlayerViewModelDelegate {
             updateStatusBar(withTitle: Strings.iPod)
         }
         popViewController()
-        var player = coordinatorModel.playerService
-        player.delegate = self
+        coordinatorModel.playerService.delegate = self
     }
 
     func playerViewModel(_ playerViewModel: PlayerViewModel, didStartPlayingSong song: Song, fromPlaylist playlst: [Song]) {
         updateStatusBar(withTitle: Strings.nowPlaying)
-        updateStatusBar(withPlayerImage: nil) // TODO: PLAY IMAGE
+        updateStatusBar(withPlayerStatus: .playing)
     }
 
     func playerViewModelDidPausePlaying(_ playerViewModel: PlayerViewModel) {
         updateStatusBar(withTitle: Strings.nowPlaying)
+        updateStatusBar(withPlayerStatus: .paused)
     }
 
     func playerViewModelDidStopPlaying(_ playerViewModel: PlayerViewModel) {
         updateStatusBar(withTitle: Strings.nowPlaying)
+        updateStatusBar(withPlayerStatus: .stopped)
     }
 
 }
@@ -261,15 +263,19 @@ extension OperatingSystemCoordinator: PlayerViewModelDelegate {
 extension OperatingSystemCoordinator: PlayerServiceDelegate {
 
     func playerService(_ playerService: PlayerService, didStartPlaying song: Song) {
-        updateStatusBar(withPlayerImage: nil) // TODO: PLAY IMAGE
+        updateStatusBar(withPlayerStatus: .playing)
     }
 
     func playerService(_ playerService: PlayerService, didFinishPlaying song: Song) {
-        updateStatusBar(withPlayerImage: nil)
+        updateStatusBar(withPlayerStatus: .stopped)
+    }
+
+    func playerService(_ playerService: PlayerService, didResumePlaying song: Song) {
+        updateStatusBar(withPlayerStatus: .playing)
     }
 
     func playerService(_ playerService: PlayerService, didPause song: Song) {
-        updateStatusBar(withPlayerImage: nil) // TODO: PAUSE IMAGE
+        updateStatusBar(withPlayerStatus: .paused)
     }
 
     func playerService(_ playerService: PlayerService, didPassPlaybackTime time: TimeInterval) {}
