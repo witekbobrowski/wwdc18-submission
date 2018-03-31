@@ -13,13 +13,15 @@ class PlayerViewController: UIViewController {
     private enum Constants {
         static let edgeInset: CGFloat = 8
         static let labelInset: CGFloat = 4
-        static let labelHeight: CGFloat = 18
+        static let labelHeight: CGFloat = 14
+        static let progressBarHeight: CGFloat = 6
     }
 
     private weak var positionLabel: UILabel!
     private weak var songLabel: UILabel!
     private weak var authorLabel: UILabel!
     private weak var albumLabel: UILabel!
+    private weak var progressView: ProgressView!
 
     public var viewModel: PlayerViewModel!
 
@@ -38,6 +40,7 @@ extension PlayerViewController {
         setupSongLabel()
         setupAuthorLabel()
         setupAlbumLabel()
+        setupProgressView()
     }
 
     private func setupPositionLabel() {
@@ -49,7 +52,7 @@ extension PlayerViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.edgeInset).isActive = true
-        label.heightAnchor.constraint(equalToConstant: Constants.labelHeight)
+        label.heightAnchor.constraint(equalToConstant: Constants.labelHeight).isActive = true
         positionLabel = label
     }
 
@@ -64,7 +67,7 @@ extension PlayerViewController {
         label.topAnchor.constraint(equalTo: positionLabel.bottomAnchor, constant: Constants.labelInset).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.edgeInset).isActive = true
         label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Constants.edgeInset).isActive = true
-        label.heightAnchor.constraint(equalToConstant: Constants.labelHeight)
+        label.heightAnchor.constraint(equalToConstant: Constants.labelHeight).isActive = true
         songLabel = label
     }
 
@@ -79,7 +82,7 @@ extension PlayerViewController {
         label.topAnchor.constraint(equalTo: songLabel.bottomAnchor, constant: Constants.labelInset).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.edgeInset).isActive = true
         label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Constants.edgeInset).isActive = true
-        label.heightAnchor.constraint(equalToConstant: Constants.labelHeight)
+        label.heightAnchor.constraint(equalToConstant: Constants.labelHeight).isActive = true
         authorLabel = label
     }
 
@@ -94,8 +97,20 @@ extension PlayerViewController {
         label.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: Constants.labelInset).isActive = true
         label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.edgeInset).isActive = true
         label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Constants.edgeInset).isActive = true
-        label.heightAnchor.constraint(equalToConstant: Constants.labelHeight)
+        label.heightAnchor.constraint(equalToConstant: Constants.labelHeight).isActive = true
         albumLabel = label
+    }
+
+    private func setupProgressView() {
+        let progressView = ProgressView()
+        view.addSubview(progressView)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.topAnchor.constraint(equalTo: albumLabel.bottomAnchor, constant: Constants.labelInset).isActive = true
+        progressView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.edgeInset).isActive = true
+        progressView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Constants.edgeInset).isActive = true
+        progressView.heightAnchor.constraint(equalToConstant: Constants.progressBarHeight).isActive = true
+        progressView.progress = 0.5
+        self.progressView = progressView
     }
 }
 
