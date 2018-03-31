@@ -22,13 +22,14 @@ class StatusBarView: UIView {
 
     private weak var titleLabel: UILabel!
     private weak var playerStatusView: UIView!
-    private weak var batteryImageView: UIImageView!
+    private weak var batteryStatusView: UIView!
     private weak var bottomSeparatorView: UIView!
     private weak var playerStatusShapeLayer: CAShapeLayer?
+    private weak var batteryStatusShapeLayer: CAShapeLayer?
 
     var title: String? { didSet { titleLabel.text = title } }
     var playerStatus: PlayerStatus = .stopped { didSet { setupPlayerLayer() } }
-    var batteryImage: UIImage? { didSet { batteryImageView.image = batteryImage } }
+    var batteryPercentage: Float = 1 { didSet { setupBatteryLayer() } }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,6 +41,12 @@ class StatusBarView: UIView {
         setupView()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupPlayerLayer()
+        setupBatteryLayer()
+    }
+
 }
 
 extension StatusBarView {
@@ -47,6 +54,7 @@ extension StatusBarView {
     private func setupView() {
         setupPlayerStatusView()
         setupLabel()
+        setupBatteryStatusView()
         setupSeparator()
     }
 
@@ -75,10 +83,27 @@ extension StatusBarView {
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
-        playerStatusView.rightAnchor.constraint(equalTo: titleLabel.leftAnchor, constant: -Constants.inset).isActive = true
+        leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
         rightAnchor.constraint(equalTo: titleLabel.rightAnchor).isActive = true
         topAnchor.constraint(equalTo: titleLabel.topAnchor).isActive = true
         self.titleLabel = titleLabel
+    }
+
+    private func setupBatteryStatusView() {
+        let view = UIView()
+        view.backgroundColor = Color.dark
+        addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.inset).isActive = true
+        rightAnchor.constraint(equalTo: view.rightAnchor, constant: Constants.inset).isActive = true
+        topAnchor.constraint(equalTo: view.topAnchor, constant: -Constants.inset).isActive = true
+        view.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
+        batteryStatusView = view
+        let layer = CAShapeLayer()
+        layer.backgroundColor = UIColor.clear.cgColor
+        layer.fillRule = kCAFillRuleEvenOdd
+        view.layer.mask = layer
+        batteryStatusShapeLayer = layer
     }
 
     private func setupSeparator() {
@@ -120,6 +145,24 @@ extension StatusBarView {
             playerStatusView.isHidden = true
         }
         playerStatusShapeLayer?.path = path.cgPath
+    }
+
+    private func setupBatteryLayer() {
+        let rect = batteryStatusView.bounds
+        batteryStatusShapeLayer?.frame = rect
+        let path = UIBezierPath()
+        path.move(to: rect.origin)
+        path.addLine(to: CGPoint(x: rect.maxX - 2, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.maxX - 2, y: rect.midY - 3))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY - 3))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY + 3))
+        path.addLine(to: CGPoint(x: rect.maxX - 2, y: rect.midY + 3))
+        path.addLine(to: CGPoint(x: rect.maxX - 2, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+        path.addLine(to: rect.origin)
+        path.append(UIBezierPath(rect: CGRect(x: 2, y: 2,
+                                              width: rect.width - 6, height: rect.height - 4)))
+        batteryStatusShapeLayer?.path = path.cgPath
     }
 
 }

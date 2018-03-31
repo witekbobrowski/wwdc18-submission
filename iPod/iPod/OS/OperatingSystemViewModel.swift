@@ -10,10 +10,13 @@ import Foundation
 
 protocol OperatingSystemViewModel {
     var statusBarTitle: String { get }
+    var batteryPercentage: Float { get }
+
 }
 
 class OperatingSystemViewModelImplementation: OperatingSystemViewModel {
 
     var statusBarTitle: String { return Strings.iPod }
+    var batteryPercentage: Float { return 1 }
 
 }

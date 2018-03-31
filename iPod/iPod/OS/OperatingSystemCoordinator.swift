@@ -49,10 +49,6 @@ extension OperatingSystemCoordinator {
         rootViewController?.statusBarView.playerStatus = status
     }
 
-    private func updateStatusBar(withBatteryImage image: UIImage?) {
-        rootViewController?.statusBarView.batteryImage = image
-    }
-
     private func pushViewController(_ viewController: UIViewController) {
         rootViewController?.menuNavigationController.pushViewController(viewController, animated: animatedTransitions)
     }

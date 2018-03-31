@@ -42,6 +42,8 @@ extension OperatingSystemViewController {
     private func setupStatusBar() {
         let statusBarView = StatusBarView()
         statusBarView.title = viewModel.statusBarTitle
+        statusBarView.playerStatus = .stopped
+        statusBarView.batteryPercentage = viewModel.batteryPercentage
         view.addSubview(statusBarView)
         statusBarView.translatesAutoresizingMaskIntoConstraints = false
         view.topAnchor.constraint(equalTo: statusBarView.topAnchor).isActive = true
