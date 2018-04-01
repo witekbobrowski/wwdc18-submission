@@ -27,8 +27,7 @@ class MenuViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
-        guard let row = currentIndex ?? viewModel.rowInitallyHighlighed else { return }
-        highlightCellAtRow(row)
+        highlightCellAtRow(currentIndex ?? viewModel.rowInitallyHighlighed ?? 0)
     }
 
 }

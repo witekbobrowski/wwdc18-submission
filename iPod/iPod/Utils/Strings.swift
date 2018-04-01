@@ -20,4 +20,7 @@ enum Strings {
     static let nowPlaying: String = "Now Playing"
     static let all: String = "All"
     static let favourites: String = "Favourites"
+    static let wwdc: String = "WWDC18"
+    static let madeBy: String = "by Witold Bobrowski"
+    static let aboutDescription: String = "This is wwdc18 scholarship submission and tribute to the original 2001 iPod."
 }

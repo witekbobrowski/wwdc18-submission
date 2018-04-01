@@ -91,11 +91,14 @@ extension OperatingSystemCoordinator: MainMenuViewModelDelegate {
             return
         case .about:
             title = Strings.about
-            return
+            let aboutViewController = coordinatorModel.aboutViewController
+            aboutViewController.viewModel.delegate = self
+            viewController = aboutViewController
         case .nowPlaying(let songs):
             title = Strings.nowPlaying
-            viewController = coordinatorModel.playerViewController(song: nil, songs: songs, type: .nowPlaying)
-            (viewController as? PlayerViewController)?.viewModel.delegate = self
+            let playerViewController = coordinatorModel.playerViewController(song: nil, songs: songs, type: .nowPlaying)
+            playerViewController.viewModel.delegate = self
+            viewController = playerViewController
         }
         pushViewController(viewController)
         updateStatusBar(withTitle: title)
@@ -286,6 +289,15 @@ extension OperatingSystemCoordinator: PlayerServiceDelegate {
 
     func playerService(_ playerService: PlayerService, didRewindToTime time: TimeInterval) {}
     
+}
+
+extension OperatingSystemCoordinator: AboutViewModelDelegate {
+
+    func aboutViewModelDidClickGoBack(_ aboutViewModel: AboutViewModel) {
+        updateStatusBar(withTitle: Strings.iPod)
+        popViewController()
+    }
+
 }
 
 extension OperatingSystemCoordinator: InputResponder {

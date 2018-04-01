@@ -45,6 +45,7 @@ extension DeviceViewController {
 
     private func setupScreen() {
         let screenView = UIView()
+        screenView.clipsToBounds = true
         view.addSubview(screenView)
         screenView.layer.borderColor = UIColor.darkGray.cgColor
         screenView.layer.borderWidth = 0.5

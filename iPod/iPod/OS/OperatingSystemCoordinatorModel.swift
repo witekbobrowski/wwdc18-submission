@@ -15,6 +15,7 @@ protocol OperatingSystemCoordinatorModel {
     var mainMenuViewController: MenuViewController { get }
     var playlistsMenuViewController: MenuViewController { get }
     var artistsMenuViewController: MenuViewController { get }
+    var aboutViewController: AboutViewController { get }
     func songsMenuViewController(_ type: SongsMenuType) -> MenuViewController
     func albumsMenuViewController(_ type: AlbumsMenuType) -> MenuViewController
     func playerViewController(song: Song?, songs: [Song], type: PlayerViewModelType) -> PlayerViewController
@@ -39,6 +40,9 @@ class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorM
     }
     var artistsMenuViewController: MenuViewController {
         return configuredArtistsMenuViewController()
+    }
+    var aboutViewController: AboutViewController {
+        return configuredAboutViewController()
     }
 
     init(libraryService: LibraryService, playerService: PlayerService) {
@@ -130,6 +134,12 @@ extension OperatingSystemCoordinatorModelImplementation {
             break
         }
         viewController.viewModel = PlayerViewModelImplementation(playerService: playerService, song: song, playlist: songs, type: type)
+        return viewController
+    }
+
+    private func configuredAboutViewController() -> AboutViewController {
+        let viewController = AboutViewController()
+        viewController.viewModel = AboutViewModelImplementation()
         return viewController
     }
 
