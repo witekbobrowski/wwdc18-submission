@@ -14,6 +14,8 @@ protocol StorageService {
 
 class StorageServiceImplementation: StorageService {
 
+    private let supportedExtentions: [String] = ["mp3", "m4a", "aac", "flac", "alac"]
+
     var items: [URL]? { return retrieveItems() }
 
 }
@@ -21,8 +23,11 @@ class StorageServiceImplementation: StorageService {
 extension StorageServiceImplementation {
 
     private func retrieveItems() -> [URL]? {
-        let urls = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil)
-        return urls
+        var items: [URL] = []
+        for fileExtension in supportedExtentions {
+            items += Bundle.main.urls(forResourcesWithExtension: fileExtension, subdirectory: nil) ?? []
+        }
+        return items
     }
 
 }

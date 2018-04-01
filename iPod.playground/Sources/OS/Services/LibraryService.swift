@@ -60,9 +60,9 @@ extension LibraryServiceImplementation {
         var songsByAlbum: [String:[Song]] = [:]
         for url in urls {
             let asset = AVAsset(url: url)
-            var title: String = ""
-            var author: String = ""
-            var albumName: String = ""
+            var title: String = "Unknown"
+            var author: String = "Unknown"
+            var albumName: String = "Unknown"
             var genre: String = ""
             for metaItem in asset.metadata {
                 guard let key = metaItem.commonKey else { continue }

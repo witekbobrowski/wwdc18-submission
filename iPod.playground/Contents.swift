@@ -65,7 +65,6 @@ sceneView.layer.addSublayer(gradient)
 
 // Setup iPod and embed on the scene
 let iPod = IPod()
-sceneView.backgroundColor = .blue
 iPod.embed(onView: sceneView)
 
 // Display scene on the Playground
