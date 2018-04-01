@@ -24,6 +24,13 @@ class MenuViewController: UIViewController {
         setupTableView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+        guard let row = currentIndex ?? viewModel.rowInitallyHighlighed else { return }
+        highlightCellAtRow(row)
+    }
+
 }
 
 extension MenuViewController {

@@ -9,7 +9,7 @@
 import Foundation
 
 enum PlayerViewModelType {
-    case songs
+    case songs([Song])
     case playlist(Playlist)
     case album(Album)
     case artist(Artist)

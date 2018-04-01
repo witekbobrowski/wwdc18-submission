@@ -10,6 +10,7 @@ import Foundation
 
 protocol OperatingSystemCoordinatorModel {
     var playerService: PlayerService { get }
+    var defaultMainMenuItems: [MainMenuItem] { get }
     var operatingSystemViewController: OperatingSystemViewController { get }
     var mainMenuViewController: MenuViewController { get }
     var playlistsMenuViewController: MenuViewController { get }
@@ -24,6 +25,9 @@ class OperatingSystemCoordinatorModelImplementation: OperatingSystemCoordinatorM
     let libraryService: LibraryService
 
     private(set) var playerService: PlayerService
+    var defaultMainMenuItems: [MainMenuItem] {
+        return  [.playlists, .artists, .songs(libraryService.songs), .settings, .about]
+    }
     var operatingSystemViewController: OperatingSystemViewController {
         return configuredOperatingSystemViewController()
     }
@@ -68,8 +72,7 @@ extension OperatingSystemCoordinatorModelImplementation {
 
     private func configuredMainMenuViewController() -> MenuViewController {
         let viewController = MenuViewController()
-        let menuItems: [MainMenuItem] = [.playlists, .artists, .songs(libraryService.songs), .settings, .about]
-        viewController.viewModel = MainMenuViewModel(items: menuItems)
+        viewController.viewModel = MainMenuViewModel(items: defaultMainMenuItems)
         return viewController
     }
 

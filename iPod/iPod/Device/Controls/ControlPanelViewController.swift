@@ -144,6 +144,7 @@ extension ControlPanelViewController {
         menuButton.titleEdgeInsets = UIEdgeInsetsMake(-2, 0, 0, 0)
         playPauseButton.setTitle(viewModel.playButtonTitle, for: .normal)
         playPauseButton.contentVerticalAlignment = .bottom
+        playPauseButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -2, 0)
         previousButton.setTitle(viewModel.previousButtonTitle, for: .normal)
         previousButton.contentHorizontalAlignment = .left
         previousButton.titleEdgeInsets = UIEdgeInsetsMake(0, 2, 0, 0)

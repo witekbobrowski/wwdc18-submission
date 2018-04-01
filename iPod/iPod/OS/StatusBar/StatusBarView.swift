@@ -17,7 +17,7 @@ enum PlayerStatus {
 class StatusBarView: UIView {
 
     private enum Constants {
-        static let inset: CGFloat = 3
+        static let inset: CGFloat = 4
     }
 
     private weak var titleLabel: UILabel!
@@ -83,9 +83,8 @@ extension StatusBarView {
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
-        leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
-        rightAnchor.constraint(equalTo: titleLabel.rightAnchor).isActive = true
         topAnchor.constraint(equalTo: titleLabel.topAnchor).isActive = true
+        centerXAnchor.constraint(equalTo: titleLabel.centerXAnchor).isActive = true
         self.titleLabel = titleLabel
     }
 
@@ -97,6 +96,7 @@ extension StatusBarView {
         bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.inset).isActive = true
         rightAnchor.constraint(equalTo: view.rightAnchor, constant: Constants.inset).isActive = true
         topAnchor.constraint(equalTo: view.topAnchor, constant: -Constants.inset).isActive = true
+        view.leftAnchor.constraint(equalTo: titleLabel.rightAnchor).isActive = true
         view.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
         batteryStatusView = view
         let layer = CAShapeLayer()
@@ -160,8 +160,10 @@ extension StatusBarView {
         path.addLine(to: CGPoint(x: rect.maxX - 2, y: rect.maxY))
         path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
         path.addLine(to: rect.origin)
-        path.append(UIBezierPath(rect: CGRect(x: 2, y: 2,
-                                              width: rect.width - 6, height: rect.height - 4)))
+        path.append(UIBezierPath(rect: CGRect(x: rect.maxX - 3, y: rect.midY - 2,
+                                              width: 2, height: 4)))
+        path.append(UIBezierPath(rect: CGRect(x: 1, y: 1,
+                                              width: rect.width - 4, height: rect.height - 2)))
         batteryStatusShapeLayer?.path = path.cgPath
     }
 

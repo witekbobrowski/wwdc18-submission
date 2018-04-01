@@ -11,6 +11,7 @@ import UIKit
 public class DeviceViewController: UIViewController {
 
     private enum Constants {
+        static let inset: CGFloat = 20
         static let screenHeight: CGFloat = 128
         static let screenWidth: CGFloat = 160
         static let controlPanelSize: CGFloat = 200
@@ -33,6 +34,10 @@ public class DeviceViewController: UIViewController {
 extension DeviceViewController {
 
     private func setupView() {
+        view.backgroundColor = Color.device
+        view.layer.cornerRadius = 16
+        view.layer.borderColor = UIColor.darkGray.cgColor
+        view.layer.borderWidth = 2
         setupScreen()
         setupOperatingSystem()
         setupControlPanel()
@@ -42,7 +47,7 @@ extension DeviceViewController {
         let screenView = UIView()
         view.addSubview(screenView)
         screenView.translatesAutoresizingMaskIntoConstraints = false
-        screenView.topAnchor.constraint(equalTo: view.topAnchor, constant: 64).isActive = true
+        screenView.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.inset).isActive = true
         screenView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         screenView.widthAnchor.constraint(equalToConstant: Constants.screenWidth).isActive = true
         screenView.heightAnchor.constraint(equalToConstant: Constants.screenHeight).isActive = true
@@ -59,12 +64,21 @@ extension DeviceViewController {
     private func setupControlPanel() {
         let controlPanelVC = ControlPanelViewController()
         controlPanelVC.viewModel = viewModel.controlPanelViewModel
+        addChildViewController(controlPanelVC)
+        controlPanelVC.didMove(toParentViewController: self)
         view.addSubview(controlPanelVC.view)
         controlPanelVC.view.translatesAutoresizingMaskIntoConstraints = false
-        controlPanelVC.view.topAnchor.constraint(equalTo: screenView.bottomAnchor, constant: 20).isActive = true
+        controlPanelVC.view.topAnchor.constraint(equalTo: screenView.bottomAnchor,
+                                                 constant: Constants.inset).isActive = true
         controlPanelVC.view.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         controlPanelVC.view.widthAnchor.constraint(equalToConstant: Constants.controlPanelSize).isActive = true
         controlPanelVC.view.heightAnchor.constraint(equalToConstant: Constants.controlPanelSize).isActive = true
+        controlPanelVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+                                                    constant: -Constants.inset).isActive = true
+        controlPanelVC.view.leftAnchor.constraint(equalTo: view.leftAnchor,
+                                                  constant: Constants.inset).isActive = true
+        controlPanelVC.view.rightAnchor.constraint(equalTo: view.rightAnchor,
+                                                   constant: -Constants.inset).isActive = true
         self.controlPanelViewController = controlPanelVC
     }
 

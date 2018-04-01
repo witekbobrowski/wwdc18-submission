@@ -15,17 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var rootViewController: UIViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let deviceViewController = DeviceViewController()
-        let storageService = StorageServiceImplementation()
-        let libraryService = LibraryServiceImplementation(storageService: storageService)
-        let playerService = PlayerServiceImplementation()
-        let coordinatorModel = OperatingSystemCoordinatorModelImplementation(libraryService: libraryService, playerService: playerService)
-        deviceViewController.viewModel = DeviceViewModelImplementation(operatingSystemCoordinatorModel: coordinatorModel, controlPanelViewModel: ControlPanelViewModelImplementation())
-        deviceViewController.view.frame = UIScreen.main.bounds
-        rootViewController = deviceViewController
+        let containerVC = UIViewController()
+        containerVC.view.frame = UIScreen.main.bounds
+        containerVC.view.backgroundColor = .black
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = deviceViewController
+        window?.rootViewController = containerVC
         window?.makeKeyAndVisible()
+        configureIPod()
         return true
     }
 
@@ -51,6 +47,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+
+    private func configureIPod() {
+        let deviceViewController = DeviceViewController()
+        let storageService = StorageServiceImplementation()
+        let libraryService = LibraryServiceImplementation(storageService: storageService)
+        let playerService = PlayerServiceImplementation()
+        let coordinatorModel = OperatingSystemCoordinatorModelImplementation(libraryService: libraryService, playerService: playerService)
+        deviceViewController.viewModel = DeviceViewModelImplementation(operatingSystemCoordinatorModel: coordinatorModel, controlPanelViewModel: ControlPanelViewModelImplementation())
+        deviceViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        let root = window!.rootViewController!
+        root.addChildViewController(deviceViewController)
+        deviceViewController.didMove(toParentViewController: deviceViewController)
+        root.view.addSubview(deviceViewController.view)
+        root.view.centerXAnchor.constraint(equalTo: deviceViewController.view.centerXAnchor).isActive = true
+        root.view.centerYAnchor.constraint(equalTo: deviceViewController.view.centerYAnchor).isActive = true
+        rootViewController = deviceViewController
+    }
 
 }
 

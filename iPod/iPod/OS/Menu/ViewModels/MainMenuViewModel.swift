@@ -23,7 +23,7 @@ protocol MainMenuViewModelDelegate: class {
 
 class MainMenuViewModel: MenuViewModel {
 
-    private(set) var items: [MainMenuItem]
+    var items: [MainMenuItem]
     weak var delegate: MainMenuViewModelDelegate?
     var rowInitallyHighlighed: Int? { return items.isEmpty ? nil : 0 }
 

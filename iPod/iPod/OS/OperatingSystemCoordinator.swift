@@ -95,7 +95,7 @@ extension OperatingSystemCoordinator: MainMenuViewModelDelegate {
         case .nowPlaying(let songs):
             title = Strings.nowPlaying
             viewController = coordinatorModel.playerViewController(song: nil, songs: songs, type: .nowPlaying)
-            return
+            (viewController as? PlayerViewController)?.viewModel.delegate = self
         }
         pushViewController(viewController)
         updateStatusBar(withTitle: title)
@@ -163,7 +163,7 @@ extension OperatingSystemCoordinator: SongsMenuViewModelDelegate {
             let songs = artist.albums.reduce([]) { $0 + $1.songs }.sorted { $0.title < $1.title}
             viewController = coordinatorModel.playerViewController(song: song, songs: songs, type: .artist(artist))
         case .all(let songs):
-            viewController = coordinatorModel.playerViewController(song: song, songs: songs, type: .songs)
+            viewController = coordinatorModel.playerViewController(song: song, songs: songs, type: .songs(songs))
         case .playlist(let playlist):
             viewController = coordinatorModel.playerViewController(song: song, songs: playlist.songs, type: .playlist(playlist))
         }
@@ -223,15 +223,21 @@ extension OperatingSystemCoordinator: AlbumsMenuViewModelDelegate {
 extension OperatingSystemCoordinator: PlayerViewModelDelegate {
 
     func playerViewModelDidClickGoBack(_ playerViewModel: PlayerViewModel) {
+        let mainMenuVC = rootViewController?.menuNavigationController.viewControllers.first as? MenuViewController
+        let mainMenuViewModel = mainMenuVC?.viewModel as? MainMenuViewModel
         switch playerViewModel.type {
         case .album(let album):
             updateStatusBar(withTitle: album.title)
+            mainMenuViewModel?.items = coordinatorModel.defaultMainMenuItems + [.nowPlaying(album.songs)]
         case .artist(let artist):
             updateStatusBar(withTitle: artist.name)
+            mainMenuViewModel?.items = coordinatorModel.defaultMainMenuItems + [.nowPlaying(artist.albums.reduce([]) { $0 + $1.songs })]
         case .playlist(let playlist):
             updateStatusBar(withTitle: playlist.title)
-        case .songs:
+            mainMenuViewModel?.items = coordinatorModel.defaultMainMenuItems + [.nowPlaying(playlist.songs)]
+        case .songs(let songs):
             updateStatusBar(withTitle: Strings.songs)
+            mainMenuViewModel?.items = coordinatorModel.defaultMainMenuItems + [.nowPlaying(songs)]
         case .nowPlaying:
             updateStatusBar(withTitle: Strings.iPod)
         }

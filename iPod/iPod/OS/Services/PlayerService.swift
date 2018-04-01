@@ -128,6 +128,8 @@ class PlayerServiceImplementation: PlayerService {
 
     func stop() {
         player.replaceCurrentItem(with: nil)
+        guard let song = currentSong else { return }
+        delegate?.playerService(self, didFinishPlaying: song)
     }
 
     func changeVolume(_ volume: Float) {

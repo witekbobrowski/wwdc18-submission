@@ -21,6 +21,7 @@ class PlayerViewController: UIViewController {
     private weak var songLabel: UILabel!
     private weak var authorLabel: UILabel!
     private weak var albumLabel: UILabel!
+    private weak var songProgressView: ProgressView!
     private weak var volumeProgressView: ProgressView!
 
     public var viewModel: PlayerViewModel!
@@ -40,6 +41,7 @@ extension PlayerViewController {
         setupSongLabel()
         setupAuthorLabel()
         setupAlbumLabel()
+//        setupSongProgressView()
         setupVolumeProgressView()
         setupWithViewModel()
     }
@@ -107,6 +109,20 @@ extension PlayerViewController {
         progressView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Constants.edgeInset).isActive = true
         progressView.heightAnchor.constraint(equalToConstant: Constants.progressBarHeight).isActive = true
         self.volumeProgressView = progressView
+    }
+
+    private func setupSongProgressView() {
+        let progressView = ProgressView()
+        view.addSubview(progressView)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.topAnchor.constraint(equalTo: albumLabel.bottomAnchor,
+                                          constant: Constants.labelInset).isActive = true
+        progressView.leftAnchor.constraint(equalTo: view.leftAnchor,
+                                           constant: Constants.edgeInset).isActive = true
+        progressView.rightAnchor.constraint(equalTo: view.rightAnchor,
+                                            constant: -Constants.edgeInset).isActive = true
+        progressView.heightAnchor.constraint(equalToConstant: Constants.progressBarHeight).isActive = true
+        self.songProgressView = progressView
     }
 
     private func setupWithViewModel() {
