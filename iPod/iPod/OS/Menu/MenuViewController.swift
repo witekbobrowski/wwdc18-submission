@@ -11,7 +11,7 @@ import UIKit
 class MenuViewController: UIViewController {
 
     private enum Constants {
-        static let rowHeight: CGFloat = 18
+        static let rowHeight: CGFloat = 16
     }
 
     private weak var tableView: UITableView!

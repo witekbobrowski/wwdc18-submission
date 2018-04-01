@@ -46,6 +46,9 @@ extension DeviceViewController {
     private func setupScreen() {
         let screenView = UIView()
         view.addSubview(screenView)
+        screenView.layer.borderColor = UIColor.darkGray.cgColor
+        screenView.layer.borderWidth = 0.5
+        screenView.layer.cornerRadius = Constants.screenCornerRadius
         screenView.translatesAutoresizingMaskIntoConstraints = false
         screenView.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.inset).isActive = true
         screenView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

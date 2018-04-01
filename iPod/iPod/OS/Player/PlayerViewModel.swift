@@ -65,10 +65,15 @@ class PlayerViewModelImplementation: PlayerViewModel {
         return playerService.volume
     }
     var currentTime: String {
-        return playerService.currentTime.description
+        let seconds = Int(playerService.currentTime.truncatingRemainder(dividingBy: 60))
+        let minutes = Int(playerService.currentTime / 60)
+        return "\(minutes):\(seconds)"
     }
     var duration: String {
-        return playerService.duration.description
+        guard playerService.duration.description != "nan" else { return "0:00" }
+        let seconds = Int(playerService.duration.truncatingRemainder(dividingBy: 60))
+        let minutes = Int(playerService.duration / 60)
+        return "\(minutes):\(seconds)"
     }
 
     init(playerService: PlayerService, song: Song?, playlist: [Song], type: PlayerViewModelType) {
