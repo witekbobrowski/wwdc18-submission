@@ -23,15 +23,21 @@ protocol PlayerViewModelDelegate: class {
     func playerViewModelDidStopPlaying(_ playerViewModel: PlayerViewModel)
 }
 
+protocol PlayerViewModelUpdatesDelegate: class {
+    func playerViewModelDidUpdate(_ playerViewModel: PlayerViewModel)
+}
+
 protocol PlayerViewModel {
     var delegate: PlayerViewModelDelegate? { get set }
+    var updatesDelegate: PlayerViewModelUpdatesDelegate? { get set }
     var type: PlayerViewModelType { get }
     var position: String { get }
     var song: String { get }
     var author: String { get }
     var album: String { get }
     var volume: Float { get }
-    var currentTime: String { get }
+    var songProgress: Float { get }
+    var currentTimeString: String { get }
     var duration: String { get }
     func goBackAction()
     func enterAction()
@@ -47,6 +53,7 @@ class PlayerViewModelImplementation: PlayerViewModel {
     private let playlist: [Song]
 
     weak var delegate: PlayerViewModelDelegate?
+    weak var updatesDelegate: PlayerViewModelUpdatesDelegate?
     let type: PlayerViewModelType
     var position: String {
         guard let song = playerService.currentSong, let index = playlist.index(where: { $0.url == song.url }) else { return "" }
@@ -64,16 +71,19 @@ class PlayerViewModelImplementation: PlayerViewModel {
     var volume: Float {
         return playerService.volume
     }
-    var currentTime: String {
+    var songProgress: Float {
+        guard playerService.duration != 0 else { return 0 }
+        return (Float(playerService.currentTime)/Float(playerService.duration))
+    }
+    var currentTimeString: String {
         let seconds = Int(playerService.currentTime.truncatingRemainder(dividingBy: 60))
         let minutes = Int(playerService.currentTime / 60)
-        return "\(minutes):\(seconds)"
+        return String(format: "%02d:%02d", minutes, seconds)
     }
     var duration: String {
-        guard playerService.duration.description != "nan" else { return "0:00" }
         let seconds = Int(playerService.duration.truncatingRemainder(dividingBy: 60))
         let minutes = Int(playerService.duration / 60)
-        return "\(minutes):\(seconds)"
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 
     init(playerService: PlayerService, song: Song?, playlist: [Song], type: PlayerViewModelType) {
@@ -119,30 +129,34 @@ extension PlayerViewModelImplementation: PlayerServiceDelegate {
 
     func playerService(_ playerService: PlayerService, didStartPlaying song: Song) {
         delegate?.playerViewModel(self, didStartPlayingSong: song, fromPlaylist: playlist)
+        updatesDelegate?.playerViewModelDidUpdate(self)
     }
 
     func playerService(_ playerService: PlayerService, didFinishPlaying song: Song) {
         delegate?.playerViewModelDidStopPlaying(self)
+        updatesDelegate?.playerViewModelDidUpdate(self)
     }
 
     func playerService(_ playerService: PlayerService, didResumePlaying song: Song) {
         delegate?.playerViewModel(self, didStartPlayingSong: song, fromPlaylist: playlist)
+        updatesDelegate?.playerViewModelDidUpdate(self)
     }
 
     func playerService(_ playerService: PlayerService, didPause song: Song) {
         delegate?.playerViewModelDidPausePlaying(self)
+        updatesDelegate?.playerViewModelDidUpdate(self)
     }
 
     func playerService(_ playerService: PlayerService, didPassPlaybackTime time: TimeInterval) {
-
+        updatesDelegate?.playerViewModelDidUpdate(self)
     }
 
     func playerService(_ playerService: PlayerService, didFastForwardToTime time: TimeInterval) {
-
+        updatesDelegate?.playerViewModelDidUpdate(self)
     }
 
     func playerService(_ playerService: PlayerService, didRewindToTime time: TimeInterval) {
-
+        updatesDelegate?.playerViewModelDidUpdate(self)
     }
 
 }

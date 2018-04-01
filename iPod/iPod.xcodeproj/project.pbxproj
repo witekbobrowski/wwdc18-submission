@@ -39,7 +39,6 @@
 		41B7ECE3206C496B00C41086 /* SongsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECE2206C496B00C41086 /* SongsMenuViewModel.swift */; };
 		41B7ECE5206C575400C41086 /* AlbumsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7ECE4206C575400C41086 /* AlbumsMenuViewModel.swift */; };
 		F97D9A6A206F5EA4001FED7B /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97D9A69206F5EA4001FED7B /* ProgressView.swift */; };
-		F9914028207057840060E3A8 /* 01 Terminal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F9914027207057830060E3A8 /* 01 Terminal.mp3 */; };
 		F9F2EFD2206CDA1C009A88FC /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2EFD1206CDA1C009A88FC /* Strings.swift */; };
 		F9F2EFD4206CDE39009A88FC /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2EFD3206CDE39009A88FC /* PlayerService.swift */; };
 		F9F2EFD7206CF0FD009A88FC /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F2EFD6206CF0FD009A88FC /* PlayerViewModel.swift */; };
@@ -83,7 +82,6 @@
 		41B7ECE2206C496B00C41086 /* SongsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsMenuViewModel.swift; sourceTree = "<group>"; };
 		41B7ECE4206C575400C41086 /* AlbumsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsMenuViewModel.swift; sourceTree = "<group>"; };
 		F97D9A69206F5EA4001FED7B /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
-		F9914027207057830060E3A8 /* 01 Terminal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "01 Terminal.mp3"; sourceTree = "<group>"; };
 		F9F2EFD1206CDA1C009A88FC /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		F9F2EFD3206CDE39009A88FC /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
 		F9F2EFD6206CF0FD009A88FC /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				4105CC1020681E7000DE99EB /* OS */,
 				4105CC252068225B00DE99EB /* Device */,
 				4105CBFC20681E4400DE99EB /* AppDelegate.swift */,
-				F9914027207057830060E3A8 /* 01 Terminal.mp3 */,
 				4105CC0320681E4400DE99EB /* Assets.xcassets */,
 				4105CC0520681E4400DE99EB /* LaunchScreen.storyboard */,
 				4105CC0820681E4400DE99EB /* Info.plist */,
@@ -345,7 +342,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9914028207057840060E3A8 /* 01 Terminal.mp3 in Resources */,
 				4105CC0720681E4400DE99EB /* LaunchScreen.storyboard in Resources */,
 				4105CC0420681E4400DE99EB /* Assets.xcassets in Resources */,
 			);

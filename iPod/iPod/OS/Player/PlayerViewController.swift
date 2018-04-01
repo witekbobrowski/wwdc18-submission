@@ -39,6 +39,7 @@ extension PlayerViewController {
 
     private func setupView() {
         view.backgroundColor = Color.light
+        viewModel.updatesDelegate = self
         setupPositionLabel()
         setupSongLabel()
         setupAuthorLabel()
@@ -130,6 +131,7 @@ extension PlayerViewController {
         label.widthAnchor.constraint(equalTo: timeLabel.widthAnchor)
         durationLabel = label
     }
+
     private func setupSongProgressView() {
         let progressView = ProgressView()
         view.addSubview(progressView)
@@ -162,8 +164,9 @@ extension PlayerViewController {
         songLabel.text = viewModel.song
         authorLabel.text = viewModel.author
         albumLabel.text = viewModel.album
-        timeLabel.text = viewModel.currentTime
+        timeLabel.text = viewModel.currentTimeString
         durationLabel.text = viewModel.duration
+        songProgressView.progress = viewModel.songProgress
         volumeProgressView.progress = viewModel.volume
     }
 
@@ -188,7 +191,15 @@ extension PlayerViewController: InputResponder {
             case .previous:
                 viewModel.volumeDownAction()
             }
+            setupWithViewModel()
         }
+    }
+
+}
+
+extension PlayerViewController: PlayerViewModelUpdatesDelegate {
+
+    func playerViewModelDidUpdate(_ playerViewModel: PlayerViewModel) {
         setupWithViewModel()
     }
 

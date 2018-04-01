@@ -63,11 +63,12 @@ class PlayerServiceImplementation: PlayerService {
         return  player.volume
     }
     var currentTime: TimeInterval {
-        return CMTimeGetSeconds(player.currentTime())
+        let time = CMTimeGetSeconds(player.currentTime())
+        return time.isNaN ? 0 : time
     }
     var duration: TimeInterval {
         guard let time = player.currentItem?.duration else { return 0 }
-        return CMTimeGetSeconds(time)
+        return CMTimeGetSeconds(time).isNaN ? 0 : CMTimeGetSeconds(time)
     }
 
     init() {
